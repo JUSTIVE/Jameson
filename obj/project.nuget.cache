@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "3Vh7A/b3vX+OYdGJMhPHM5ydcu9sllKbmc1XqIDmsyEKdSKok0TjP2Y2xjoYDHKPRli6VrUr9lFQ5PB1i7jF8A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\HOME\\source\\repos\\Jameson\\Jameson.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\HOME\\.nuget\\packages\\fsharp.core\\5.0.0\\fsharp.core.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Jameson": {
+      "commandName": "Project",
+      "commandLineArgs": "firstOption secondOption"
+    }
+  }
+}

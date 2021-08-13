@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <WarnOn>3390;$(WarnOn)</WarnOn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="domain\JamesonResult.fs" />
+    <Compile Include="Resource\JamesonResults.fs" />
+    <Compile Include="runner\TargetRunner.fs" />
+    <Compile Include="runner\GeneralRunner.fs" />
+    <Compile Include="runner\Runner.fs" />
+    <Compile Include="utility\Help.fs" />
+    <Compile Include="utility\LanguageSupport.fs" />
+    <Compile Include="utility\PipeLine.fs" />
+    <Compile Include="utility\Printer.fs" />
+    <Compile Include="utility\PathResolver.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+</Project>
