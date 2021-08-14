@@ -18,3 +18,11 @@ type JamesonOption = {
     runnerType:RunnerType
     writeToFile:bool
 }
+
+//type ArgumentOptionType =
+//    | WriteToFile
+
+//type argumentOption = {
+//    prefix:string;
+//    arguement:list<string>
+//}

@@ -1,6 +1,5 @@
 ﻿module PathResolver
-open LanguageSupport
 
 let getFilePathList (path:string):list<string> = 
-    System.IO.Directory.GetFiles(path,SEARCH_PATTERN)
+    System.IO.Directory.GetFiles(path,LanguageSupport.JSON_PATTERN)
     |>Array.toList

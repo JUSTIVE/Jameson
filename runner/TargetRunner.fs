@@ -3,4 +3,5 @@ open JamesonResult
 open JamesonResults
 
 let run (originFilePath:string) (comparingFilePath:string) :JamesonResult= 
-    CLEAR
+    //TODO:: replace later
+    GOOD
