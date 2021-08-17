@@ -19,10 +19,8 @@ type JamesonOption = {
     writeToFile:bool
 }
 
-//type ArgumentOptionType =
-//    | WriteToFile
-
-//type argumentOption = {
-//    prefix:string;
-//    arguement:list<string>
-//}
+type ArgumentOption = {
+    name:string;
+    keyString:string;
+    argumentLength:int;
+}

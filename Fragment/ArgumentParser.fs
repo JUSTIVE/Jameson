@@ -18,21 +18,36 @@ let rec sourceResolver (state:ReduceState<SourceResolveResult>)(argument:list<st
         match state with 
         | SourceResolveState.Init -> SourceResolveResult.Fail(ARGUMENT_LENGTH_ERROR)
         | SourceResolveState.NonInit(result)-> result
+
+    let CONTINUE_STATEMENT (runnerType:RunnerType) (restArgument) =
+        sourceResolver
+        <|  SourceResolveState.NonInit(
+                SourceResolveResult.Success({
+                    runnerType=runnerType;
+                    restArgument=restArgument
+                })
+            )
+        <|  restArgument
+
+    let matchAnyOption (currentParameter:string) :bool = 
+        OptionList
+        |> List.map(fun x->x.keyString)
+        |> List.forall(fun (x:string)-> x=currentParameter)
+
     match argument with
     | [] -> RETURN_WITH_ARGUMENT_LENGTH_ERROR_WHEN_INIT state
     | h::t -> 
         match h with
-        | "-o" -> RETURN_WITH_ARGUMENT_LENGTH_ERROR_WHEN_INIT state
+        | x when matchAnyOption h -> RETURN_WITH_ARGUMENT_LENGTH_ERROR_WHEN_INIT state
         | __ -> 
             match state with
             | SourceResolveState.Init -> 
-                SourceResolveResult.Success({
-                    runnerType=GeneralRunner({
+                CONTINUE_STATEMENT
+                <|  GeneralRunner({
                         sourcePath=h;
                         targetCandidate=List.empty<string>
-                    });
-                    restArgument=t
-                })
+                    })
+                <|  t
             | SourceResolveState.NonInit(result)->
                 match result with
                 | SourceResolveResult.Fail(x) as result -> result
@@ -40,17 +55,12 @@ let rec sourceResolver (state:ReduceState<SourceResolveResult>)(argument:list<st
                     match runnerType with
                     | TargetRunner(x)-> SourceResolveResult.Fail(ARGUMENT_LENGTH_ERROR)
                     | GeneralRunner({sourcePath=sourcePath;targetCandidate=targetCandidate})-> 
-                        sourceResolver
-                        <|  SourceResolveState.NonInit(
-                                SourceResolveResult.Success({
-                                    runnerType=TargetRunner({
-                                        sourcePath = sourcePath;
-                                        targetPath = h
-                                    });
-                                    restArgument = t
-                                })
-                            )
-                        <| t
+                        CONTINUE_STATEMENT
+                        <|  TargetRunner({
+                                sourcePath = sourcePath;
+                                targetPath = h
+                            })
+                        <|  t
 
 type ParseResult = Result<JamesonOption,JamesonResult>
 

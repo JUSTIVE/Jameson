@@ -7,17 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="domain\JamesonResult.fs" />
+    <Compile Include="Utility\State.fs" />
+    <Compile Include="Domain\JamesonOption.fs" />
+    <Compile Include="Domain\JamesonResultType.fs" />
+    <Compile Include="Resource\JamesonOptions.fs" />
     <Compile Include="Resource\JamesonResults.fs" />
-    <Compile Include="runner\TargetRunner.fs" />
-    <Compile Include="runner\GeneralRunner.fs" />
-    <Compile Include="runner\Runner.fs" />
-    <Compile Include="utility\Help.fs" />
-    <Compile Include="utility\LanguageSupport.fs" />
-    <Compile Include="utility\PipeLine.fs" />
-    <Compile Include="utility\Printer.fs" />
-    <Compile Include="utility\PathResolver.fs" />
+    <Compile Include="Runner\TargetRunner.fs" />
+    <Compile Include="Runner\GeneralRunner.fs" />
+    <Compile Include="Runner\Runner.fs" />
+    <Compile Include="Fragment\Exporter.fs" />
+    <Compile Include="Fragment\ArgumentParser.fs" />
+    <Compile Include="Fragment\Help.fs" />
+    <Compile Include="Fragment\LanguageSupport.fs" />
+    <Compile Include="Fragment\PipeLine.fs" />
+    <Compile Include="Fragment\Printer.fs" />
+    <Compile Include="Fragment\PathResolver.fs" />
     <Compile Include="Program.fs" />
+    <None Include="README.md" />
   </ItemGroup>
 
 </Project>
