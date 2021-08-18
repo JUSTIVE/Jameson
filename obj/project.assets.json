@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net5.0": {
-      "FSharp.Core/5.0.0": {
+      "FSharp.Core/5.0.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/FSharp.Core.dll": {}
@@ -50,20 +50,40 @@
           "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll": {
             "locale": "zh-Hant"
           }
+        },
+        "contentFiles": {
+          "contentFiles/any/any/_._": {
+            "buildAction": "None",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          }
+        }
+      },
+      "FSharp.Data/4.2.2": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "4.7.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/FSharp.Data.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/FSharp.Data.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "FSharp.Core/5.0.0": {
-      "sha512": "iHoYXA0VaSQUONGENB1aVafjDDZDZpwu39MtaRCTrmwFW/cTcK0b2yKNVYneFHJMc3ChtsSoM9lNtJ1dYXkHfA==",
+    "FSharp.Core/5.0.2": {
+      "sha512": "DpcajqENgb3VXaHw1FKfVS+TWwEzck1PCajqLwBAVrtd1lfxd7T8JISVZBdV1mX9+2g48+tIgpNaVJWObdMrBw==",
       "type": "package",
-      "path": "fsharp.core/5.0.0",
+      "path": "fsharp.core/5.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "fsharp.core.5.0.0.nupkg.sha512",
+        "contentFiles/any/netstandard2.0/FSharp.Core.xml",
+        "fsharp.core.5.0.2.nupkg.sha512",
         "fsharp.core.nuspec",
         "lib/netstandard2.0/FSharp.Core.dll",
         "lib/netstandard2.0/FSharp.Core.xml",
@@ -81,11 +101,28 @@
         "lib/netstandard2.0/zh-Hans/FSharp.Core.resources.dll",
         "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll"
       ]
+    },
+    "FSharp.Data/4.2.2": {
+      "sha512": "GDxNvczWRM98hxsBl8Rnx9zrUlEVXD7YgHvhELccaTxu7b5eR4McSHDCdauDZvAqHBjuBe6oQvxXSmkE4QrT7w==",
+      "type": "package",
+      "path": "fsharp.data/4.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fsharp.data.4.2.2.nupkg.sha512",
+        "fsharp.data.nuspec",
+        "lib/netstandard2.0/FSharp.Data.dll",
+        "lib/netstandard2.0/FSharp.Data.xml",
+        "logo.png",
+        "typeproviders/fsharp41/netstandard2.0/FSharp.Data.DesignTime.deps.json",
+        "typeproviders/fsharp41/netstandard2.0/FSharp.Data.DesignTime.dll"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "FSharp.Core >= 5.0.0"
+      "FSharp.Core >= 5.0.2",
+      "FSharp.Data >= 4.2.2"
     ]
   },
   "packageFolders": {
@@ -132,7 +169,12 @@
           "FSharp.Core": {
             "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
             "target": "Package",
-            "version": "[5.0.0, )",
+            "version": "[5.0.2, )",
+            "generatePathProperty": true
+          },
+          "FSharp.Data": {
+            "target": "Package",
+            "version": "[4.2.2, )",
             "generatePathProperty": true
           }
         },
