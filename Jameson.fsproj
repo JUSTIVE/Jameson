@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Utility\State.fs" />
+    <Compile Include="Domain\State.fs" />
+    <Compile Include="Domain\FileType\Diff.fs" />
     <Compile Include="Domain\JamesonOption.fs" />
     <Compile Include="Domain\JamesonResultType.fs" />
     <Compile Include="Resource\JamesonOptions.fs" />
@@ -15,6 +16,7 @@
     <Compile Include="Runner\TargetRunner.fs" />
     <Compile Include="Runner\GeneralRunner.fs" />
     <Compile Include="Runner\Runner.fs" />
+    <Compile Include="Fragment\JsonParser.fs" />
     <Compile Include="Fragment\Exporter.fs" />
     <Compile Include="Fragment\ArgumentParser.fs" />
     <Compile Include="Fragment\Help.fs" />
@@ -24,6 +26,14 @@
     <Compile Include="Fragment\PathResolver.fs" />
     <Compile Include="Program.fs" />
     <None Include="README.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FSharp.Data" Version="4.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="5.0.2" />
   </ItemGroup>
 
 </Project>
