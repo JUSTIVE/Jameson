@@ -17,6 +17,6 @@ let rec keySet (jsonValue:JsonValue) (parentPath:string) (state:Set<string>):Set
                 Set.add (joinKey key parentPath) state
                 |>keySet value key 
         propList
-        |>Array.map applySetString 
-        |>Array.reduce(Seq.append)
-        |>Set.ofSeq
+        |> Array.map applySetString 
+        |> Array.reduce(Seq.append) 
+        |> Set.ofSeq
