@@ -10,25 +10,35 @@ type UnitName = string
 
 type UnitTestResult = (UnitName*UnitTestState)
 
-
-        
+type ModuleName = string
 
 type ModuleResultState = 
-    | Init
-    | NonInit of ModuleResult
+    | Init of ModuleName
+    | NonInit of ModuleTest
         
-and ModuleResult=
+and ModuleTestState=
     | ModuleSuccess 
     | ModuleFail
 
-type ModuleTest = (string*ModuleResult*list<UnitTestResult>)
+and ModuleTest = (ModuleName*ModuleTestState*list<UnitTestResult>)
 
-let JoinResult (x:UnitTestResult) (y:UnitTestResult) :UnitTestResult= 
+let UnitResultToModuleResult (x:UnitTestState) :ModuleTestState = 
     match x with 
-    | (unitName,Fail(resaon)) -> (unitName,Fail(resaon))
-    | (unitName,Success)->
-        match y with
-        | (unitName,Fail(resaon)) -> (unitName,Fail(resaon))
-        | (unitName,Success) -> (unitName,Success)
+    | Success -> ModuleSuccess
+    | Fail(reason) -> ModuleFail
 
+let UnitTestResultToModuleResult (x:UnitTestResult) : ModuleTestState = 
+    let (unitName,state) = x
+    UnitResultToModuleResult state
 
+let JoinResult (state:ModuleResultState) (currently:UnitTestResult) :ModuleResultState= 
+    match state with 
+    | Init(moduleName) ->
+        NonInit(moduleName,UnitTestResultToModuleResult currently,currently::[])
+    | NonInit(moduleName,moduleResult,unitList) ->
+        let resultType:ModuleTestState = 
+            match moduleResult with
+            | ModuleFail -> ModuleFail
+            | ModuleSuccess ->
+                UnitTestResultToModuleResult currently
+        NonInit(moduleName,resultType,currently::unitList)
