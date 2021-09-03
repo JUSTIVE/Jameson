@@ -11,12 +11,16 @@ let rec keySet (jsonValue:JsonValue) (parentPath:string) (state:Set<string>):Set
     match jsonValue.Properties with
     | [||] -> state
     | propList ->
-        let applySetString ((key,value):(string*JsonValue)) = 
+        let applySetString ((key,value):(string*JsonValue)):Set<string> = 
             match parentPath with
             | "" -> 
                 Set.add (joinKey key parentPath) state
                 |>keySet value key 
-        propList
-        |> Array.map applySetString 
-        |> Array.reduce(Seq.append) 
+        let x =
+            propList
+            |> Array.map applySetString 
+        let y :seq<string> = 
+            x
+            |> Array.fold (fun x y ->  ) Set.empty<string>
+        y
         |> Set.ofSeq
