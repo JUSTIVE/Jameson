@@ -1,7 +1,7 @@
 ﻿module Printer
 open TestResult 
 
-let PrintResult (x:TestState):Unit = 
+let PrintResult (x:UnitTestState):Unit = 
     match x with 
     | Success -> "Success"
     | Fail(reason:string) -> $"Fail with {reason}"
@@ -9,7 +9,7 @@ let PrintResult (x:TestState):Unit =
 
 let PrintModuleResult (x:ModuleTest):Unit =
     match x with
-    | (moduleName,result)-> 
+    | (moduleName,result,unitTestResults)-> 
         let badge:string=   
             match result with
             | ModuleSuccess-> "✔️"
