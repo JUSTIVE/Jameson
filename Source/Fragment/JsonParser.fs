@@ -7,20 +7,36 @@ let joinKey (key:string) (parentPath:string):string =
     | "" -> key
     | _  -> $"{parentPath}.{key}"
 
-let rec keySet (jsonValue:JsonValue) (parentPath:string) (state:Set<string>):Set<string> = 
+let rec keySet (parentPath:string) (state:Set<string>) (jsonValue:JsonValue) :Set<string> = 
     match jsonValue.Properties with
     | [||] -> state
     | propList ->
-        let applySetString ((key,value):(string*JsonValue)):Set<string> = 
-            match parentPath with
-            | "" -> 
-                Set.add (joinKey key parentPath) state
-                |>keySet value key 
-        let x =
-            propList
-            |> Array.map applySetString 
-        let y :seq<string> = 
+        let setJoinToSeq (x:seq<'a>) (y:Set<'a>)=
             x
-            |> Array.fold (fun x y ->  ) Set.empty<string>
-        y
+            |>Seq.append (y|>Set.toSeq)
+            
+        let transformer ((key,value):(string*JsonValue)):Set<string> = 
+            match value with
+            | JsonValue.Array elements ->
+                elements
+                |> Array.map (keySet ($"{parentPath}:{key}") Set.empty<string>)
+                |> Array.fold setJoinToSeq Seq.empty
+                |> Set.ofSeq
+            | JsonValue.Record properties->
+                properties
+                |> Array.map (keySet ($"{parentPath}:{key}") Set.empty<string>)
+                |> Array.fold setJoinToSeq Seq.empty
+                |> Set.ofSeq
+            | others ->
+                
+                
+        //let applySetString ((key,value):(string*JsonValue)):Set<string> = 
+        //    match parentPath with
+        //    | "" -> 
+        //        Set.add (joinKey key parentPath) state
+        //        |>keySet value key 
+        
+        propList
+        |> Array.map transformer 
+        |> Array.fold setJoinToSeq Seq.empty<string>
         |> Set.ofSeq
