@@ -7,36 +7,45 @@ let joinKey (key:string) (parentPath:string):string =
     | "" -> key
     | _  -> $"{parentPath}.{key}"
 
+type JsonStructure = 
+    | ComplexValue of Set<string>
+    | SimpleValue of string
+
 let rec keySet (parentPath:string) (state:Set<string>) (jsonValue:JsonValue) :Set<string> = 
     match jsonValue.Properties with
     | [||] -> state
     | propList ->
-        let setJoinToSeq (x:seq<'a>) (y:Set<'a>)=
+        let setJoinToSeq (x:seq<'a>) (y:Set<'a>) :seq<'a> =
             x
             |>Seq.append (y|>Set.toSeq)
             
-        let transformer ((key,value):(string*JsonValue)):Set<string> = 
+        let transformer ((key,value):(string*JsonValue)):JsonStructure = 
             match value with
             | JsonValue.Array elements ->
                 elements
                 |> Array.map (keySet ($"{parentPath}:{key}") Set.empty<string>)
                 |> Array.fold setJoinToSeq Seq.empty
                 |> Set.ofSeq
-            | JsonValue.Record properties->
+                |> ComplexValue
+            | JsonValue.Record (properties)->
                 properties
-                |> Array.map (keySet ($"{parentPath}:{key}") Set.empty<string>)
+                |> Array.map (fun (key,jsonValue) -> keySet ($"{parentPath}:{key}") Set.empty<string> jsonValue)
                 |> Array.fold setJoinToSeq Seq.empty
                 |> Set.ofSeq
+                |> ComplexValue
             | others ->
+                $"{parentPath}:{key}"
+                |>SimpleValue
                 
-                
-        //let applySetString ((key,value):(string*JsonValue)):Set<string> = 
-        //    match parentPath with
-        //    | "" -> 
-        //        Set.add (joinKey key parentPath) state
-        //        |>keySet value key 
-        
+        let foldJsonStructure (state:seq<string>) (x:JsonStructure) :seq<string>= 
+            match x with
+            | SimpleValue(simpleValue)-> 
+                (simpleValue::(state|>Seq.toList))
+                |>List.toSeq
+            | ComplexValue(complexValue)->
+                setJoinToSeq state complexValue
+
         propList
         |> Array.map transformer 
-        |> Array.fold setJoinToSeq Seq.empty<string>
+        |> Array.fold foldJsonStructure Seq.empty<string>
         |> Set.ofSeq

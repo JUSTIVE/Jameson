@@ -1,4 +1,4 @@
 ﻿module TestRunner
 
-let runTest:TestResult =
+//let runTest:TestResult =
     
