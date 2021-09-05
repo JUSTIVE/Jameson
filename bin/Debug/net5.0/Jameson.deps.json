@@ -8,17 +8,18 @@
     ".NETCoreApp,Version=v5.0": {
       "Jameson/1.0.0": {
         "dependencies": {
-          "FSharp.Core": "5.0.0"
+          "FSharp.Core": "5.0.2",
+          "FSharp.Data": "4.2.2"
         },
         "runtime": {
           "Jameson.dll": {}
         }
       },
-      "FSharp.Core/5.0.0": {
+      "FSharp.Core/5.0.2": {
         "runtime": {
           "lib/netstandard2.0/FSharp.Core.dll": {
             "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.50704"
+            "fileVersion": "5.0.221.30802"
           }
         },
         "resources": {
@@ -62,6 +63,17 @@
             "locale": "zh-Hant"
           }
         }
+      },
+      "FSharp.Data/4.2.2": {
+        "dependencies": {
+          "FSharp.Core": "5.0.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FSharp.Data.dll": {
+            "assemblyVersion": "4.2.2.0",
+            "fileVersion": "4.2.2.0"
+          }
+        }
       }
     }
   },
@@ -71,12 +83,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "FSharp.Core/5.0.0": {
+    "FSharp.Core/5.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-iHoYXA0VaSQUONGENB1aVafjDDZDZpwu39MtaRCTrmwFW/cTcK0b2yKNVYneFHJMc3ChtsSoM9lNtJ1dYXkHfA==",
-      "path": "fsharp.core/5.0.0",
-      "hashPath": "fsharp.core.5.0.0.nupkg.sha512"
+      "sha512": "sha512-DpcajqENgb3VXaHw1FKfVS+TWwEzck1PCajqLwBAVrtd1lfxd7T8JISVZBdV1mX9+2g48+tIgpNaVJWObdMrBw==",
+      "path": "fsharp.core/5.0.2",
+      "hashPath": "fsharp.core.5.0.2.nupkg.sha512"
+    },
+    "FSharp.Data/4.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GDxNvczWRM98hxsBl8Rnx9zrUlEVXD7YgHvhELccaTxu7b5eR4McSHDCdauDZvAqHBjuBe6oQvxXSmkE4QrT7w==",
+      "path": "fsharp.data/4.2.2",
+      "hashPath": "fsharp.data.4.2.2.nupkg.sha512"
     }
   }
 }

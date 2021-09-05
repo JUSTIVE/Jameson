@@ -1,4 +1,4 @@
-﻿module Printer
+﻿module TestPrinter
 open TestResult 
 
 let PrintResult (x:UnitTestState):Unit = 

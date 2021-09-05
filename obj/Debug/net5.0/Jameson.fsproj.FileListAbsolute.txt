@@ -25,3 +25,4 @@ C:\Users\HOME\source\repos\Jameson\obj\Debug\net5.0\Jameson.fsproj.CopyComplete
 C:\Users\HOME\source\repos\Jameson\obj\Debug\net5.0\Jameson.dll
 C:\Users\HOME\source\repos\Jameson\obj\Debug\net5.0\Jameson.pdb
 C:\Users\HOME\source\repos\Jameson\obj\Debug\net5.0\Jameson.genruntimeconfig.cache
+C:\Users\HOME\source\repos\Jameson\bin\Debug\net5.0\FSharp.Data.dll
