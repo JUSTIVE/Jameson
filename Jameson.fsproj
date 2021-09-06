@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="Source\Domain\State.fs" />
     <Compile Include="Source\Domain\FileType\Diff.fs" />
     <Compile Include="Source\Domain\JamesonOption.fs" />
@@ -24,24 +28,14 @@
     <Compile Include="Source\Fragment\PipeLine.fs" />
     <Compile Include="Source\Fragment\Printer.fs" />
     <Compile Include="Source\Fragment\PathResolver.fs" />
-    
-    
     <Compile Include="Test\Utilities\TestResult.fs" />
     <Compile Include="Test\Utilities\Expect.fs" />
-    <Compile Include="Test\Fragment\ArgumentParserTest.fs" />
     <Compile Include="Test\Utilities\TestPrinter.fs" />
+    <Compile Include="Test\Fragment\ArgumentParserTest.fs" />
     <Compile Include="Test\TestRunner.fs" />
     <Compile Include="Program.fs" />
-    
     <None Include="README.md" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <None Include=".gitignore" />
     <PackageReference Include="FSharp.Data" Version="4.2.2" />
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Update="FSharp.Core" Version="5.0.2" />
-  </ItemGroup>
-
 </Project>
