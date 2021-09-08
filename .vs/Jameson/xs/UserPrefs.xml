@@ -1,28 +1,30 @@
 ﻿<Properties StartupConfiguration="{3B0447B5-BED5-41BD-9EAA-DD21E3479A12}|Default">
   <MonoDevelop.Ide.ItemProperties.Jameson PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Source/Domain/FileType/Diff.fs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Program.fs">
     <Files>
-      <File FileName="Program.fs" Line="19" Column="1" NotebookId="2" />
-      <File FileName="Test/TestRunner.fs" NotebookId="2" />
-      <File FileName="../../.nuget/packages/fsharp.core/5.0.2/contentFiles/any/netstandard2.0/FSharp.Core.xml" NotebookId="2" />
-      <File FileName="Source/Domain/State.fs" NotebookId="2" />
-      <File FileName="Source/Domain/JamesonOption.fs" NotebookId="2" />
-      <File FileName="Source/Domain/JamesonResultType.fs" NotebookId="2" />
-      <File FileName="Source/Resource/JamesonOptions.fs" NotebookId="2" />
-      <File FileName="Source/Runner/Runner.fs" NotebookId="2" />
-      <File FileName="Source/Runner/TargetRunner.fs" NotebookId="2" />
-      <File FileName="Source/Domain/FileType/Diff.fs" Line="5" Column="16" NotebookId="2" />
-      <File FileName="Source/Resource/JamesonResults.fs" Line="1" Column="1" NotebookId="3" />
+      <File FileName="Program.fs" Line="11" Column="19" NotebookId="3" />
+      <File FileName="Test/TestRunner.fs" Line="1" Column="1" NotebookId="3" />
+      <File FileName="Source/Domain/State.fs" Line="1" Column="1" NotebookId="3" />
+      <File FileName="Source/Domain/JamesonResultType.fs" Line="1" Column="1" NotebookId="3" />
+      <File FileName="Source/Resource/JamesonOptions.fs" Line="1" Column="1" NotebookId="3" />
+      <File FileName="Source/Runner/Runner.fs" Line="7" Column="31" NotebookId="3" />
+      <File FileName="Source/Runner/TargetRunner.fs" Line="1" Column="1" NotebookId="3" />
+      <File FileName="Source/Fragment/Stringify.fs" Line="8" Column="23" NotebookId="3" />
+      <File FileName="Source/Runner/GeneralRunner.fs" Line="1" Column="1" NotebookId="3" />
+      <File FileName="Test/Fragment/ArgumentParserTest.fs" Line="1" Column="1" NotebookId="3" />
+      <File FileName="Source/Resource/JamesonResults.fs" Line="14" Column="31" NotebookId="4" />
+      <File FileName="Source/Fragment/Printer.fs" Line="17" Column="45" NotebookId="4" />
     </Files>
     <FloatingWindows>
-      <FloatingWindow WindowId="1" X="1440" Y="25" Width="960" Height="1027">
+      <FloatingWindow WindowId="1" X="1440" Y="25" Width="1173" Height="967">
         <Files>
-          <File FileName="Source/Fragment/JsonParser.fs" Line="38" Column="30" />
+          <File FileName="Source/Domain/FileType/Diff.fs" Line="13" Column="27" />
+          <File FileName="Source/Fragment/ArgumentParser.fs" Line="65" Column="17" NotebookId="1" />
         </Files>
       </FloatingWindow>
-      <FloatingWindow WindowId="2" X="2400" Y="25" Width="960" Height="1027">
+      <FloatingWindow WindowId="2" X="2400" Y="25" Width="960" Height="967">
         <Files>
-          <File FileName="Source/Fragment/ArgumentParser.fs" Line="1" Column="1" NotebookId="1" />
+          <File FileName="Source/Domain/JamesonOption.fs" Line="1" Column="1" NotebookId="2" />
         </Files>
       </FloatingWindow>
     </FloatingWindows>
@@ -31,17 +33,20 @@
         <State name="__root__">
           <Node name="Jameson" expanded="True">
             <Node name="Jameson" expanded="True">
+              <Node name="Dependencies" expanded="True" />
               <Node name="Source" expanded="True">
                 <Node name="Domain" expanded="True">
-                  <Node name="FileType" expanded="True">
-                    <Node name="Diff.fs" selected="True" />
-                  </Node>
+                  <Node name="FileType" expanded="True" />
                 </Node>
                 <Node name="Resource" expanded="True" />
+                <Node name="Fragment" expanded="True" />
                 <Node name="Runner" expanded="True" />
+              </Node>
+              <Node name="Test" expanded="True">
+                <Node name="Utilities" expanded="True" />
                 <Node name="Fragment" expanded="True" />
               </Node>
-              <Node name="Test" expanded="True" />
+              <Node name="Program.fs" selected="True" />
             </Node>
           </Node>
         </State>
