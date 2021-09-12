@@ -9,8 +9,8 @@ let stringifyBool (boolValue:bool):string =
 
 let stringifyRunnerType (runnerType:RunnerType):string =
     match runnerType with
-    | TargetRunner(x) -> "TargetRunner"
-    | GeneralRunner(x) -> "GeneralRunner"
+    | TargetRunner(x) -> $"TargetRunner\n\tsourcePath : {x.sourcePath}\n\ttargetPath : {x.targetPath}"
+    | GeneralRunner(x) -> $"GeneralRunner\n\tsourcePath : {x.sourcePath}\n\ttargetCandidate : {x.targetCandidate}"
 
 let stringifyDiffFile (diffFile:DiffFile):string =
     match diffFile with
