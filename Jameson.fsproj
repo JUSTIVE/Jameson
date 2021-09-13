@@ -16,6 +16,7 @@
     <Compile Include="Source\Resource\JamesonResults.fs" />
     <Compile Include="Source\Fragment\Stringify.fs" />
     <Compile Include="Source\Fragment\Printer.fs" />
+    <Compile Include="Source\Fragment\JsonLoader.fs" />
     <Compile Include="Source\Fragment\JsonParser.fs" />
     <Compile Include="Source\Fragment\Exporter.fs" />
     <Compile Include="Source\Fragment\ArgumentParser.fs" />

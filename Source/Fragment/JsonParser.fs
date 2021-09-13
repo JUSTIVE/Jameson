@@ -1,6 +1,9 @@
 ﻿module JsonParser
+open System
 open FSharp.Data
 open FSharp.Data.JsonExtensions
+
+
 
 let joinKey (key:string) (parentPath:string):string = 
     match parentPath with
@@ -10,6 +13,8 @@ let joinKey (key:string) (parentPath:string):string =
 type JsonStructure = 
     | ComplexValue of Set<string>
     | SimpleValue of string
+
+
 
 let rec keySet (parentPath:string) (state:Set<string>) (jsonValue:JsonValue) :Set<string> = 
     match jsonValue.Properties with
@@ -49,3 +54,6 @@ let rec keySet (parentPath:string) (state:Set<string>) (jsonValue:JsonValue) :Se
         |> Array.map transformer 
         |> Array.fold foldJsonStructure Seq.empty<string>
         |> Set.ofSeq
+
+let parse (jsonValue:JsonValue)=
+    keySet "" Set.empty jsonValue

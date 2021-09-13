@@ -12,6 +12,11 @@ let ARGUMENT_LENGTH_ERROR:JamesonResult = {
 }
 
 let NO_OUTPUT_DIRECTORY_ARGUMENT:JamesonResult = {
-    message = "";
+    message = "output directory not specified";
+    errorCode = 1
+}
+
+let FILE_NOT_FOUND (targetFile:string):JamesonResult ={
+    message = $"file not found : {targetFile}";
     errorCode = 1
 }
