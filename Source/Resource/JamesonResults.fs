@@ -20,3 +20,8 @@ let FILE_NOT_FOUND (targetFile:string):JamesonResult ={
     message = $"file not found : {targetFile}";
     errorCode = 1
 }
+
+let INVALID_COMPARE_TARGET (x:string) (y:string):JamesonResult ={
+    message = $"invalid comparing targets : {x}, {y}";
+    errorCode = 1
+}

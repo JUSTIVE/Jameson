@@ -9,6 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Source\Domain\State.fs" />
+    <Compile Include="Source\Domain\FileType\FileType.fs" />
     <Compile Include="Source\Domain\FileType\Diff.fs" />
     <Compile Include="Source\Domain\JamesonOption.fs" />
     <Compile Include="Source\Domain\JamesonResultType.fs" />
@@ -18,6 +19,7 @@
     <Compile Include="Source\Fragment\Printer.fs" />
     <Compile Include="Source\Fragment\JsonLoader.fs" />
     <Compile Include="Source\Fragment\JsonParser.fs" />
+    <Compile Include="Source\Fragment\Compare.fs" />
     <Compile Include="Source\Fragment\Exporter.fs" />
     <Compile Include="Source\Fragment\ArgumentParser.fs" />
     <Compile Include="Source\Fragment\Help.fs" />

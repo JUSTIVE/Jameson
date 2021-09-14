@@ -1,21 +1,25 @@
 ﻿module JamesonOption
 
-type GeneralRunner = {
+//string(path)->JsonValue->Set<string>->list<diffline>
+
+type path = string
+
+type GeneralRunnerOption = {
     sourcePath:string
     targetCandidate:list<string>
 }
 
-type TargetRunner = {
+type TargetRunnerOption = {
     sourcePath:string;
     targetPath:string
 }
 
-type RunnerType = 
-    | GeneralRunner of GeneralRunner
-    | TargetRunner of TargetRunner
+type RunnerTypeOption = 
+    | GeneralRunnerOption of GeneralRunnerOption
+    | TargetRunnerOption of TargetRunnerOption
 
 type JamesonOption = {
-    runnerType:RunnerType
+    runnerType:RunnerTypeOption
     writeToFile:bool
 }
 

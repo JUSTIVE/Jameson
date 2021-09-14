@@ -14,6 +14,7 @@ let run (originFilePath:string) (comparingFilePath:string) :JamesonResult=
         | Fail(jamesonResult) ->jamesonResult
         | Success(jsonValue) ->
             let comparingFileKeySet = parse jsonValue
-            GOOD
+            compare
+            //GOOD
         
     

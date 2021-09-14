@@ -2,8 +2,7 @@
 open System
 open FSharp.Data
 open FSharp.Data.JsonExtensions
-
-
+open FileType
 
 let joinKey (key:string) (parentPath:string):string = 
     match parentPath with
@@ -15,8 +14,7 @@ type JsonStructure =
     | SimpleValue of string
 
 
-
-let rec keySet (parentPath:string) (state:Set<string>) (jsonValue:JsonValue) :Set<string> = 
+let rec keySet (parentPath:string) (state:Set<string>) (jsonValue:JsonValue) :FileContent = 
     match jsonValue.Properties with
     | [||] -> state
     | propList ->
