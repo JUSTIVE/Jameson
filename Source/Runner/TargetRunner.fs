@@ -2,8 +2,10 @@
 open State
 open JamesonResult
 open JamesonResults
+open FileType
 open JsonLoader
 open JsonParser
+open Compare
 
 let run (originFilePath:string) (comparingFilePath:string) :JamesonResult= 
     match readJSONFile originFilePath with
@@ -14,7 +16,9 @@ let run (originFilePath:string) (comparingFilePath:string) :JamesonResult=
         | Fail(jamesonResult) ->jamesonResult
         | Success(jsonValue) ->
             let comparingFileKeySet = parse jsonValue
-            compare
+            match compare originFilekeySet (OriginFile originFilekeySet) (CompareeFile comparingFileKeySet) with
+            | Success(x)
+            | Faile
             //GOOD
         
     

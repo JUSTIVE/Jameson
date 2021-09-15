@@ -25,3 +25,8 @@ let INVALID_COMPARE_TARGET (x:string) (y:string):JamesonResult ={
     message = $"invalid comparing targets : {x}, {y}";
     errorCode = 1
 }
+
+let INVALID_KEYSET:JamesonResult = {
+    message = $"invalid keyset combination";
+    errorCode = 1
+}
