@@ -21,6 +21,7 @@ type RunnerTypeOption =
 type JamesonOption = {
     runnerType:RunnerTypeOption
     writeToFile:bool
+    verbose:bool
 }
 
 type ArgumentOption = {

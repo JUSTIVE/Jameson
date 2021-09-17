@@ -6,7 +6,7 @@ open JamesonResults
 open State
 
 type SourceResolveInfo = {
-    runnerType:RunnerType;
+    runnerType:RunnerTypeOption;
     restArgument:list<string>
 }
 
@@ -19,7 +19,7 @@ let rec sourceResolver (state:ReduceState<SourceResolveResult>)(argument:list<st
         | SourceResolveState.Init -> SourceResolveResult.Fail(ARGUMENT_LENGTH_ERROR)
         | SourceResolveState.NonInit(result)-> result
 
-    let CONTINUE_STATEMENT (runnerType:RunnerType) (restArgument) =
+    let CONTINUE_STATEMENT (runnerType:RunnerTypeOption) (restArgument) =
         sourceResolver
         <|  SourceResolveState.NonInit(
                 SourceResolveResult.Success({
@@ -43,7 +43,7 @@ let rec sourceResolver (state:ReduceState<SourceResolveResult>)(argument:list<st
             match state with
             | SourceResolveState.Init -> 
                 CONTINUE_STATEMENT
-                <|  GeneralRunner({
+                <|  GeneralRunnerOption({
                         sourcePath=h;
                         targetCandidate=List.empty<string>
                     })
@@ -53,10 +53,10 @@ let rec sourceResolver (state:ReduceState<SourceResolveResult>)(argument:list<st
                 | SourceResolveResult.Fail(x) as result -> result
                 | SourceResolveResult.Success({runnerType=runnerType;restArgument=restArgument})->
                     match runnerType with
-                    | TargetRunner(x)-> SourceResolveResult.Fail(ARGUMENT_LENGTH_ERROR)
-                    | GeneralRunner({sourcePath=sourcePath;targetCandidate=targetCandidate})-> 
+                    | TargetRunnerOption(x)-> SourceResolveResult.Fail(ARGUMENT_LENGTH_ERROR)
+                    | GeneralRunnerOption({sourcePath=sourcePath;targetCandidate=targetCandidate})-> 
                         CONTINUE_STATEMENT
-                        <|  TargetRunner({
+                        <|  TargetRunnerOption({
                                 sourcePath = sourcePath;
                                 targetPath = h
                             })

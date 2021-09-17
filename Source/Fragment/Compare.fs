@@ -30,5 +30,3 @@ let compare (origin:FileType) (comparee:FileType) :Result<DiffFile,JamesonResult
     | (CompareeFile(x),OriginFile(y)) -> 
         Success(compare_ Added x y)
     | __ -> Fail(INVALID_KEYSET)
-    
-    

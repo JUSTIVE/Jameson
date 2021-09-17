@@ -14,7 +14,7 @@ type JsonStructure =
     | SimpleValue of string
 
 
-let rec keySet (parentPath:string) (state:Set<string>) (jsonValue:JsonValue) :FileContent = 
+let rec keySet (parentPath:string) (state:Set<string>) (jsonValue:JsonValue) :FileKeySet= 
     match jsonValue.Properties with
     | [||] -> state
     | propList ->

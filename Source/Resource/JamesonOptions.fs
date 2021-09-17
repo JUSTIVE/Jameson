@@ -1,9 +1,10 @@
 ﻿module JamesonOptions
 open JamesonOption
 
-let OPTION_DEFAULT (runnerType:RunnerType):JamesonOption = {
+let OPTION_DEFAULT (runnerType:RunnerTypeOption):JamesonOption = {
     runnerType=runnerType;
     writeToFile=false
+    verbose=false
 }
 
 let OptionList:list<JamesonOption.ArgumentOption> = [

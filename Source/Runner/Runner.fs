@@ -6,8 +6,8 @@ open Printer
 let run (option:JamesonOption):JamesonResult =
    printJamesonOption 0 option
    match option.runnerType with
-   | TargetRunner(x:TargetRunner) ->
+   | TargetRunnerOption(x:TargetRunnerOption) ->
         TargetRunner.run x.sourcePath x.targetPath
-   | GeneralRunner(x:GeneralRunner) ->
+   | GeneralRunnerOption(x:GeneralRunnerOption) ->
         GeneralRunner.run x.sourcePath
    

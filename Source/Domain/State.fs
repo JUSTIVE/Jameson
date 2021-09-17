@@ -8,6 +8,8 @@ type Result<'a,'b> =
     | Success of 'a
     | Fail of 'b
 
-let join (x:Result<'a,'b>) (y:Result<'b,'c>) = 
-    match x with
-    | Success
+let flatMap (result:Result<'a,'b>) (mapfun:'a->'c) :Result<'c,'b> = 
+    match result with
+    | Success(x) ->
+        Success <| mapfun x
+    | Fail(x)-> Fail(x)

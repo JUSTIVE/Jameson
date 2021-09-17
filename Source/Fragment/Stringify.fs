@@ -7,10 +7,10 @@ let stringifyBool (boolValue:bool):string =
     | true -> "true"
     | false -> "false"
 
-let stringifyRunnerType (runnerType:RunnerType):string =
+let stringifyRunnerType (runnerType:RunnerTypeOption):string =
     match runnerType with
-    | TargetRunner(x) -> $"TargetRunner\n\tsourcePath : {x.sourcePath}\n\ttargetPath : {x.targetPath}"
-    | GeneralRunner(x) -> $"GeneralRunner\n\tsourcePath : {x.sourcePath}\n\ttargetCandidate : {x.targetCandidate}"
+    | TargetRunnerOption(x) -> $"TargetRunner\n\tsourcePath : {x.sourcePath}\n\ttargetPath : {x.targetPath}"
+    | GeneralRunnerOption(x) -> $"GeneralRunner\n\tsourcePath : {x.sourcePath}\n\ttargetCandidate : {x.targetCandidate}"
 
 let stringifyDiffFile (diffFile:DiffFile):string =
     match diffFile with
