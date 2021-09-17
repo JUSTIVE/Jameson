@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
@@ -16,6 +16,7 @@
     <Compile Include="Source\Resource\JamesonOptions.fs" />
     <Compile Include="Source\Resource\JamesonResults.fs" />
     <Compile Include="Source\Fragment\Stringify.fs" />
+    <Compile Include="Source\Fragment\PrinterUtil.fs" />
     <Compile Include="Source\Fragment\Printer.fs" />
     <Compile Include="Source\Fragment\JsonLoader.fs" />
     <Compile Include="Source\Fragment\JsonParser.fs" />
