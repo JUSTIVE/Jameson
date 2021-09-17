@@ -1,8 +1,16 @@
 {
   "profiles": {
     "Jameson": {
-      "commandName": "Project",
-      "commandLineArgs": "firstOption secondOption"
+      "commandName": "Project"
+    },
+    "JamesonWT": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\HOME\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe",
+      "commandLineArgs": "dotnet run --project C:\\Users\\HOME\\source\\repos\\Jameson\\Jameson.fsproj",
+      "workingDirectory": "C:\\Users\\HOME\\source\\repos\\Jameson",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
   }
 }
