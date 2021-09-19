@@ -6,12 +6,16 @@ open System
 
 
 
+let printUsage() = 
+    $"usage :
+    jameson <sourceFilePath> <targetFilePath>\tcompare <sourceFile> with <targetFile>
+    jameson <sourceFilePath> \t\t\tcompare <sourceFile> with all neighbourFiles
+    
+        "
+    |>printfn "%s"
 
 let help ():JamesonResult = 
     printLogo()
-    $"
-jameson <sourceFilePath> <targetFilePath>\tcompare <sourceFile> with <targetFile>
-    "
-    |>printfn "%s"
+    printUsage()
     GOOD
     
