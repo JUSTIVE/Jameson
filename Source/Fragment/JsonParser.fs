@@ -15,43 +15,25 @@ type JsonStructure =
 
 
 let rec keySet (parentPath:string) (state:Set<string>) (jsonValue:JsonValue) :FileKeySet= 
-    match jsonValue.Properties with
-    | [||] -> state
-    | propList ->
-        let setJoinToSeq (x:seq<'a>) (y:Set<'a>) :seq<'a> =
-            x
-            |>Seq.append (y|>Set.toSeq)
-            
-        let transformer ((key,value):(string*JsonValue)):JsonStructure = 
-            match value with
-            | JsonValue.Array elements ->
-                elements
-                |> Array.map (keySet ($"{parentPath}:{key}") Set.empty<string>)
-                |> Array.fold setJoinToSeq Seq.empty
-                |> Set.ofSeq
-                |> ComplexValue
-            | JsonValue.Record (properties)->
-                properties
-                |> Array.map (fun (key,jsonValue) -> keySet ($"{parentPath}:{key}") Set.empty<string> jsonValue)
-                |> Array.fold setJoinToSeq Seq.empty
-                |> Set.ofSeq
-                |> ComplexValue
-            | others ->
-                $"{parentPath}:{key}"
-                |>SimpleValue
-                
-        let foldJsonStructure (state:seq<string>) (x:JsonStructure) :seq<string>= 
-            match x with
-            | SimpleValue(simpleValue)-> 
-                (simpleValue::(state|>Seq.toList))
-                |>List.toSeq
-            | ComplexValue(complexValue)->
-                setJoinToSeq state complexValue
-
-        propList
-        |> Array.map transformer 
-        |> Array.fold foldJsonStructure Seq.empty<string>
+    let setJoinToSeq (x:seq<'a>) (y:Set<'a>) :seq<'a> =
+        x
+        |>Seq.append (y|>Set.toSeq)
+    match jsonValue with
+    | JsonValue.Null -> Set.add parentPath Set.empty
+    | JsonValue.Number n -> Set.add parentPath Set.empty
+    | JsonValue.Float f -> Set.add parentPath Set.empty
+    | JsonValue.Boolean b -> Set.add parentPath Set.empty
+    | JsonValue.String x ->  Set.add parentPath Set.empty
+    | JsonValue.Array elements ->
+        elements
+        |> Array.map (keySet ($"{parentPath}") Set.empty<string>)
+        |> Array.fold setJoinToSeq Seq.empty
+        |> Set.ofSeq
+    | JsonValue.Record properties->
+        properties
+        |> Array.map (fun (key,jsonValue) -> keySet ($"{parentPath}:{key}") Set.empty<string> jsonValue)
+        |> Array.fold setJoinToSeq Seq.empty
         |> Set.ofSeq
 
-let parse (jsonValue:JsonValue)=
+let parse (jsonValue:JsonValue):FileKeySet=
     keySet "" Set.empty jsonValue

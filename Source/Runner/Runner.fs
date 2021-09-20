@@ -2,8 +2,10 @@
 open JamesonResult
 open JamesonOption
 open Printer
+open Diff
+open State
 
-let run (option:JamesonOption):JamesonResult =
+let run (option:JamesonOption):Result<DiffFile,JamesonResult> =
    printJamesonOption option
    match option.runnerType with
    | TargetRunnerOption(x:TargetRunnerOption) ->

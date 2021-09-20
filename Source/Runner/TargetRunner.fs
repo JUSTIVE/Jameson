@@ -6,20 +6,15 @@ open FileType
 open JsonLoader
 open JsonParser
 open Compare
+open Diff
 
-let run (originFilePath:string) (comparingFilePath:string) :JamesonResult= 
+let run (originFilePath:string) (comparingFilePath:string) :Result<DiffFile,JamesonResult>= 
     match readJSONFile originFilePath with
-    | Fail(jamesonResult)->jamesonResult
+    | Fail(jamesonResult)->Fail(jamesonResult)
     | Success(jsonValue) ->
         let originFilekeySet = parse jsonValue
         match readJSONFile comparingFilePath with
-        | Fail(jamesonResult) ->jamesonResult
+        | Fail(jamesonResult) ->Fail(jamesonResult)
         | Success(jsonValue) ->
             let comparingFileKeySet = parse jsonValue
-            match compare (OriginFile originFilekeySet) (CompareeFile comparingFileKeySet) with
-            | Fail(jamesonResult) -> jamesonResult
-            | Success(x) -> GOOD
-            
-            //GOOD
-        
-    
+            compare (OriginFile originFilekeySet) (CompareeFile comparingFileKeySet)

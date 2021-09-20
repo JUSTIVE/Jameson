@@ -3,6 +3,8 @@ open Help
 open Printer
 open JamesonOption
 open JamesonResult
+open JamesonResults
+open State
 open ArgumentParser
 
 [<EntryPoint>]
@@ -15,8 +17,11 @@ let main (argv:string[]):int =
         let option = ArgumentParser.parse argv
         match option with
         | ParseResult.Success(x:JamesonOption) -> 
-            Runner.run x
-            |>printJamesonResult
+            match Runner.run x with
+            | Success(diffFile) ->
+                printJamesonResult GOOD
+            | Fail(jamesonResult) -> 
+                printJamesonResult jamesonResult 
         | ParseResult.Fail(x:JamesonResult) ->
             printJamesonResult x|>ignore
             help()|>ignore
