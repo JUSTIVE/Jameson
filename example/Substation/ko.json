@@ -1,0 +1,348 @@
+{
+  "chart": {
+    "tooltip": {
+      "diagnosisGisHistory": "상태: {}\\n수: {}건",
+      "diagnosisGisPie": "모드: {}\\n수: {}건",
+      "diagnosisMtrAi": "날짜: {}\\n상태(HI): {}({})\\n농도:\\nH2: {}ppm\\nC2H2: {}ppm\\nC2H4: {}ppm\\nC2H6: {}ppm\\nCH4: {}ppm\\nCO: {}ppm",
+      "diagnosisMtrHistory": "상태: {}\\n수: {}대",
+      "diagnosisMtrRule": "날짜: {}\\n상태(HI): {}({})\\n농도:\\nC2H2: {}ppm\\nC2H4: {}ppm\\nCH4: {}ppm",
+      "diagnosisMtrSummary": "날짜: {}\\n농도:\\nH2: {}ppm\\nC2H2: {}ppm\\nC2H4: {}ppm\\nC2H6: {}ppm\\nCH4: {}ppm\\nCO: {}ppm"
+    }
+  },
+  "common": {
+    "1year": "1년",
+    "2year": "2년",
+    "3month": "3개월",
+    "6month": "6개월",
+    "abnormal": "심각",
+    "activated": "활성화",
+    "deactivated": "비활성화",
+    "actionContents": "조치내용",
+    "actionType": "조치유형",
+    "area": "면적",
+    "attention": "관심",
+    "author": "작성자",
+    "back": "뒤로가기",
+    "below": "이하",
+    "calibration": "보정",
+    "cancel": "취소",
+    "caution": "주의",
+    "compare": "비교 분석 결과",
+    "corona": "코로나",
+    "critical": "위험",
+    "dataError": "데이터 오류",
+    "dataUpload": "데이터 업로드",
+    "departmennt": "부서",
+    "detail": "상세 분석 결과",
+    "diagnosisContents": "진단내용",
+    "dopco": "대한송유관공사",
+    "download": "다운로드",
+    "e1": "E1",
+    "equipmentStatusJudgment": "설비상태 판정",
+    "fail": "실패: {}개",
+    "floating": "플로팅",
+    "gasAnalysis": "절연유 재분석",
+    "gscaltex": "GS 칼텍스",
+    "gsenr": "GS E&R",
+    "gspower": "GS 파워",
+    "id": "아이디",
+    "inspectionDate": "점검일자",
+    "inteco": "인천종합에너지",
+    "interalInspection": "내부 점검",
+    "iwest": "한국서부발전",
+    "kdhc": "한국지역난방공사",
+    "lgchem": "LG 화학",
+    "localeLabel": {
+      "en": "영어",
+      "ko": "한글"
+    },
+    "logout": "로그아웃",
+    "lookup": "조회",
+    "lottechem": "롯데케미칼",
+    "maintain": "유지보수 업무제한",
+    "max": "최대",
+    "mean": "평균",
+    "min": "최소",
+    "month": "월",
+    "needText": "텍스트를 입력해주세요.",
+    "noCalibration": "미보정",
+    "noise": "노이즈",
+    "normal": "정상",
+    "oilFilteration": "절연유 여과",
+    "oilReplacement": "절연유 교체",
+    "ok": "확인",
+    "particle": "파티클",
+    "password": "비밀번호",
+    "phase": "위치",
+    "posco": "POSCO",
+    "s-oil": "S-OIL",
+    "save": "저장",
+    "searchClose": "검색 닫기",
+    "searchOpen": "검색 열기",
+    "similarity": "유사도",
+    "skenergy": "SK 에너지",
+    "success": "성공: {}개",
+    "title": "제목",
+    "transformer": "변압기",
+    "unit": "대",
+    "void": "보이드",
+    "year": "년",
+    "ygpa": "여수항만공사"
+  },
+  "error": {
+    "dataShortage": "데이터가 부족합니다. \n 최소 4회 이상 측정 데이터가 필요합니다.",
+    "invalidAsset": "등록되지 않은 설비가 포함되어 있습니다.\\n하기 설비의 등록여부를 확인해 주세요.",
+    "invalidFormat": "데이터 포맷이 다릅니다.\\n데이터 포맷이 올바른지 확인해 주세요.",
+    "noDeterioration": "현재 열화경향성이 나타나지 않아서 예측이 불가능합니다.",
+    "prognosisFail": "심각 단계에서는 예측이 불가능합니다.",
+    "warningFour": "최근 4회 상태가 모두 주의 등급 이상이어야 합니다."
+  },
+  "errorMessage": {
+    "ASSET_001": "설비가 존재하지 않습니다",
+    "AUTH_001": "비밀번호는 최소 8자리 이상이어야 합니다",
+    "AUTH_002": "비밀번호는 최소 1개 이상의 영문 대소문자가 포함되어야 합니다",
+    "AUTH_003": "비밀번호는 최소 1개 이상의 숫자가 포함되어야 합니다",
+    "AUTH_004": "비밀번호는 최소 1개 이상의 특수문자가 포함되어야 합니다",
+    "AUTH_005": "존재하지 않는 아이디 입니다",
+    "AUTH_006": "아이디 혹은 비밀번호가 일치하지 않습니다",
+    "AUTH_007": "유효하지 않은 토큰 정보 입니다. 다시 로그인 바랍니다",
+    "AUTH_008": "토큰 정보를 입력 바랍니다.",
+    "AUTH_009": "Authorization의 접두사에 'Bearer '를 입력 바랍니다",
+    "AUTH_010": "관리자 토큰이 필요합니다",
+    "COMMON_001": "입력하신 정보와 일치하는 결과가 없습니다",
+    "COMMON_002": "필수 입력 정보가 누락되었습니다",
+    "USER_001": "기존에 등록된 고객사명과 중복됩니다"
+  },
+  "menu": {
+    "assetData": "설비데이터",
+    "assetStatus": "설비현황",
+    "diagnosis": "예측진단",
+    "diagnosisHistory": "진단내역",
+    "diagnosisReport": "진단보고서",
+    "inspection": "점검일지",
+    "maintanance": "유지보수",
+    "systemSetting": "시스템설정"
+  },
+  "message": {
+    "logout": "로그아웃 되었습니다.",
+    "logoutConfirm": "로그아웃 하시겠습니까?",
+    "resetBody": "초기화 하시겠습니까?",
+    "resetHead": "초기화",
+    "uploadIng": "데이터 업로드 진행 중 입니다.({}%/{}%)",
+    "uploadWithFail": "하기의 파일의 데이터 업로드를 실패 하였습니다.\\n 데이터 포맷이 올바른지 확인해주세요.",
+    "uploadWithoutFail": "데이터 업로드가 완료되었습니다."
+  },
+  "page": {
+    "assetData": {
+      "dropbox": {
+        "assetId": "설비번호",
+        "assetName": "설비명",
+        "department": "부서"
+      },
+      "number": "총 {}건",
+      "title": "변전 설비"
+    },
+    "assetStatus": {
+      "gisBar": "부서 별 GIS 경보발생 현황",
+      "gisDetails": "{{site}} GIS 경보발생 상세현황",
+      "gisPie": "전사 GIS 경보발생 현황",
+      "gisTable": "부서 별 GIS 경보발생 현황 집계",
+      "gisTitle": "GIS 경보발생 통계",
+      "mtr": "변압기 설비현황 통계",
+      "mtrBar": "부서 별 변압기 설비등급 현황",
+      "mtrDetails": "{{site}} 변압기 설비등급 상세현황",
+      "mtrPie": "전사 변압기 설비등급 현황",
+      "mtrTable": "부서 별 변압기 설비등급 현황 집계"
+    },
+    "assetStatusAdmin": {
+      "mtr": "변압기 설비현황 통계",
+      "mtrBar": "부서 별 변압기 설비등급 현황",
+      "mtrDetails": "{} 변압기 설비등급 상세현황",
+      "mtrPie": "전사 변압기 설비등급 현황",
+      "mtrTable": "부서 별 변압기 설비등급 현황 집계"
+    },
+    "diagnosis": {
+      "gis": {
+        "assetComparison": "comparison",
+        "historyComparison": "similaritySelect",
+        "summary": "analysis"
+      },
+      "mtr": {
+        "oilGasTrendChart": "절연유 가스농도 트렌드 차트",
+        "oilGasChangeRateTrendChart": "절연유 가스변화율 트렌드 차트",
+        "transformerStatusDiagnosisHistoryTable": "변압기 상태진단 이력 테이블",
+        "correction": "보정",
+        "uncorrected": "비보정",
+        "transformerHealthDiagnosisPlane": "변압기 건정성 진단평면",
+        "transformerFutureStatusInquiry": "변압기 미래상태조회",
+        "transformerHealthTrendChart": "변압기 건정성 트렌드 차트",
+        "similarityTransformerRankingChart": "유사 변압기 유사도 순위차트",
+        "similarTransformerFacilityInfo": "유사 변압기 설비정보",
+        "transformerConditionDiagnosisHistoryTable": "유사 변압기 상태진단 이력 테이블",
+        "similarTransformerOilGasConcentrationTrendChart": "유사 변압기 절연유 가스농도 트렌드 차트",
+        "similarTransformerHealthTrendChart": "유사 변압기 건정성 트렌드 차트",
+        "similaritySection": "유사도 구간",
+        "gasDensity": "가스농도",
+        "statePredictionAnalysisResult": "상태에측 분석결과",
+        "equipmentClassDiagnosisResult": "설비등급 진단결과",
+        "equipmentFailureDiagnosisResult": "설비 고장모드 진단결과"
+      },
+      "search": {
+        "assetType": "설비유형",
+        "department": "부서",
+        "result": "검색 결과",
+        "title": "설비 검색조건",
+        "voltage": "전압"
+      },
+      "tab": {
+        "AIPredictDiagnosis": "AI 기반 예측진단",
+        "DiagnosisCertifiedStandards": "공인표준 기반 진단",
+        "SimilarityAnalysis": "유사도 분석",
+        "comparativeAnalysisFacility": "설비 내 비교분석",
+        "comprehensiveInformation": "건전성 종합정보",
+        "historyComparativeAnalysis": "히스토리 기반 비교분석"
+      },
+      "title": {
+        "analysisResult": "분석결과",
+        "basePDEvents": "기준 PD 이벤트",
+        "comparePDEvents": "비교 PD 이벤트",
+        "selectBasePDEvents": "기준 PD 이벤트 선택",
+        "selectComparePDEvents": "비교 PD 이벤트 선택",
+        "sensorPdEventSummaryTable": "센서별 PD 발생 이벤트 요약 테이블"
+      }
+    },
+    "diagnosisHistory": {
+      "gis": {
+        "bar": "{} GIS 경보발생 내역",
+        "list": "{} GIS 경보발생 상세내역"
+      },
+      "mtr": {
+        "bar": "변압기 설비등급 내역",
+        "list": "변압기 설비등급 상세내역"
+      },
+      "search": {
+        "assetType": "설비유형",
+        "department": "부서",
+        "period": "기간 설정",
+        "title": "부서 설비 진단 검색 조건"
+      }
+    },
+    "diagnosisReport": {
+      "assetType": "설비유형",
+      "department": "부서",
+      "history": "진단내역",
+      "result": "검색 결과",
+      "title": "설비 검색조건",
+      "voltage": "전압"
+    },
+    "error": {
+      "main": "서비스 이용에 불편을 드려 죄송합니다.",
+      "sub": "현재 일시적인 오류가 발생하여\\n요청하신 페이지를 찾을 수 없습니다."
+    },
+    "inspection": {
+      "title": "점검일지"
+    },
+    "maintanance": {
+      "calendar": "점검캘린더",
+      "inquiry": "부서 조회",
+      "title": "부서설비 유지보수"
+    },
+    "registration": {
+      "company": "회사명",
+      "date": "등록날짜",
+      "expiration": "계약만료일",
+      "previleges": "계정권한"
+    },
+    "system": {
+      "about": {
+        "description": "설명",
+        "expiration": "라이선스 만료일",
+        "license": "라이선스 버전 정보",
+        "name": "제품명",
+        "owner": "소유자",
+        "supplier": "공급사"
+      },
+      "preference": {
+        "checkPw": "비밀번호 확인",
+        "currerntPw": "현재 비밀번호",
+        "language": "언어선택",
+        "newPw": "변경 비밀번호",
+        "title": "환경설정"
+      },
+      "user": {
+        "management": "사용자관리",
+        "registration": "사용자 등록"
+      }
+    },
+    "user": {
+      "company": "회사명",
+      "date": "등록날짜",
+      "expiration": "계약만료일",
+      "newPw": "비밀재설정"
+    }
+  },
+  "table": {
+    "addOnes": {
+      "noData": "조회된 정보가 없습니다.",
+      "totalCount": "총 {{0}}건"
+    },
+    "header": {
+      "accountActivation": "계정 활성화",
+      "accountManagement": "계정관리",
+      "accountPrevilege": "계정권한",
+      "actionRule": "조치사항",
+      "actionType": "조치유형",
+      "asset": "설비",
+      "assetName": "설비명",
+      "assetNumber": "설비번호",
+      "assetStatus": "설비 상태",
+      "assetType": "설비유형",
+      "author": "작성자",
+      "capacity": "용량(kVA)",
+      "checkLog": "일지확인",
+      "current": "현재",
+      "defectType": "결함유형",
+      "department": "부서",
+      "diagnosisDate": "진단날짜",
+      "diagnosisResult": "진단결과",
+      "equipmentClass": "설비등급",
+      "expirationDate": "계약만료일",
+      "faultOccurrence": "이상발생",
+      "faultType": "이상유형",
+      "gasDensity": "가스농도(ppm)",
+      "healthIndex": "건전성지수(HI)",
+      "initFaultDate": "최초 위험 발생",
+      "inspectionDate": "점검일자",
+      "inspectionLog": "점검일지",
+      "manufacturer": "제작사",
+      "measurementDate": "측정날짜",
+      "moreThanWarningCnt": "주의 이상 발생 수",
+      "mtr": "변압기",
+      "newFilteringDate": "최근 여과일",
+      "newMaintenanceDate": "최근 정밀점검일",
+      "occurrenceTime": "발생시간",
+      "pdArea": "PD 면적",
+      "pdMax": "PD 최대값",
+      "pdMean": "PD 평균값",
+      "pdMode": "PD 유형",
+      "pdPhase": "PD 위상위치",
+      "pressurizationDate": "가압일",
+      "previous": "직전",
+      "ranking": "순위",
+      "registrationDate": "등록날짜",
+      "sensorName": "센서명",
+      "similarity": "유사도",
+      "title": "제목",
+      "total": "합계",
+      "usage": "용도",
+      "voltage": "전압(kV)",
+      "yearMonth": "제작년월",
+      "statusLevel": "상태등급",
+      "stateReached": "상태도달시점",
+      "statusReachTime": "상태도달시간",
+      "bondingPosition": "결함위치",
+      "signUp": "가입일"
+    },
+    "summary": "총 {{amount}} 건"
+  }
+}

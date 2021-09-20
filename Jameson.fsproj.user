@@ -4,6 +4,6 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>JamesonWT</ActiveDebugProfile>
+    <ActiveDebugProfile>Wrong</ActiveDebugProfile>
   </PropertyGroup>
 </Project>

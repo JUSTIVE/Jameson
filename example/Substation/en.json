@@ -1,0 +1,347 @@
+{
+  "chart": {
+    "tooltip": {
+      "diagnosisGisHistory": "Status: {}\\nNumber: {}",
+      "diagnosisGisPie": "Mode: {}\\nNumber: {}",
+      "diagnosisMtrAi": "Acquisition Date: {}\\nStatus(HI): {}({})\\nGas Concentration:\\nH2: {}ppm\\nC2H2: {}ppm\\nC2H4: {}ppm\\nC2H6: {}ppm\\nCH4: {}ppm\\nCO: {}ppm",
+      "diagnosisMtrHistory": "Status: {}\\nNumber: {}",
+      "diagnosisMtrRule": "Acquisition Date: {}\\nStatus(HI): {}({})\\nGas Concentration:\\nC2H2: {}ppm\\nC2H4: {}ppm\\nCH4: {}ppm",
+      "diagnosisMtrSummary": "Acquisition Date: {}\\nGas Concentration:\\nH2: {}ppm\\nC2H2: {}ppm\\nC2H4: {}ppm\\nC2H6: {}ppm\\nCH4: {}ppm\\nCO: {}ppm"
+    }
+  },
+  "common": {
+    "1year": "1 year",
+    "2year": "2 years",
+    "3month": "3 months",
+    "6month": "6 months",
+    "abnormal": "Critical",
+    "actionContents": "Action Taken Details",
+    "actionType": "Action Taken Type",
+    "area": "Area",
+    "attention": "Attention",
+    "author": "Author",
+    "back": "Back",
+    "below": "below",
+    "calibration": "Calibrated",
+    "cancel": "Cancel",
+    "caution": "Caution",
+    "compare": "Comparative Analysis Result",
+    "corona": "Corona",
+    "critical": "Fault",
+    "dataError": "Data Error",
+    "dataUpload": "Data Upload",
+    "departmennt": "Department",
+    "detail": "Detailed Analysis Results",
+    "diagnosisContents": "Diagnosis Contents",
+    "dopco": "DOPCO",
+    "download": "Download",
+    "e1": "E1",
+    "equipmentStatusJudgment": "Equipment Status",
+    "fail": "Failure: {}",
+    "fault": "Fault Modes",
+    "floating": "Floating",
+    "gasAnalysis": "Gas Analysis",
+    "gscaltex": "GS CALTEX",
+    "gsenr": "GS ENR",
+    "gspower": "GS POWER",
+    "id": "ID",
+    "inspectionDate": "Inspection Date",
+    "inteco": "INTECO",
+    "interalInspection": "Internal Inspection",
+    "iwest": "IWEST",
+    "kdhc": "KDHC",
+    "lgchem": "LG CHEM",
+    "localeLabel": {
+      "en": "English",
+      "ko": "Korean"
+    },
+    "logout": "Logout",
+    "lookup": "Inquiry",
+    "lottechem": "LOTTE CHEMICAL",
+    "maintain": "Maintenance Work Restrictions",
+    "max": "MAX",
+    "mean": "Mean",
+    "min": "MIN",
+    "month": "month",
+    "needText": "Text required…",
+    "noCalibration": "Original",
+    "noise": "Noise",
+    "normal": "Normal",
+    "oilFilteration": "Oil Filtration",
+    "oilReplacement": "Oil Replacement",
+    "ok": "OK",
+    "particle": "Particle",
+    "password": "Password",
+    "phase": "Phase",
+    "posco": "POSCO",
+    "s-oil": "S-OIL",
+    "save": "save",
+    "searchClose": "Search Close",
+    "searchOpen": "Search Open",
+    "similarity": "Similarity",
+    "skenergy": "SK ENERGY",
+    "success": "Success: {}",
+    "title": "Title",
+    "transformer": "TRANSFORMER",
+    "unit": "unit",
+    "void": "Void",
+    "year": "year",
+    "ygpa": "YGPA"
+  },
+  "error": {
+    "dataShortage": "Insufficient data. \n More than 4 data is required at least. ",
+    "invalidAsset": "Unregistered assets are included.\\n Please check if the below assets are registered.",
+    "invalidFormat": "The data format is incorrect.\\n Please check if the data format is correct.",
+    "noDeterioration": "The prognosis is failed because there is no degradation trend.",
+    "prognosisFail": "The prognosis is unworkable at the  Critical",
+    "warningFour": "Recent 4 status are required to be above Caution level."
+  },
+  "errorMessage": {
+    "ASSET_001": "KEPCO_000001(resource_id) does not exist.",
+    "AUTH_001": "The password must be at least 8 characters long.",
+    "AUTH_002": "The password must contain at least one uppercase and lowercase letter.",
+    "AUTH_003": "The password must contain at least 1 number.",
+    "AUTH_004": "The password must contain at least 1 special character.",
+    "AUTH_005": "ID does not exist.",
+    "AUTH_006": "ID or password does not match.",
+    "AUTH_007": "Invalid token information. Please log in again.",
+    "AUTH_008": "Please enter your token information.",
+    "AUTH_009": "Please enter 'Bearer' in the prefix of Authorization(header).",
+    "AUTH_010": "An administrator token is required.",
+    "COMMON_001": "There are no matching results.",
+    "COMMON_002": "Required information is missing.",
+    "USER_001": "There is a previously registered customer with the same company name."
+  },
+  "menu": {
+    "assetData": "Asset Data",
+    "assetStatus": "Asset Status",
+    "diagnosis": "Predictive Diagnosis",
+    "diagnosisHistory": "Diagnosis History",
+    "diagnosisReport": "Diagnosis Report",
+    "inspection": "Inspection History",
+    "maintanance": "Maintenance",
+    "systemSetting": "System Setting"
+  },
+  "message": {
+    "logout": "Sign in",
+    "logoutConfirm": "Sign out from this device?",
+    "resetBody": "Are you sure you want to initialize it?",
+    "resetHead": "Initialization",
+    "uploadIng": "Uploading data ({}%{}%)",
+    "uploadWithFail": "We failed in uploading the below files.\\n Please check if the data format is correct.",
+    "uploadWithoutFail": "Upload finished"
+  },
+  "page": {
+    "assetData": {
+      "dropbox": {
+        "assetId": "ID Number",
+        "assetName": "Name",
+        "department": "Department"
+      },
+      "number": "Total {} cases",
+      "title": "Substation Facilities"
+    },
+    "assetStatus": {
+      "gisBar": "Event alarm occurrence of GIS by department",
+      "gisDetails": "Detailed event alarm occurrence of GIS by {{site}}",
+      "gisPie": "Company-wide event alarm occurrence of GIS.",
+      "gisTable": "Counts for event alarm occurrence of GIS by department",
+      "gisTitle": "Statistics of GIS event alarm occurrence",
+      "mtr": "Statistics of Transformer.",
+      "mtrBar": "Health status of transformer by department",
+      "mtrDetails": "Detailed health status of transformer by {{site}}",
+      "mtrPie": "Company-wide health status of transformer.",
+      "mtrTable": "Counts for health status of transformer by department"
+    },
+    "assetStatusAdmin": {
+      "mtr": "Statistics of Transformer.",
+      "mtrBar": "Health status of transformer by department",
+      "mtrDetails": "{} ",
+      "mtrPie": "Company-wide health status of transformer.",
+      "mtrTable": "Counts for health status of transformer by department"
+    },
+    "diagnosis": {
+      "gis": {
+        "assetComparison": "comparison",
+        "historyComparison": "similaritySelect",
+        "summary": "analysis"
+      },
+      "mtr": {
+        "oilGasTrendChart": "Insulation oil gas concentration trend chart",
+        "oilGasChangeRateTrendChart": "Insulation Oil Gas Change Rate Trend Chart",
+        "transformerStatusDiagnosisHistoryTable": "Transformer status diagnosis history table",
+        "correction": "correction",
+        "uncorrected": "uncorrected",
+        "transformerHealthDiagnosisPlane": "transformerHealthDiagnosisPlane",
+        "transformerFutureStatusInquiry": "transformerFutureStatusInquiry",
+        "transformerHealthTrendChart": "transformer health trend chart",
+        "similarityTransformerRankingChart": "Similarity Transformer Similarity Ranking Chart",
+        "similarTransformerFacilityInfo": "Similar transformer facility information",
+        "transformerConditionDiagnosisHistoryTable": "Similar transformer status diagnosis history table",
+        "similarTransformerOilGasConcentrationTrendChart": "Similar Transformer Insulation Oil Gas Concentration Trend Chart",
+        "similarTransformerHealthTrendChart": "Similar Transformer Health Trend Chart",
+        "similaritySection": "Similarity section",
+        "gasDensity": "Gas Concentration",
+        "statePredictionAnalysisResult": "State prediction analysis result",
+        "equipmentClassDiagnosisResult": "Equipment class diagnosis result",
+        "equipmentFailureDiagnosisResult": "Equipment failure mode diagnosis result"
+      },
+      "search": {
+        "assetType": "Type",
+        "department": "Department",
+        "result": "Results",
+        "title": "Search",
+        "voltage": "Voltage"
+      },
+      "tab": {
+        "AIPredictDiagnosis": "AI Predict Diagnosis",
+        "DiagnosisCertifiedStandards": "Diagnosis Certified Standards",
+        "SimilarityAnalysis": "Similarity Analysis",
+        "comparativeAnalysisFacility": "Comparative Analysis Facility",
+        "comprehensiveInformation": "Comprehensive Information",
+        "historyComparativeAnalysis": "History Comparative Analysis"
+      },
+      "title": {
+        "analysisResult": "AnalysisResult",
+        "basePDEvents": "Base PD Event",
+        "comparePDEvents": "Compare Pd Event",
+        "selectBasePDEvents": "Select Base PD Event",
+        "selectComparePDEvents": "Select Compare Pd Event",
+        "sensorPdEventSummaryTable": "PD occurrence event summary table by sensor"
+      }
+    },
+    "diagnosisHistory": {
+      "gis": {
+        "bar": "{} GIS alarm summary",
+        "list": "{} GIS alarm history"
+      },
+      "mtr": {
+        "bar": "M.Tr diagnosis summary",
+        "list": "M.Tr diagnosis history"
+      },
+      "search": {
+        "assetType": "Asset Type",
+        "department": "Department",
+        "period": "Period conditions",
+        "title": "Asset diagnosis search conditions by department"
+      }
+    },
+    "diagnosisReport": {
+      "assetType": "Asset Type",
+      "department": "Department",
+      "history": "Diagnosis histroy",
+      "result": "Search results",
+      "title": "Asset search conditions",
+      "voltage": "Volatge"
+    },
+    "error": {
+      "main": "We appologize for the inconvenience. ",
+      "sub": "The page you requested could not be found."
+    },
+    "inspection": {
+      "title": "Inspection log"
+    },
+    "maintanance": {
+      "calendar": "Inspection calendar",
+      "inquiry": "Department inquiry",
+      "title": "Department facility maintenance"
+    },
+    "registration": {
+      "company": "Company",
+      "date": "Registration date",
+      "expiration": "Expiration date",
+      "previleges": "Account permission"
+    },
+    "system": {
+      "about": {
+        "description": "Description",
+        "expiration": "License expiration date",
+        "license": "License version informaion",
+        "name": "Product name",
+        "owner": "Owner",
+        "supplier": "Supplier"
+      },
+      "preference": {
+        "checkPw": "Confirm password",
+        "currerntPw": "Current password",
+        "language": "Lauguage",
+        "newPw": "New password",
+        "title": "Preference"
+      },
+      "user": {
+        "management": "User management",
+        "registration": "User registration"
+      }
+    },
+    "user": {
+      "company": "Company",
+      "date": "Registration date",
+      "expiration": "Expiration date",
+      "newPw": "New password"
+    }
+  },
+  "table": {
+    "addOnes": {
+      "noData": "No Data",
+      "totalCount": "{{0}} rows"
+    },
+    "header": {
+      "accountActivation": "Account Activation",
+      "accountManagement": "Account Management",
+      "accountPrevilege": "Account Previlege",
+      "actionRule": "Action Rule",
+      "actionType": "Action Type",
+      "asset": "Asset",
+      "assetName": "Asset name",
+      "assetNumber": "Asset Number",
+      "assetStatus": "Asset Status",
+      "assetType": "Asset Type",
+      "author": "Author",
+      "capacity": "Capacity(kVA)",
+      "checkLog": "Log Check",
+      "current": "Current",
+      "defectType": "defectType",
+      "department": "Department",
+      "diagnosisDate": "Diagnosis Date",
+      "diagnosisResult": "Diagnosis Result",
+      "equipmentClass": "EquipmentClass",
+      "expirationDate": "Contract Expiration Date",
+      "faultOccurrence": "Possible Findings",
+      "faultType": "Possible Faults",
+      "gasDensity": "Gas Concentration(ppm)",
+      "healthIndex": "Health Index",
+      "initFaultDate": "Date of first risk",
+      "inspectionDate": "Inspection Date",
+      "inspectionLog": "Inspection Log",
+      "manufacturer": "Manufacturer",
+      "measurementDate": "Acquisition Date",
+      "moreThanWarningCnt": "Number of Attention Abnormalities",
+      "mtr": "Transformer",
+      "newFilteringDate": "last filter date",
+      "newMaintenanceDate": "Last inspection date",
+      "occurrenceTime": "Occurrence Time",
+      "pdArea": "PD Area",
+      "pdMax": "PD Max",
+      "pdMean": "PD Mean",
+      "pdMode": "PD Mode",
+      "pdPhase": "PD Phase",
+      "pressurizationDate": "Operating date",
+      "previous": "Previous",
+      "ranking": "Ranking",
+      "registrationDate": "Registration Date",
+      "sensorName": "Sensor Name",
+      "similarity": "Similarity",
+      "title": "Title",
+      "total": "Total",
+      "usage": "Usage",
+      "voltage": "Voltage(kV)",
+      "yearMonth": "Year/Month of Manufacture",
+      "statusLevel": "statusLevel",
+      "stateReached": "stateReached",
+      "statusReachTime": "time to reach status",
+      "bondingPosition": "bondingPosition",
+      "signUp": "signUp"
+    },
+    "summary": " {{amount}} rows"
+  }
+}

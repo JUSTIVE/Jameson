@@ -1,0 +1,10 @@
+{
+  "key": "밸류",
+  "nested": {
+    "key": "밸류"
+  },
+  "array": ["밸류", "밸류2"],
+  "nestedArray": {
+    "nestedKey": ["밸류s"]
+  }
+}

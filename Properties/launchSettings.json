@@ -1,7 +1,8 @@
 {
   "profiles": {
     "Jameson": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Good\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Good\\en.json"
     },
     "JamesonWT": {
       "commandName": "Executable",
@@ -11,6 +12,18 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "Good": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Good\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Good\\en.json"
+    },
+    "Wrong": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Wrong\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Wrong\\en.json"
+    },
+    "GoodNested": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\HOME\\source\\repos\\Jameson\\example\\GoodNested\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\GoodNested\\en.json"
     }
   }
 }
