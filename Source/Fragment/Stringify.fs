@@ -1,4 +1,5 @@
 ﻿module Stringify
+open System
 open JamesonOption
 open Diff
 
@@ -12,10 +13,11 @@ type PrintType ={
     content:string;
 }
 
-let stringifyBool (boolValue:bool):string =
-    match boolValue with
-    | true -> "true"
-    | false -> "false"
+    
+let stringifyOption (value:option<'a>) : string=
+    match value with
+    | Some x -> string x
+    | Option.None -> "None"
 
 let stringifyRunnerTypeOption (runnerType:RunnerTypeOption):string =
     match runnerType with
@@ -27,6 +29,8 @@ let stringifyRunnerTypeOption (runnerType:RunnerTypeOption):string =
         $"GeneralRunner
         ├  sourcePath : {x.sourcePath}
         └  targetCandidate : {x.targetCandidate}"
+    | None ->
+        $"Invalid RunnerType"
 
 let stringifyDiffFile (diffFile:DiffFile):string =
     match diffFile with
@@ -36,8 +40,8 @@ let stringifyDiffFile (diffFile:DiffFile):string =
 let stringifyJamesonOption (jamesonOption:JamesonOption) :string = 
     $"
     ├  RunnerType : {stringifyRunnerTypeOption jamesonOption.runnerType}
-    ├  WriteFile : {stringifyBool jamesonOption.writeToFile}
-    └  Verbose : {stringifyBool jamesonOption.verbose}\n"
+    ├  WriteFile : {stringifyOption jamesonOption.writeToFile}
+    └  Verbose : {string jamesonOption.verbose}\n"
 
 let stringify (param:PrintableType) : PrintType = 
     let name = 

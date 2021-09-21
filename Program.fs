@@ -14,16 +14,16 @@ let main (argv:string[]):int =
         help()|>ignore
         1
     | x ->
-        let option = ArgumentParser.parse argv
+        let option = parse argv
         match option with
-        | ParseResult.Success(x:JamesonOption) -> 
+        | Success(x:JamesonOption) -> 
             match Runner.run x with
             | Success(diffFile) ->
                 printJamesonResult GOOD
             | Fail(jamesonResult) -> 
                 printJamesonResult jamesonResult 
-        | ParseResult.Fail(x:JamesonResult) ->
-            printJamesonResult x|>ignore
+        | Fail(x:list<JamesonResult>) ->
+            printJamesonResults x|>ignore
             help()|>ignore
             1
 

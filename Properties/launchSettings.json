@@ -4,26 +4,21 @@
       "commandName": "Project",
       "commandLineArgs": "C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Good\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Good\\en.json"
     },
-    "JamesonWT": {
-      "commandName": "Executable",
-      "executablePath": "C:\\Users\\HOME\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe",
-      "commandLineArgs": "dotnet run --project C:\\Users\\HOME\\source\\repos\\Jameson\\Jameson.fsproj",
-      "workingDirectory": "C:\\Users\\HOME\\source\\repos\\Jameson",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "Good": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Good\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Good\\en.json"
+      "commandLineArgs": "-t C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Good\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Good\\en.json"
     },
     "Wrong": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Wrong\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Wrong\\en.json"
+      "commandLineArgs": "-t C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Wrong\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Wrong\\en.json"
     },
     "GoodNested": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\HOME\\source\\repos\\Jameson\\example\\GoodNested\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\GoodNested\\en.json"
+      "commandLineArgs": "-t C:\\Users\\HOME\\source\\repos\\Jameson\\example\\GoodNested\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\GoodNested\\en.json"
+    },
+    "InvalidRunner": {
+      "commandName": "Project",
+      "commandLineArgs": "-c"
     }
   }
 }

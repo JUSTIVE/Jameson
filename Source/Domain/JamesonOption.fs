@@ -17,12 +17,38 @@ type TargetRunnerOption = {
 type RunnerTypeOption = 
     | GeneralRunnerOption of GeneralRunnerOption
     | TargetRunnerOption of TargetRunnerOption
+    | None
 
 type JamesonOption = {
     runnerType:RunnerTypeOption
-    writeToFile:bool
+    writeToFile:option<string>
     verbose:bool
+    help:bool
 }
+
+let JamesonOptionSetRunnerTypeLens state runnerTypeOption :JamesonOption=
+    {
+        runnerType = runnerTypeOption;
+        writeToFile = state.writeToFile;
+        verbose = state.verbose
+        help = state.help
+    } 
+
+let JamesonOptionSetBoolFlag state key:JamesonOption=
+    match key with
+    | "verbose" -> {
+               runnerType = state.runnerType;
+               writeToFile = state.writeToFile;
+               verbose = true
+               help = state.help
+           }
+    | "help" -> 
+        {
+            runnerType = state.runnerType;
+            writeToFile = state.writeToFile;
+            verbose = state.verbose
+            help = true
+        }
 
 type ArgumentOption = {
     name:string;
