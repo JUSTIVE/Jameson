@@ -2,20 +2,19 @@
 
 open System
 open Stringify
+open PrinterType
 
 let showPrint show action =
     match show with
-    | true -> action
+    | true -> 
+        action()
     | false -> ()
 
-let initializeColor () =
+let private initializeColor () =
     Console.ForegroundColor <- ConsoleColor.White
 
-let colorize color =
+let private colorize color =
     Console.ForegroundColor <- color
-
-let print(content:PrintType)=
-    printfn "Type Name : %s%s" content.name content.content
 
 let printLogo () = 
     $"
@@ -32,5 +31,57 @@ let printLogo () =
 "
     |>printfn "%s" 
 
-let printType typeName = 
-    colorize typeName ConsoleColor.Yellow
+let printIndentItem (indentItem:IndentItem) =
+    match indentItem with
+    | ColorableIndent (colorableIndent,color) ->
+        colorize color
+        match colorableIndent with
+        | OngoingChild  -> "│  "
+        | MidChild      -> "├  "
+        | LastChild     -> "└  "
+        |>printf "%s"
+        initializeColor()
+    | EmptyChild -> printf "   " 
+    | NoneChild  -> ()
+
+let printIndent (indent:Indent) =
+    let midToOngoing indentItem =
+        match indentItem with 
+        | ColorableIndent (colorableIndent,color) ->
+            match colorableIndent with
+            | MidChild -> ColorableIndent(OngoingChild,color)
+            | __ -> ColorableIndent(colorableIndent,color)
+        | __ -> indentItem
+
+    match indent with
+    | h::t ->
+        h::(List.map midToOngoing t)
+    | __ -> []
+    |>List.rev
+    |>List.map printIndentItem 
+    |>ignore
+
+let print show (indent:Indent) color newline content =
+    if show 
+        then
+            printIndent indent
+            colorize color
+            printf $"{content}"
+            initializeColor()
+            if newline 
+                then printf "\n" 
+                else ()
+        else ()
+let printInline show indent color content = 
+    print show indent color false content
+
+let printBool show indent color newline bool = 
+    print show indent (if newline then ConsoleColor.DarkGreen else ConsoleColor.DarkRed) newline bool
+
+let printWithOptionName show indent color name printFunction content = 
+    print show indent ConsoleColor.White false $"{name} : "
+    printFunction show [NoneChild] color true content 
+
+let printType show indent typeName = 
+    print show indent  ConsoleColor.White false $"Type Name : "
+    print show [NoneChild] ConsoleColor.DarkYellow true $"{typeName}" 

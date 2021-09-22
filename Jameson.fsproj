@@ -12,6 +12,7 @@
     <Compile Include="Source\Domain\State.fs" />
     <Compile Include="Source\Domain\FileType\FileType.fs" />
     <Compile Include="Source\Domain\FileType\Diff.fs" />
+    <Compile Include="Source\Domain\Utility\PrinterType.fs" />
     <Compile Include="Source\Domain\JamesonResultType.fs" />
     <Compile Include="Source\Domain\JamesonOption.fs" />
     <Compile Include="Source\Resource\JamesonResults.fs" />

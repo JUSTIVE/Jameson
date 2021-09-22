@@ -3,11 +3,12 @@ open JamesonResult
 open JamesonResults
 open JamesonOption
 open Printer
+open PrinterType
 open Diff
 open State
 
 let run (option:JamesonOption):Result<DiffFile,JamesonResult> =
-   printJamesonOption option
+   printJamesonOption true [NoneChild] option
    match option.runnerType with
    | TargetRunnerOption targetRunnerOption ->
         TargetRunner.run targetRunnerOption

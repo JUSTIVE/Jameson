@@ -16,7 +16,7 @@ let Flow jamesonOptionR: Result<JamesonResult,list<JamesonResult>> =
     | Success jamesonOption ->
         match Runner.run jamesonOption with
         | Success diffFile -> 
-            printDiffFile true diffFile
+            //printDiffFile true diffFile
             Success GOOD
         | Fail jamesonResult -> Fail [jamesonResult]
     | Fail jamesonResults ->
