@@ -16,8 +16,11 @@ let Flow jamesonOptionR: Result<JamesonResult,list<JamesonResult>> =
     | Success jamesonOption ->
         match Runner.run jamesonOption with
         | Success diffFile -> 
-            //printDiffFile true diffFile
+            printDiffFile true [] diffFile.originFile
+            diffFile.compareeFiles
+            |> List.map (printDiffFile true [])
+            |> ignore
             Success GOOD
-        | Fail jamesonResult -> Fail [jamesonResult]
+        | Fail jamesonResult -> Fail jamesonResult
     | Fail jamesonResults ->
         Fail jamesonResults

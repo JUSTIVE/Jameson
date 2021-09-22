@@ -4,6 +4,7 @@ open JamesonOption
 let OptionDefault :JamesonOption= {
     runnerType=None
     writeToFile=Option.None
+    strict = false
     verbose=false
     help=false
 }

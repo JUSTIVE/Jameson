@@ -11,9 +11,15 @@ type DiffLine =
 
 let isChangedLine (x:DiffLine):bool = 
     match x with
-    | Changed(x) -> true
+    | Changed x -> true
     | NotChanged -> false
 
 type DiffFile =
-    | Same
-    | Different of list<DiffLine>
+    | Same of string
+    | Different of string*list<DiffLine>
+
+type DiffResults = {
+    originFile : DiffFile;
+    compareeFiles : list<DiffFile>
+}
+    

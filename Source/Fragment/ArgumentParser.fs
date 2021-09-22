@@ -1,7 +1,6 @@
 ﻿module ArgumentParser
 open System
 open JamesonOption
-open JamesonOptions
 open JamesonResult
 open JamesonResults
 open State
@@ -12,8 +11,8 @@ type MassageTarget =
     | DirectoryT
 
 type MassageResult = 
-    | FileR of string
-    | DirectoryR of list<string>
+    | FileR of FileArgument
+    | DirectoryR of list<FileArgument>
 
 let rec parse_ (state:JamesonOption) (argument:list<string>):Result<JamesonOption,list<JamesonResult>> = 
     match argument with
@@ -23,6 +22,7 @@ let rec parse_ (state:JamesonOption) (argument:list<string>):Result<JamesonOptio
             | "-g" -> Some(parseGeneralRunnerOption)
             | "-t" -> Some(parseTargetRunnerOption)
             | "-v" -> Some(parseVerboseOption)
+            | "-s" -> Some(parseStrictOption)
             | "-h" -> Some(parseHelpeOption)
             | __ -> Option.None
         match subParser with 
@@ -34,11 +34,22 @@ let rec parse_ (state:JamesonOption) (argument:list<string>):Result<JamesonOptio
         | Option.None -> Fail [INVALID_ARGUMENT h]
     | __ -> Success(state)
 
+and pathToFileArgument path =
+    {
+        filename = IO.FileInfo(path).Name
+        path = path
+    }
+
 and massagePath (massageTarget:MassageTarget) (path:string):Result<MassageResult,JamesonResult> = 
     let pathType =
         match File.GetAttributes(path).HasFlag(FileAttributes.Directory) with
-        | true -> DirectoryR <| Array.toList (IO.Directory.GetFiles(path))
-        | false -> FileR path
+        | true -> 
+            Array.toList (IO.Directory.GetFiles(path))
+            |> List.map pathToFileArgument 
+            |> DirectoryR 
+        | false ->
+            pathToFileArgument path 
+            |> FileR 
     match massageTarget with
     | FileT ->
         match pathType with 
@@ -48,9 +59,10 @@ and massagePath (massageTarget:MassageTarget) (path:string):Result<MassageResult
         match pathType with
         | FileR(_) -> 
             IO.Directory.GetParent(path).GetFiles()
-            |> Array.filter(fun x-> x.FullName <> FileInfo(path).FullName)
-            |> Array.map(fun x -> x.FullName)
             |> Array.toList
+            |> List.filter(fun x-> x.FullName <> FileInfo(path).FullName)
+            |> List.map(fun x -> x.FullName)
+            |> List.map pathToFileArgument 
             |> DirectoryR
             |> Success
         | DirectoryR(_) -> Success pathType
@@ -61,9 +73,13 @@ and parseGeneralRunnerOption (state:JamesonOption) (argument:list<string>):Resul
         let sourcePathResolveResult = massagePath FileT g
         let targetPathResolveResult = massagePath DirectoryT g
         match (sourcePathResolveResult ,targetPathResolveResult) with
-        | Success(FileR(sourcePath)),Success(DirectoryR(neighbourFiles))->
+        | Success(FileR(sourceFileArgument)),Success(DirectoryR(neighbourFiles))->
             let newOption = 
-                GeneralRunnerOption({sourcePath=sourcePath;targetCandidate=neighbourFiles})
+                {
+                    source=sourceFileArgument;
+                    targetCandidate=neighbourFiles
+                }
+                |>GeneralRunnerOption
                 |>JamesonOptionSetRunnerTypeLens state 
             Success(newOption,t)
         | Success(_),Success(_)-> Fail [INVALID_PATH_TYPE g]
@@ -82,7 +98,7 @@ and parseTargetRunnerOption (state:JamesonOption) (argument:list<string>):Result
             match (sourcePathResolveResult ,targetPathResolveResult) with
             | Success(FileR(sourcePath)),Success(FileR(targetPath))->
                 let newOption = 
-                    TargetRunnerOption({sourcePath = sourcePath; targetPath=targetPath})
+                    TargetRunnerOption({source= sourcePath; target=targetPath})
                     |>JamesonOptionSetRunnerTypeLens state 
                 Success(newOption,t_)
             | Success(FileR(_)),Success(DirectoryR(_))-> Fail [INVALID_PATH_TYPE t2]
@@ -99,6 +115,9 @@ and parseBooleanOption state argument key =
     | h::t->
         Success((JamesonOptionSetBoolFlag state key,t))
     | __-> Fail [ARGUMENT_LENGTH_ERROR]
+
+and parseStrictOption (state:JamesonOption) (argument:list<string>):Result<JamesonOption*list<string>,list<JamesonResult>> =
+    parseBooleanOption state argument "strict"
 
 and parseVerboseOption (state:JamesonOption) (argument:list<string>):Result<JamesonOption*list<string>,list<JamesonResult>> =
     parseBooleanOption state argument "verbose"

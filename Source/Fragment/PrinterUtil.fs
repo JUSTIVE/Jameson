@@ -1,7 +1,6 @@
 ﻿module PrinterUtil
 
 open System
-open Stringify
 open PrinterType
 
 let showPrint show action =
@@ -80,8 +79,11 @@ let printBool show indent color newline bool =
 
 let printWithOptionName show indent color name printFunction content = 
     print show indent ConsoleColor.White false $"{name} : "
-    printFunction show [NoneChild] color true content 
+    printFunction show [] color true content 
 
 let printType show indent typeName = 
     print show indent  ConsoleColor.White false $"Type Name : "
-    print show [NoneChild] ConsoleColor.DarkYellow true $"{typeName}" 
+    print show [] ConsoleColor.DarkYellow true $"{typeName}" 
+
+let printEmptyLine ()=
+    printfn ""

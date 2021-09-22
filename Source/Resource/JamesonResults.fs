@@ -6,6 +6,11 @@ let GOOD:JamesonResult = {
     errorCode = 0
 }
 
+let NOT_SAME = {
+    message = "all compared files are not same";
+    errorCode = 1
+}
+
 let ARGUMENT_LENGTH_ERROR:JamesonResult = {
     message = "argument should be one or two";
     errorCode = 1

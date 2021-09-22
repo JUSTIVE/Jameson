@@ -5,7 +5,7 @@ open FileType
 open JamesonResult
 open JamesonResults
 
-let compare_ (changedLine:string->ChangedLine) (origin:Set<string>) (comparee:Set<string>)  :DiffFile = 
+let compare_ (origin:Set<string>) (comparee:Set<string>) (changedLine:string->ChangedLine)  filename  :DiffFile = 
     let diffy  (comparee:Set<string>) (targetLine:string) :DiffLine= 
         match comparee.Contains targetLine with
         | true -> NotChanged
@@ -20,13 +20,13 @@ let compare_ (changedLine:string->ChangedLine) (origin:Set<string>) (comparee:Se
         |>List.filter (isChangedLine)
         |>List.isEmpty
         with 
-    | true -> Same
-    | false -> Different diffLines
+    | true -> Same filename
+    | false -> Different (filename,diffLines)
 
-let compare (origin:FileType) (comparee:FileType) :Result<DiffFile,JamesonResult> =
-    match (origin,comparee) with
-    | (OriginFile(x),CompareeFile(y)) -> 
-        Success(compare_ Removed x y)
-    | (CompareeFile(x),OriginFile(y)) -> 
-        Success(compare_ Added x y)
+let compare ((filename,filetype,filevalue):FileData) ((filename2,filetype2,filevalue2):FileData) :Result<DiffFile,JamesonResult> =
+    match (filetype,filetype2) with
+    | (OriginFile, CompareeFile) -> 
+        Success <| compare_ filevalue filevalue2 Removed filename
+    | (CompareeFile, OriginFile) -> 
+        Success <| compare_ filevalue filevalue2 Added filename2
     | __ -> Fail(INVALID_KEYSET)

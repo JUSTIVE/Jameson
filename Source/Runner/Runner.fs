@@ -7,12 +7,12 @@ open PrinterType
 open Diff
 open State
 
-let run (option:JamesonOption):Result<DiffFile,JamesonResult> =
+let run (option:JamesonOption):Result<DiffResults,list<JamesonResult>> =
    printJamesonOption true [NoneChild] option
    match option.runnerType with
    | TargetRunnerOption targetRunnerOption ->
-        TargetRunner.run targetRunnerOption
-   | GeneralRunnerOption generalRunnerOption ->
-        GeneralRunner.run generalRunnerOption
+        TargetRunner.run option targetRunnerOption
+   | GeneralRunnerOption generalRunnerOption -> 
+        GeneralRunner.run option generalRunnerOption
    | None ->
-        Fail INVALID_RUNNER_TYPE
+        Fail [INVALID_RUNNER_TYPE]

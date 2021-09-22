@@ -2,16 +2,21 @@
 open JamesonResult
 //string(path)->JsonValue->Set<string>->list<diffline>
 
-type path = string
+
+
+type FileArgument = {
+    filename:string;
+    path:string
+}
 
 type GeneralRunnerOption = {
-    sourcePath:string
-    targetCandidate:list<string>
+    source:FileArgument
+    targetCandidate:list<FileArgument>
 }
 
 type TargetRunnerOption = {
-    sourcePath:string;
-    targetPath:string
+    source:FileArgument;
+    target:FileArgument
 }
 
 type RunnerTypeOption = 
@@ -22,6 +27,7 @@ type RunnerTypeOption =
 type JamesonOption = {
     runnerType:RunnerTypeOption
     writeToFile:option<string>
+    strict:bool
     verbose:bool
     help:bool
 }
@@ -30,6 +36,7 @@ let JamesonOptionSetRunnerTypeLens state runnerTypeOption :JamesonOption=
     {
         runnerType = runnerTypeOption;
         writeToFile = state.writeToFile;
+        strict = state.strict;
         verbose = state.verbose
         help = state.help
     } 
@@ -40,6 +47,7 @@ let JamesonOptionSetBoolFlag state key:JamesonOption=
         {
                runnerType = state.runnerType;
                writeToFile = state.writeToFile;
+               strict = state.strict;
                verbose = true
                help = state.help
            }
@@ -48,7 +56,16 @@ let JamesonOptionSetBoolFlag state key:JamesonOption=
             runnerType = state.runnerType;
             writeToFile = state.writeToFile;
             verbose = state.verbose
+            strict = state.strict;
             help = true
+        }
+    | "strict" ->
+        {
+            runnerType = state.runnerType;
+            writeToFile = state.writeToFile;
+            verbose = state.verbose
+            strict = true;
+            help = state.help
         }
     | __ -> state
 
