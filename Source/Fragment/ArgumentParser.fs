@@ -21,9 +21,9 @@ let rec parse_ (state:JamesonOption) (argument:list<string>):Result<JamesonOptio
             match h with
             | "-g" -> Some(parseGeneralRunnerOption)
             | "-t" -> Some(parseTargetRunnerOption)
-            | "-v" -> Some(parseVerboseOption)
-            | "-s" -> Some(parseStrictOption)
-            | "-h" -> Some(parseHelpeOption)
+            | "--v" -> Some(parseVerboseOption)
+            | "--s" -> Some(parseStrictOption)
+            | "--h" -> Some(parseHelpeOption)
             | __ -> Option.None
         match subParser with 
         | Some subParseFunction-> 
@@ -114,7 +114,7 @@ and parseBooleanOption state argument key =
     match argument with 
     | h::t->
         Success((JamesonOptionSetBoolFlag state key,t))
-    | __-> Fail [ARGUMENT_LENGTH_ERROR]
+    | __-> Success((JamesonOptionSetBoolFlag state key,[]))
 
 and parseStrictOption (state:JamesonOption) (argument:list<string>):Result<JamesonOption*list<string>,list<JamesonResult>> =
     parseBooleanOption state argument "strict"

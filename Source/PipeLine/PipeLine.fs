@@ -14,13 +14,16 @@ let private construct previousResult action =
 let Flow jamesonOptionR: Result<JamesonResult,list<JamesonResult>> =
     match jamesonOptionR with
     | Success jamesonOption ->
-        match Runner.run jamesonOption with
-        | Success diffFile -> 
-            printDiffFile true [] diffFile.originFile
-            diffFile.compareeFiles
-            |> List.map (printDiffFile true [])
-            |> ignore
-            Success GOOD
-        | Fail jamesonResult -> Fail jamesonResult
+        if jamesonOption.help then 
+            Success <|Help.help()
+        else
+            match Runner.run jamesonOption with
+            | Success diffFile -> 
+                printDiffFile true [] diffFile.originFile
+                diffFile.compareeFiles
+                |> List.map (printDiffFile true [])
+                |> ignore
+                Success GOOD
+            | Fail jamesonResult -> Fail jamesonResult
     | Fail jamesonResults ->
         Fail jamesonResults

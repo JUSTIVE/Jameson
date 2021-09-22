@@ -2,8 +2,6 @@
 open JamesonResult
 //string(path)->JsonValue->Set<string>->list<diffline>
 
-
-
 type FileArgument = {
     filename:string;
     path:string
