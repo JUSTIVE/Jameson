@@ -12,10 +12,10 @@
     <Compile Include="Source\Domain\State.fs" />
     <Compile Include="Source\Domain\FileType\FileType.fs" />
     <Compile Include="Source\Domain\FileType\Diff.fs" />
-    <Compile Include="Source\Domain\JamesonOption.fs" />
     <Compile Include="Source\Domain\JamesonResultType.fs" />
-    <Compile Include="Source\Resource\JamesonOptions.fs" />
+    <Compile Include="Source\Domain\JamesonOption.fs" />
     <Compile Include="Source\Resource\JamesonResults.fs" />
+    <Compile Include="Source\Resource\JamesonOptions.fs" />
     <Compile Include="Source\Fragment\Stringify.fs" />
     <Compile Include="Source\Fragment\PrinterUtil.fs" />
     <Compile Include="Source\Fragment\Printer.fs" />
@@ -26,11 +26,11 @@
     <Compile Include="Source\Fragment\ArgumentParser.fs" />
     <Compile Include="Source\Fragment\Help.fs" />
     <Compile Include="Source\Fragment\LanguageSupport.fs" />
-    <Compile Include="Source\Fragment\PipeLine.fs" />
     <Compile Include="Source\Fragment\PathResolver.fs" />
     <Compile Include="Source\Runner\TargetRunner.fs" />
     <Compile Include="Source\Runner\GeneralRunner.fs" />
     <Compile Include="Source\Runner\Runner.fs" />
+    <Compile Include="Source\PipeLine\PipeLine.fs" />
     <Compile Include="Test\Utilities\TestResult.fs" />
     <Compile Include="Test\Utilities\Expect.fs" />
     <Compile Include="Test\Utilities\TestPrinter.fs" />

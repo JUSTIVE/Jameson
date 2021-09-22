@@ -1,13 +1,6 @@
 ﻿module JamesonOptions
 open JamesonOption
 
-let OPTION_DEFAULT (runnerType:RunnerTypeOption):JamesonOption = {
-    runnerType=runnerType;
-    writeToFile=Option.None
-    verbose=false
-    help=false
-}
-
 let OptionDefault :JamesonOption= {
     runnerType=None
     writeToFile=Option.None
@@ -18,8 +11,13 @@ let OptionDefault :JamesonOption= {
 
 let OptionList:list<JamesonOption.ArgumentOption> = [
     {
-        name="WriteToFile";
+        name="write to file";
         keyString="o";
-        argumentLength=1;
+        argumentLength=0;
     };
+    {
+        name="verbose log";
+        keyString="v";
+        argumentLength=0;
+    }
 ]

@@ -1,8 +1,8 @@
 ﻿module GeneralRunner
 open JamesonResult
 open State
-open JamesonResults
+open JamesonOption
 open Diff
 
-let run (originFilePath:string):Result<DiffFile,JamesonResult>=
-    Success(Same)
+let run (generalRunnerOption:GeneralRunnerOption):Result<DiffFile,JamesonResult>=
+    Success Same

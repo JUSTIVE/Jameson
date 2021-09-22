@@ -1,19 +1,17 @@
 ﻿module TargetRunner
 open State
-open JamesonResult
-open JamesonResults
 open FileType
 open JsonLoader
 open JsonParser
 open Compare
-open Diff
+open JamesonOption
 
-let run (originFilePath:string) (comparingFilePath:string) :Result<DiffFile,JamesonResult>= 
-    match readJSONFile originFilePath with
+let run targetRunnerOption = 
+    match readJSONFile targetRunnerOption.sourcePath with
     | Fail(jamesonResult)->Fail(jamesonResult)
     | Success(jsonValue) ->
         let originFilekeySet = parse jsonValue
-        match readJSONFile comparingFilePath with
+        match readJSONFile targetRunnerOption.targetPath with
         | Fail(jamesonResult) ->Fail(jamesonResult)
         | Success(jsonValue) ->
             let comparingFileKeySet = parse jsonValue

@@ -4,6 +4,6 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>InvalidRunner</ActiveDebugProfile>
+    <ActiveDebugProfile>Good</ActiveDebugProfile>
   </PropertyGroup>
 </Project>

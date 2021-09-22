@@ -55,3 +55,8 @@ let INVALID_PATH_TYPE path:JamesonResult = {
     message = $"invalid path argument : {path}";
     errorCode = 1
 }
+
+let INVALID_RUNNER_TYPE :JamesonResult = {
+    message = "invalid runner type option";
+    errorCode = 1
+}

@@ -6,6 +6,7 @@ open JamesonResult
 open JamesonResults
 open State
 open ArgumentParser
+open PipeLine
 
 [<EntryPoint>]
 let main (argv:string[]):int =
@@ -13,19 +14,11 @@ let main (argv:string[]):int =
     | [||] -> 
         help()|>ignore
         1
-    | x ->
-        let option = parse argv
-        match option with
-        | Success(x:JamesonOption) -> 
-            match Runner.run x with
-            | Success(diffFile) ->
-                printJamesonResult GOOD
-            | Fail(jamesonResult) -> 
-                printJamesonResult jamesonResult 
-        | Fail(x:list<JamesonResult>) ->
-            printJamesonResults x|>ignore
-            help()|>ignore
-            1
-
+    | __ ->
+        match Flow <| parse argv with
+        | Success goodResult ->
+            printJamesonResult true goodResult
+        | Fail failedResults -> 
+            printJamesonResults true failedResults
     
 

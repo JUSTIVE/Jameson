@@ -3,19 +3,21 @@
 open System
 open Stringify
 
-let colorize (target:string) (consoleColor:ConsoleColor) = 
-    let InitializeColor () =
-        Console.ForegroundColor <- ConsoleColor.White
-    Console.ForegroundColor <- consoleColor
-    printfn "%s" target
-    InitializeColor()
+let showPrint show action =
+    match show with
+    | true -> action
+    | false -> ()
+
+let initializeColor () =
+    Console.ForegroundColor <- ConsoleColor.White
+
+let colorize color =
+    Console.ForegroundColor <- color
 
 let print(content:PrintType)=
     printfn "Type Name : %s%s" content.name content.content
 
 let printLogo () = 
-
-
     $"
     d8,                                                         
   `8P                                                          
@@ -30,10 +32,5 @@ let printLogo () =
 "
     |>printfn "%s" 
 
-let printWithIndent (indent:int32) (content:string) =
-    let rec multiplyString (state:string) (times:int32) (content:string) =
-        match times with
-        | 0 -> state
-        | __ -> multiplyString (state+content) (times - 1) content
-    let tabs = multiplyString "" indent "\t"
-    printfn "%s%s" tabs content
+let printType typeName = 
+    colorize typeName ConsoleColor.Yellow

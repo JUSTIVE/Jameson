@@ -1,5 +1,5 @@
 ﻿module JamesonOption
-
+open JamesonResult
 //string(path)->JsonValue->Set<string>->list<diffline>
 
 type path = string
@@ -36,7 +36,8 @@ let JamesonOptionSetRunnerTypeLens state runnerTypeOption :JamesonOption=
 
 let JamesonOptionSetBoolFlag state key:JamesonOption=
     match key with
-    | "verbose" -> {
+    | "verbose" ->
+        {
                runnerType = state.runnerType;
                writeToFile = state.writeToFile;
                verbose = true
@@ -49,6 +50,7 @@ let JamesonOptionSetBoolFlag state key:JamesonOption=
             verbose = state.verbose
             help = true
         }
+    | __ -> state
 
 type ArgumentOption = {
     name:string;
