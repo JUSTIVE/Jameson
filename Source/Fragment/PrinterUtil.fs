@@ -75,7 +75,7 @@ let printInline show indent color content =
     print show indent color false content
 
 let printBool show indent color newline bool = 
-    print show indent (if newline then ConsoleColor.DarkGreen else ConsoleColor.DarkRed) newline bool
+    print show indent (if bool then ConsoleColor.DarkGreen else ConsoleColor.DarkRed) newline bool
 
 let printWithOptionName show indent color name printFunction content = 
     print show indent ConsoleColor.White false $"{name} : "
