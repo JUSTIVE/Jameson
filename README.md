@@ -11,7 +11,7 @@ Jameson compares only keys, usually for validating i18n files
 
     jameson -t <sourceFilePath> : <targetFilePath>\tcompare <sourceFile> with <targetFile>
     jameson -g <sourceFilePath> : compare <sourceFile> with all neighbour files
-    jameson -s <sourceFilePath> : show all keys of <sourceFile>
+    jameson -w <sourceFilePath> : show all keys of <sourceFile>
 options : 
 |options | descriptions|
 |---|---|
@@ -19,3 +19,4 @@ options :
 |--s|compare strictly. will return 0 only when all the files have same key|
 |--v|show log verbosely|
 |--h|show help|
+|--f|auto generate missing keys|
