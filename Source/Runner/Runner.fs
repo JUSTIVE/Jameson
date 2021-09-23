@@ -14,5 +14,7 @@ let run (option:JamesonOption):Result<DiffResults,list<JamesonResult>> =
         TargetRunner.run option targetRunnerOption
    | GeneralRunnerOption generalRunnerOption -> 
         GeneralRunner.run option generalRunnerOption
+   | ShowRunnerOption showRunnerOption ->
+        ShowRunner.run option showRunnerOption
    | None ->
         Fail [INVALID_RUNNER_TYPE]

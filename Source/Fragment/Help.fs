@@ -19,7 +19,7 @@ options :
     --s\t\t\t\t\tcompare strictly. will return 0 only when all the files have same key
     --v\t\t\t\t\tshow log verbosely
     --h\t\t\t\t\tshow help
-    --f\t\t\t\t\tauto generate keys
+    --f\t\t\t\t\tauto generate missing keys
         "
     |>printfn "%s"
 

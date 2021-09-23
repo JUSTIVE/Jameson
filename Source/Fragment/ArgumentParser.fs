@@ -21,6 +21,7 @@ let rec parse_ (state:JamesonOption) (argument:list<string>):Result<JamesonOptio
             match h with
             | "-g" -> Some(parseGeneralRunnerOption)
             | "-t" -> Some(parseTargetRunnerOption)
+            | "-w" -> Some(parseShowRunnerOption)
             | "--v" -> Some(parseVerboseOption)
             | "--s" -> Some(parseStrictOption)
             | "--h" -> Some(parseHelpeOption)
@@ -66,6 +67,23 @@ and massagePath (massageTarget:MassageTarget) (path:string):Result<MassageResult
             |> DirectoryR
             |> Success
         | DirectoryR(_) -> Success pathType
+
+and parseShowRunnerOption (state:JamesonOption) (argument:list<string>):Result<JamesonOption*list<string>,list<JamesonResult>> =
+    match argument with
+    | g::t -> 
+        let sourcePathResolveResult = massagePath FileT g
+        match sourcePathResolveResult with
+        | Success(FileR(sourceFileArgument))->
+            let newOption = 
+                {
+                    source=sourceFileArgument;
+                }
+                |>ShowRunnerOption
+                |>JamesonOptionSetRunnerTypeLens state 
+            Success(newOption,t)
+        | Success(_)    -> Fail [INVALID_PATH_TYPE g]
+        | Fail(e) -> Fail [e]
+    | __-> Fail([INSUFFICIENT_PATH_ARGUMENT_GENERALRUNNER])
 
 and parseGeneralRunnerOption (state:JamesonOption) (argument:list<string>):Result<JamesonOption*list<string>,list<JamesonResult>> =
     match argument with

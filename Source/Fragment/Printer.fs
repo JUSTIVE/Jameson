@@ -33,8 +33,15 @@ let printTargetRunnerOption show indent (targetRunnerOption:TargetRunnerOption)=
     let innerPrint () =
         print show (ColorableIndent(MidChild,ConsoleColor.White)::indent) ConsoleColor.Gray true "source" 
         printFileArgument (ColorableIndent(MidChild,ConsoleColor.White)::indent) targetRunnerOption.source
-        print show (ColorableIndent(LastChild,ConsoleColor.White)::indent) ConsoleColor.Gray true "source" 
+        print show (ColorableIndent(LastChild,ConsoleColor.White)::indent) ConsoleColor.Gray true "target" 
         printFileArgument (EmptyChild::indent) targetRunnerOption.target
+    innerPrint
+    |> showPrint show
+
+let printShowRunnerOption show indent showRunnerOption = 
+    let innerPrint () =
+        print show (ColorableIndent(MidChild,ConsoleColor.White)::indent) ConsoleColor.Gray true "source" 
+        printFileArgument (ColorableIndent(MidChild,ConsoleColor.White)::indent) showRunnerOption.source
     innerPrint
     |> showPrint show
 
@@ -46,6 +53,9 @@ let printRunnerType show indent runnerType =
             printTargetRunnerOption  show indent t
         | GeneralRunnerOption g ->
             printType show indent $"RunnerType : GeneralRunnerOption"
+        | ShowRunnerOption s ->
+            printType show indent $"RunnerType : ShowRunnerOption"
+            printShowRunnerOption  show indent s
         | None -> 
             print show indent ConsoleColor.White true "none"
     innerPrint

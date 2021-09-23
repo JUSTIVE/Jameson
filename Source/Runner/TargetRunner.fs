@@ -9,7 +9,7 @@ open JamesonResults
 open Compare
 open Diff
 
-let run jamesonOption targetRunnerOption :Result<DiffResults,list<JamesonResult>> = 
+let run jamesonOption (targetRunnerOption:TargetRunnerOption) :Result<DiffResults,list<JamesonResult>> = 
     let source = targetRunnerOption.source
     let target = targetRunnerOption.target
 

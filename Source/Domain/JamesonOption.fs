@@ -17,9 +17,14 @@ type TargetRunnerOption = {
     target:FileArgument
 }
 
+type ShowRunnerOption = {
+    source:FileArgument;
+}
+
 type RunnerTypeOption = 
     | GeneralRunnerOption of GeneralRunnerOption
     | TargetRunnerOption of TargetRunnerOption
+    | ShowRunnerOption of ShowRunnerOption
     | None
 
 type JamesonOption = {
