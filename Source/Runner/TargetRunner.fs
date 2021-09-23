@@ -10,43 +10,33 @@ open Compare
 open Diff
 
 let run jamesonOption targetRunnerOption :Result<DiffResults,list<JamesonResult>> = 
-    match readJSONFile targetRunnerOption.source.path with
-    | Fail(jamesonResult)->Fail([jamesonResult])
-    | Success(jsonValue) ->
-        let originFilekeySet = parse jsonValue
-        match readJSONFile targetRunnerOption.target.path with
-        | Fail(jamesonResult) ->Fail([jamesonResult])
-        | Success(jsonValue) ->
-            let comparingFileKeySet = parse jsonValue
-            let originResult = 
-                compare 
-                    (targetRunnerOption.source.filename,OriginFile,originFilekeySet)
-                    (targetRunnerOption.target.filename,CompareeFile,comparingFileKeySet)
-            let compareeResult = 
-                compare
-                    (targetRunnerOption.target.filename,CompareeFile,comparingFileKeySet)
-                    (targetRunnerOption.source.filename,OriginFile,originFilekeySet)
-            match (originResult,compareeResult) with
-            | Success originFile, Success compareeResults ->
-                if jamesonOption.strict 
-                    then
-                        match originFile with
-                        | Same __ -> 
-                            {
-                                originFile = originFile
-                                compareeFiles = [compareeResults]
-                            }
-                            |>Success
-                        | Different _ -> 
-                            Fail [NOT_SAME]
-                    else 
-                        {
-                            originFile = originFile
-                            compareeFiles = [compareeResults]
-                        }
-                        |>Success
-            | Fail x, Success _  -> Fail [x]
-            | Success _, Fail x -> Fail [x]
-            | Fail x, Fail y -> Fail [x;y]
+    let source = targetRunnerOption.source
+    let target = targetRunnerOption.target
 
-                
+    let readKeyFileSetResult path =
+        match readJSONFile path with
+        | Fail(jamesonResult)-> Fail(jamesonResult)
+        | Success(jsonValue) -> Success <|parse jsonValue
+    let originFileKeySetResult = readKeyFileSetResult source.path
+    let targetFileKeySetResult = readKeyFileSetResult target.path
+
+    let compareStep originFileKeySet comparingFileKeySet =
+        let originResult = 
+            compare 
+                (source.filename,OriginFile,originFileKeySet)
+                (target.filename,CompareeFile,comparingFileKeySet)
+        let compareeResult = 
+            compare
+                (target.filename,CompareeFile,comparingFileKeySet)
+                (source.filename,OriginFile,originFileKeySet)
+
+        let strictStep strict originFile compareeFile :Result<DiffResults,list<JamesonResult>> =
+            let diffResults =  Success <|DiffFile_ originFile [compareeFile]
+            match originFile,compareeFile with
+            | Same _,Same _ ->  diffResults 
+            |  _ ->  
+                if strict 
+                then Fail [NOT_SAME] 
+                else diffResults
+        HandleResultTuple (originResult,compareeResult) (strictStep jamesonOption.strict)
+    HandleResultTuple (originFileKeySetResult,targetFileKeySetResult) compareStep

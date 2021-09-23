@@ -22,4 +22,8 @@ type DiffResults = {
     originFile : DiffFile;
     compareeFiles : list<DiffFile>
 }
-    
+let DiffFile_ x y:DiffResults = 
+{
+    originFile = x;
+    compareeFiles = y
+}

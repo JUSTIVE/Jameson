@@ -11,7 +11,7 @@ let printUsage() =
 
     jameson -t <sourceFilePath> <targetFilePath>\tcompare <sourceFile> with <targetFile>
     jameson -g <sourceFilePath> \t\t\tcompare <sourceFile> with all neighbour files
-    jameson -s <sourceFilePath> \t\t\tshow all keys of <sourceFile>
+    jameson -w <sourceFilePath> \t\t\tshow all keys of <sourceFile>
 
 options : 
     
@@ -19,6 +19,7 @@ options :
     --s\t\t\t\t\tcompare strictly. will return 0 only when all the files have same key
     --v\t\t\t\t\tshow log verbosely
     --h\t\t\t\t\tshow help
+    --f\t\t\t\t\tauto generate keys
         "
     |>printfn "%s"
 

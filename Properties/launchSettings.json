@@ -14,7 +14,7 @@
     },
     "GoodNested": {
       "commandName": "Project",
-      "commandLineArgs": "-t C:\\Users\\HOME\\source\\repos\\Jameson\\example\\GoodNested\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\GoodNested\\en.json --h"
+      "commandLineArgs": "-t C:\\Users\\HOME\\source\\repos\\Jameson\\example\\GoodNested\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\GoodNested\\en.json"
     },
     "InvalidRunner": {
       "commandName": "Project",
