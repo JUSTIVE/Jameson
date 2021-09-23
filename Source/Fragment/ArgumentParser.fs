@@ -37,7 +37,7 @@ let rec parse_ (state:JamesonOption) (argument:list<string>):Result<JamesonOptio
 and pathToFileArgument path =
     {
         filename = IO.FileInfo(path).Name
-        path = path
+        path = FileInfo(path).FullName
     }
 
 and massagePath (massageTarget:MassageTarget) (path:string):Result<MassageResult,JamesonResult> = 
@@ -111,10 +111,7 @@ and parseTargetRunnerOption (state:JamesonOption) (argument:list<string>):Result
     | __-> Fail [INSUFFICIENT_PATH_ARGUMENT_TARGETRUNNER]
 
 and parseBooleanOption state argument key =
-    match argument with 
-    | h::t->
-        Success((JamesonOptionSetBoolFlag state key,t))
-    | __-> Success((JamesonOptionSetBoolFlag state key,[]))
+    Success(JamesonOptionSetBoolFlag state key,argument)
 
 and parseStrictOption (state:JamesonOption) (argument:list<string>):Result<JamesonOption*list<string>,list<JamesonResult>> =
     parseBooleanOption state argument "strict"
