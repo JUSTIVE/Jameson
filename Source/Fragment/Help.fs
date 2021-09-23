@@ -4,8 +4,6 @@ open JamesonResults
 open PrinterUtil
 open System
 
-
-
 let printUsage() = 
     $"usage :
 

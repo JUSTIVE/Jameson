@@ -28,10 +28,10 @@ let rec parse_ (state:JamesonOption) (argument:list<string>):Result<JamesonOptio
             | __ -> Option.None
         match subParser with 
         | Some subParseFunction-> 
-            match subParseFunction state t with
-            | Success(jamesonOption,restArgs) ->
-                parse_ jamesonOption restArgs
-            | Fail(x)-> Fail(x)
+            let subParseResult = subParseFunction state t 
+            match subParseResult with
+            | Success(jamesonOption,restArgs) -> parse_ jamesonOption restArgs
+            | Fail(x) -> Fail(x)
         | Option.None -> Fail [INVALID_ARGUMENT h]
     | __ -> Success(state)
 
@@ -43,12 +43,12 @@ and pathToFileArgument path =
 
 and massagePath (massageTarget:MassageTarget) (path:string):Result<MassageResult,JamesonResult> = 
     let pathType =
-        match File.GetAttributes(path).HasFlag(FileAttributes.Directory) with
-        | true -> 
+        if File.GetAttributes(path).HasFlag(FileAttributes.Directory) 
+        then 
             Array.toList (IO.Directory.GetFiles(path))
             |> List.map pathToFileArgument 
             |> DirectoryR 
-        | false ->
+        else
             pathToFileArgument path 
             |> FileR 
     match massageTarget with
@@ -100,7 +100,9 @@ and parseGeneralRunnerOption (state:JamesonOption) (argument:list<string>):Resul
                 |>GeneralRunnerOption
                 |>JamesonOptionSetRunnerTypeLens state 
             Success(newOption,t)
-        | Success(_),Success(_)-> Fail [INVALID_PATH_TYPE g]
+        | Success(FileR(_)),Success(FileR(_))-> Fail [INVALID_PATH_TYPE g]
+        | Success(DirectoryR(_)),Success(FileR(_))-> Fail [INVALID_PATH_TYPE g]
+        | Success(DirectoryR(_)),Success(DirectoryR(_))-> Fail [INVALID_PATH_TYPE g]
         | Success(_),Fail(e1) -> Fail [e1]
         | Fail(e1),Success(_) -> Fail [e1]
         | Fail(e1),Fail(e2) -> Fail [e1]
@@ -121,7 +123,7 @@ and parseTargetRunnerOption (state:JamesonOption) (argument:list<string>):Result
                 Success(newOption,t_)
             | Success(FileR(_)),Success(DirectoryR(_))-> Fail [INVALID_PATH_TYPE t2]
             | Success(DirectoryR(_)),Success(FileR(_))-> Fail [INVALID_PATH_TYPE t1]
-            | Success(DirectoryR(e1)),Success(DirectoryR(e2))-> Fail [INVALID_PATH_TYPE t1;INVALID_PATH_TYPE t2]
+            | Success(DirectoryR(_)),Success(DirectoryR(_))-> Fail [INVALID_PATH_TYPE t1;INVALID_PATH_TYPE t2]
             | Success(_),Fail(e1) -> Fail [e1]
             | Fail(e1),Success(_) -> Fail [e1]
             | Fail(e1),Fail(e2) -> Fail [e1;e2]
