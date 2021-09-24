@@ -16,12 +16,11 @@ Jameson compares only keys, usually for validating i18n files
     jameson -g <sourceFilePath>                  : compare <sourceFile> with all neighbour files
     jameson -w <sourceFilePath>                  : show all keys of <sourceFile>
 options : 
-|options | descriptions|
-|---|---|
-|-o \<outputDirectory\>|dump diff file to \<outputDirectory\>|
-|-c \<camel,pascal,upper,lower\>|check key naming convention with given convention type|
-|--s|compare strictly. will return 0 only when all the files have same key|
-|--v|show log verbosely|
-|--h|show help|
-|--f|auto generate missing keys|
-
+|options | descriptions|implemented|
+|---|---|---|
+|-o \<outputDirectory\>|dump diff file to \<outputDirectory\>|🚫|
+|-c \<camel,pascal,upper,lower\>|check key naming convention with given convention type|🚫|
+|--s|compare strictly. will return 0 only when all the files have same key|✅|
+|--v|show log verbosely|✅|
+|--h|show help|✅|
+|--f|auto generate missing keys|🚫|
