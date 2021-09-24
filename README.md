@@ -12,9 +12,9 @@ Jameson compares only keys, usually for validating i18n files
 
 ## Usage
 
-    jameson -t <sourceFilePath> : <targetFilePath>\tcompare <sourceFile> with <targetFile>
-    jameson -g <sourceFilePath> : compare <sourceFile> with all neighbour files
-    jameson -w <sourceFilePath> : show all keys of <sourceFile>
+    jameson -t <sourceFilePath> <targetFilePath> : compare <sourceFile> with <targetFile>
+    jameson -g <sourceFilePath>                  : compare <sourceFile> with all neighbour files
+    jameson -w <sourceFilePath>                  : show all keys of <sourceFile>
 options : 
 |options | descriptions|
 |---|---|
