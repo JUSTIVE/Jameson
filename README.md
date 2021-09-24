@@ -1,6 +1,9 @@
 # Jameson
+<a href="https://gitmoji.dev">
+  <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji">
+</a>  
 
-Jameson`\[/ˈdʒeɪməsən/\]`  
+## Jameson `\[/ˈdʒeɪməsən/\]`  
 are they same JSON files?
 
 Jameson is yet-another JSON key comparing/validate tool.  
@@ -16,7 +19,9 @@ options :
 |options | descriptions|
 |---|---|
 |-o \<outputDirectory\>|dump diff file to \<outputDirectory\>|
+|-c \<camel,pascal,upper,lower\>|check key naming convention with given convention type|
 |--s|compare strictly. will return 0 only when all the files have same key|
 |--v|show log verbosely|
 |--h|show help|
 |--f|auto generate missing keys|
+
