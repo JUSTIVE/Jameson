@@ -1,9 +1,9 @@
 ﻿module Diff
-
+open FileType
 
 type ChangedLine =
-    | Added of string
-    | Removed of string
+    | Added of PseudoJson
+    | Removed of PseudoJson
 
 type DiffLine =
     | Changed of ChangedLine
@@ -22,8 +22,7 @@ type DiffResults = {
     originFile : DiffFile;
     compareeFiles : list<DiffFile>
 }
-let DiffFile_ x y:DiffResults = 
-{
+let DiffFile_ x y:DiffResults = {
     originFile = x;
     compareeFiles = y
 }

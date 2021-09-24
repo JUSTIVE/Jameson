@@ -48,11 +48,10 @@ let printShowRunnerOption show indent showRunnerOption =
 let printRunnerType show indent runnerType = 
     let innerPrint () =
         match runnerType with
-        | TargetRunnerOption t -> 
+        | TargetRunnerOption t ->
             printType show indent $"RunnerType : TargetRunnerOption"
             printTargetRunnerOption  show indent t
-        | GeneralRunnerOption g ->
-            printType show indent $"RunnerType : GeneralRunnerOption"
+        | GeneralRunnerOption g ->printType show indent $"RunnerType : GeneralRunnerOption"
         | ShowRunnerOption s ->
             printType show indent $"RunnerType : ShowRunnerOption"
             printShowRunnerOption  show indent s

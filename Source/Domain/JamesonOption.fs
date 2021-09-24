@@ -27,12 +27,21 @@ type RunnerTypeOption =
     | ShowRunnerOption of ShowRunnerOption
     | None
 
+type CheckConventionType =
+    | NoConvention
+    | CamelCase
+    | PascalCase
+    | LowerCase
+    | UpperCase
+
 type JamesonOption = {
     runnerType:RunnerTypeOption
     writeToFile:option<string>
     strict:bool
     verbose:bool
     help:bool
+    autoFill:bool
+    checkConvention:CheckConventionType
 }
 
 let JamesonOptionSetRunnerTypeLens state runnerTypeOption :JamesonOption=
@@ -42,6 +51,8 @@ let JamesonOptionSetRunnerTypeLens state runnerTypeOption :JamesonOption=
         strict = state.strict;
         verbose = state.verbose
         help = state.help
+        autoFill = state.autoFill
+        checkConvention = state.checkConvention
     } 
 
 let JamesonOptionSetBoolFlag state key:JamesonOption=
@@ -53,14 +64,18 @@ let JamesonOptionSetBoolFlag state key:JamesonOption=
                strict = state.strict;
                verbose = true
                help = state.help
+               autoFill = state.autoFill
+               checkConvention = state.checkConvention
            }
     | "help" -> 
         {
             runnerType = state.runnerType;
             writeToFile = state.writeToFile;
             verbose = state.verbose
-            strict = state.strict;
+            strict = state.strict
             help = true
+            autoFill = state.autoFill
+            checkConvention = state.checkConvention
         }
     | "strict" ->
         {
@@ -69,6 +84,18 @@ let JamesonOptionSetBoolFlag state key:JamesonOption=
             verbose = state.verbose
             strict = true;
             help = state.help
+            autoFill = state.autoFill
+            checkConvention = state.checkConvention
+        }
+    | "autoFill" ->
+        {
+            runnerType = state.runnerType;
+            writeToFile = state.writeToFile;
+            verbose = state.verbose
+            strict = state.strict;
+            help = state.help
+            autoFill = true
+            checkConvention = state.checkConvention
         }
     | __ -> state
 

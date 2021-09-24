@@ -1,7 +1,5 @@
 ﻿module JsonParser
-open System
 open FSharp.Data
-open FSharp.Data.JsonExtensions
 open FileType
 
 let joinKey (key:string) (parentPath:string):string = 
@@ -19,11 +17,6 @@ let rec keySet (parentPath:string) (state:Set<string>) (jsonValue:JsonValue) :Fi
         x
         |>Seq.append (y|>Set.toSeq)
     match jsonValue with
-    | JsonValue.Null -> Set.add parentPath Set.empty
-    | JsonValue.Number n -> Set.add parentPath Set.empty
-    | JsonValue.Float f -> Set.add parentPath Set.empty
-    | JsonValue.Boolean b -> Set.add parentPath Set.empty
-    | JsonValue.String x ->  Set.add parentPath Set.empty
     | JsonValue.Array elements ->
         elements
         |> Array.map (keySet ($"{parentPath}") Set.empty<string>)
@@ -34,6 +27,7 @@ let rec keySet (parentPath:string) (state:Set<string>) (jsonValue:JsonValue) :Fi
         |> Array.map (fun (key,jsonValue) -> keySet ($"{parentPath}:{key}") Set.empty<string> jsonValue)
         |> Array.fold setJoinToSeq Seq.empty
         |> Set.ofSeq
+    | x -> Set.add (PseudoJson_ parentPath x) Set.empty
 
 let parse (jsonValue:JsonValue):FileKeySet=
     keySet "" Set.empty jsonValue

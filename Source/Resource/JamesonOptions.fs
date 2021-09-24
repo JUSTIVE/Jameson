@@ -7,8 +7,9 @@ let OptionDefault :JamesonOption= {
     strict = false
     verbose=false
     help=false
+    autoFill = false
+    checkConvention = NoConvention
 }
-
 
 let OptionList:list<JamesonOption.ArgumentOption> = [
     {

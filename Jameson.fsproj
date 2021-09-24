@@ -5,6 +5,13 @@
     <WarnOn>3390;$(WarnOn)</WarnOn>
     <Version>0.0.0.1</Version>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>-t ./ko/index.json ./en/index.json --v --s</StartArguments>
+    <StartWorkingDirectory>~\git\substation-frontend\src\i18n</StartWorkingDirectory>
+    <ExternalConsole>true</ExternalConsole>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Update="FSharp.Core" Version="5.0.2" />
   </ItemGroup>
@@ -22,11 +29,11 @@
     <Compile Include="Source\Fragment\JsonLoader.fs" />
     <Compile Include="Source\Fragment\JsonParser.fs" />
     <Compile Include="Source\Fragment\Compare.fs" />
+    <Compile Include="Source\Fragment\Reconstructor.fs" />
     <Compile Include="Source\Fragment\Exporter.fs" />
     <Compile Include="Source\Fragment\ArgumentParser.fs" />
     <Compile Include="Source\Fragment\Help.fs" />
     <Compile Include="Source\Fragment\LanguageSupport.fs" />
-    <Compile Include="Source\Fragment\PathResolver.fs" />
     <Compile Include="Source\Runner\ShowRunner.fs" />
     <Compile Include="Source\Runner\TargetRunner.fs" />
     <Compile Include="Source\Runner\GeneralRunner.fs" />

@@ -6,4 +6,18 @@
   <PropertyGroup>
     <ActiveDebugProfile>GoodNested</ActiveDebugProfile>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Substation' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>-t ./ko/index.json ./en/index.json --v</StartArguments>
+    <StartWorkingDirectory>~\git\substation-frontend\src\i18n</StartWorkingDirectory>
+    <ExternalConsole>true</ExternalConsole>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Motor' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>-t ./ko/index.json ./en/index.json --v --s</StartArguments>
+    <StartWorkingDirectory>..\motor-frontend\src\i18n</StartWorkingDirectory>
+    <ExternalConsole>true</ExternalConsole>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
 </Project>
