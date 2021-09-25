@@ -23,12 +23,12 @@ let run jamesonOption (targetRunnerOption:TargetRunnerOption) :Result<DiffResult
     let compareStep originFileKeySet comparingFileKeySet =
         let originResult = 
             compare 
-                (source.filename,OriginFile,originFileKeySet)
-                (target.filename,CompareeFile,comparingFileKeySet)
+                (source,OriginFile,originFileKeySet)
+                (target,CompareeFile,comparingFileKeySet)
         let compareeResult = 
             compare
-                (target.filename,CompareeFile,comparingFileKeySet)
-                (source.filename,OriginFile,originFileKeySet)
+                (target,CompareeFile,comparingFileKeySet)
+                (source,OriginFile,originFileKeySet)
 
         let strictStep strict originFile compareeFile :Result<DiffResults,list<JamesonResult>> =
             let diffResults =  Success <|DiffFile_ originFile [compareeFile]

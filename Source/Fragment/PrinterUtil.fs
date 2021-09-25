@@ -35,12 +35,12 @@ let printIndentItem (indentItem:IndentItem) =
     | ColorableIndent (colorableIndent,color) ->
         colorize color
         match colorableIndent with
-        | OngoingChild  -> "│  "
-        | MidChild      -> "├- "
-        | LastChild     -> "└- "
+        | OngoingChild  -> "│   "
+        | MidChild      -> "├─  "
+        | LastChild     -> "└─  "
         |>printf "%s"
         initializeColor()
-    | EmptyChild -> printf "   " 
+    | EmptyChild -> printf "    " 
     | NoneChild  -> ()
 
 let printIndent (indent:Indent) =

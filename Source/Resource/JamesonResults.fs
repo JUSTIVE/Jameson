@@ -65,3 +65,8 @@ let INVALID_RUNNER_TYPE :JamesonResult = {
     message = "invalid runner type option";
     errorCode = 1
 }
+
+let INVALID_CHECK_CONVENTION_TYPE :JamesonResult ={
+    message = "invalid check convention type option";
+    errorCode = 1
+}

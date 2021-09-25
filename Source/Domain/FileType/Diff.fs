@@ -15,8 +15,8 @@ let isChangedLine (x:DiffLine):bool =
     | NotChanged -> false
 
 type DiffFile =
-    | Same of string
-    | Different of string*list<DiffLine>
+    | Same of FileArgument
+    | Different of FileArgument*list<DiffLine>
 
 type DiffResults = {
     originFile : DiffFile;

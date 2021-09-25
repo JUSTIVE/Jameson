@@ -3,6 +3,7 @@ open System
 open JamesonOption
 open JamesonResult
 open JamesonResults
+open FileType
 open State
 open System.IO
 
@@ -25,6 +26,7 @@ let rec parse_ (state:JamesonOption) (argument:list<string>):Result<JamesonOptio
             | "-g" -> Some parseGeneralRunnerOption
             | "-t" -> Some parseTargetRunnerOption
             | "-w" -> Some parseShowRunnerOption
+            | "-c" -> Some parseCheckConvention
             | "--v" -> Some parseVerboseOption
             | "--s" -> Some parseStrictOption
             | "--h" -> Some parseHelpOption
@@ -71,6 +73,17 @@ and massagePath (massageTarget:MassageTarget) (path:string):Result<MassageResult
             |> DirectoryR
             |> Success
         | DirectoryR _ -> Success pathType
+
+and parseCheckConvention (state:JamesonOption) (argument:list<string>):Result<JamesonOption*list<string>,list<JamesonResult>> = 
+    match argument with
+    | g::t -> 
+        match g with
+        | "camel"  -> Success (JamesonOptionSetCheckConventionLens state CamelCase,t)
+        | "pascal" -> Success (JamesonOptionSetCheckConventionLens state PascalCase,t)
+        | "upper"  -> Success (JamesonOptionSetCheckConventionLens state UpperCase,t)
+        | "lower"  -> Success (JamesonOptionSetCheckConventionLens state LowerCase,t)
+        | __ -> Fail [INSUFFICIENT_PATH_ARGUMENT_GENERALRUNNER]
+    | __ -> Fail [INSUFFICIENT_PATH_ARGUMENT_GENERALRUNNER]
 
 and parseShowRunnerOption (state:JamesonOption) (argument:list<string>):Result<JamesonOption*list<string>,list<JamesonResult>> =
     match argument with

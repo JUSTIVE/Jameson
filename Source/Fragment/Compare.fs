@@ -5,7 +5,7 @@ open FileType
 open JamesonResult
 open JamesonResults
 
-let private compare_ (origin:FileKeySet) (comparee:FileKeySet) (changedLine:PseudoJson->ChangedLine)  filename  :DiffFile =
+let private compare_ (origin:FileKeySet) (comparee:FileKeySet) (changedLine:PseudoJson->ChangedLine)  (fileArgument:FileArgument)  :DiffFile =
     let compareePathSetOnly =
         comparee
         |>Set.map(fun x -> x.path)
@@ -22,8 +22,8 @@ let private compare_ (origin:FileKeySet) (comparee:FileKeySet) (changedLine:Pseu
 
     if diffLines
         |>List.exists (isChangedLine)
-        then Different (filename,diffLines)
-        else Same filename
+        then Different (fileArgument,diffLines)
+        else Same fileArgument
 
 let compare ((filename,filetype,filevalue):FileData) ((filename2,filetype2,filevalue2):FileData) :Result<DiffFile,JamesonResult> =
     match (filetype,filetype2) with

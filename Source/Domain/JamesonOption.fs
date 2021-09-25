@@ -1,11 +1,8 @@
 ﻿module JamesonOption
+open FileType
 open JamesonResult
 //string(path)->JsonValue->Set<string>->list<diffline>
 
-type FileArgument = {
-    filename:string;
-    path:string
-}
 
 type GeneralRunnerOption = {
     source:FileArgument
@@ -13,7 +10,7 @@ type GeneralRunnerOption = {
 }
 
 type TargetRunnerOption = {
-    source:FileArgument;
+    source:FileArgument
     target:FileArgument
 }
 
@@ -53,6 +50,17 @@ let JamesonOptionSetRunnerTypeLens state runnerTypeOption :JamesonOption=
         help = state.help
         autoFill = state.autoFill
         checkConvention = state.checkConvention
+    } 
+
+let JamesonOptionSetCheckConventionLens state checkConvention : JamesonOption=
+    {
+        runnerType = state.runnerType;
+        writeToFile = state.writeToFile;
+        strict = state.strict;
+        verbose = state.verbose
+        help = state.help
+        autoFill = state.autoFill
+        checkConvention = checkConvention
     } 
 
 let JamesonOptionSetBoolFlag state key:JamesonOption=

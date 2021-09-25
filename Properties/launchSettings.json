@@ -19,6 +19,10 @@
     "InvalidRunner": {
       "commandName": "Project",
       "commandLineArgs": "-c"
+    },
+    "naming convention": {
+      "commandName": "Project",
+      "commandLineArgs": "-t C:\\Users\\HOME\\source\\repos\\Jameson\\example\\GoodNested\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\GoodNested\\en.json -c camel"
     }
   }
 }

@@ -1,4 +1,5 @@
 ﻿module Printer
+open FileType
 open JamesonResult
 open JamesonOption
 open PrinterType
@@ -64,7 +65,16 @@ let printOption show indent consoleColor newline option =
     match option with
     | Option.Some x -> print show indent consoleColor newline x
     | Option.None   -> print show indent ConsoleColor.DarkRed newline "None" 
-    
+
+let printCheckConvention show indent (checkConvention:CheckConventionType) =
+    match checkConvention with
+    | NoConvention -> "No Convention"
+    | CamelCase -> "Camel Case"
+    | PascalCase -> "Pascal Case"
+    | LowerCase -> "Lower Case"
+    | UpperCase -> "Upper Case"
+    |>sprintf "checkConventionType : %s" 
+    |>printType show indent
 
 let printJamesonOption show indent (jamesonOption:JamesonOption) =
     let innerPrint () =
@@ -73,7 +83,9 @@ let printJamesonOption show indent (jamesonOption:JamesonOption) =
         printWithOptionName show (ColorableIndent(MidChild,ConsoleColor.White)::indent) ConsoleColor.White "write to file" printOption jamesonOption.writeToFile
         printWithOptionName show (ColorableIndent(MidChild,ConsoleColor.White)::indent) ConsoleColor.White "strict" printBool jamesonOption.strict
         printWithOptionName show (ColorableIndent(MidChild,ConsoleColor.White)::indent) ConsoleColor.White "verbose" printBool jamesonOption.verbose
-        printWithOptionName show (ColorableIndent(LastChild,ConsoleColor.White)::indent) ConsoleColor.White "help" printBool jamesonOption.help
+        printWithOptionName show (ColorableIndent(MidChild,ConsoleColor.White)::indent) ConsoleColor.White "help" printBool jamesonOption.help
+        printWithOptionName show (ColorableIndent(MidChild,ConsoleColor.White)::indent) ConsoleColor.White "autoFill" printBool jamesonOption.autoFill
+        printCheckConvention show (ColorableIndent(LastChild,ConsoleColor.White)::indent) jamesonOption.checkConvention
     innerPrint
     |> showPrint show
 
@@ -101,10 +113,12 @@ let printDiffFile show indent (diffFile:DiffFile) =
         match diffFile with 
         | Same filename-> 
             printType show indent $"DiffFile : Same"
-            print show indent ConsoleColor.White true $"Filename : {filename}"
+            print show indent ConsoleColor.White true $"Filename  : {filename.filename}"
+            print show (ColorableIndent(LastChild,ConsoleColor.White)::indent) ConsoleColor.DarkGray true $"Path  : {filename.path}"
         | Different (filename,difflines)-> 
             printType show indent $"DiffFile : Different"
-            print show indent ConsoleColor.White true $"Filename : {filename}"
+            print show indent ConsoleColor.White true $"Filename  : {filename.filename}"
+            print show (ColorableIndent(LastChild,ConsoleColor.White)::indent) ConsoleColor.DarkGray true $"Path  : {filename.path}"
             printDiffLines show indent difflines
     innerPrint
     |>showPrint show

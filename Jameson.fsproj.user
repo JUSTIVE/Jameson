@@ -4,7 +4,7 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>GoodNested</ActiveDebugProfile>
+    <ActiveDebugProfile>naming convention</ActiveDebugProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Substation' ">
     <StartAction>Project</StartAction>
