@@ -121,7 +121,7 @@ let Test_Parse_CheckConvention_insufficient_arguemnt:UnitTestState =
 
 let Test_Parse_CheckConvention_invalid_argument:UnitTestState = 
     parse [|"-c";""|]
-    |>expect (Fail [INVALID_ARGUMENT "c"])
+    |>expect (Fail [INVALID_ARGUMENT ""])
 
 let Test:ModuleTest =
     let result = 
