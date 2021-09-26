@@ -10,8 +10,7 @@ let showPrint show action =
     | false -> ()
 
 let  initializeColor () =
-    Console.BackgroundColor <- ConsoleColor.Black
-    Console.ForegroundColor <- ConsoleColor.White
+    Console.ResetColor()
 
 let private colorize color =
     Console.ForegroundColor <- color

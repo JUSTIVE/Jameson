@@ -17,7 +17,7 @@ let PrintUnitResult (prefix:string) (x:UnitTestResult):Unit =
         printf "Fail"
         initializeColor()
         printf $"\t{name}\t"
-        Console.BackgroundColor <- ConsoleColor.Black
+        Console.ResetColor()
         Console.ForegroundColor<- ConsoleColor.DarkRed
         printfn $"{reason}"
         initializeColor()
@@ -36,8 +36,7 @@ let PrintModuleResult (x:ModuleTest):int =
                 Console.BackgroundColor <- ConsoleColor.DarkRed
                 "FAIL"
         printf $"{badge}"
-        Console.BackgroundColor <- ConsoleColor.Black
-        Console.ForegroundColor <- ConsoleColor.White
+        initializeColor()
         let totalUnitLength = List.length unitTestResults
         let successUnitLength = 
             unitTestResults
