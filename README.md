@@ -2,6 +2,7 @@
 <a href="https://gitmoji.dev">
   <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji">
 </a>  
+[![.build](https://github.com/JUSTIVE/Jameson/actions/workflows/dotnet.yml/badge.svg)](https://github.com/JUSTIVE/Jameson/actions/workflows/dotnet.yml)
 
 ## Jameson `\[/ˈdʒeɪməsən/\]`  
 are they same JSON files?
