@@ -8,10 +8,14 @@ open PipeLine
 
 [<EntryPoint>]
 let main (argv:string[]):int =
-    match argv with
-    | [||] -> 
+    
+    match Array.toList argv with
+    | [] -> 
         help()|>ignore
         1
+    | "test"::t ->
+        TestRunner.runTest t
+
     | __ ->
         match Flow <| parse argv with
         | Success goodResult ->

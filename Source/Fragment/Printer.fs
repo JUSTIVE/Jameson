@@ -46,16 +46,17 @@ let printShowRunnerOption show indent showRunnerOption =
     innerPrint
     |> showPrint show
 
-let printRunnerType show indent runnerType = 
+let printRunnerType show indent consoleColor newline runnerType = 
     let innerPrint () =
         match runnerType with
         | TargetRunnerOption t ->
             printType show indent $"RunnerType : TargetRunnerOption"
-            printTargetRunnerOption  show indent t
-        | GeneralRunnerOption g ->printType show indent $"RunnerType : GeneralRunnerOption"
+            printTargetRunnerOption  show (ColorableIndent(MidChild,ConsoleColor.White)::indent) t
+        | GeneralRunnerOption g ->
+            printType show indent $"RunnerType : GeneralRunnerOption"
         | ShowRunnerOption s ->
             printType show indent $"RunnerType : ShowRunnerOption"
-            printShowRunnerOption  show indent s
+            printShowRunnerOption  show (ColorableIndent(MidChild,ConsoleColor.White)::indent) s
         | None -> 
             print show indent ConsoleColor.White true "none"
     innerPrint
@@ -66,7 +67,7 @@ let printOption show indent consoleColor newline option =
     | Option.Some x -> print show indent consoleColor newline x
     | Option.None   -> print show indent ConsoleColor.DarkRed newline "None" 
 
-let printCheckConvention show indent (checkConvention:CheckConventionType) =
+let printCheckConvention show indent consoleColor newline (checkConvention:CheckConventionType) =
     match checkConvention with
     | NoConvention -> "No Convention"
     | CamelCase -> "Camel Case"
@@ -79,13 +80,13 @@ let printCheckConvention show indent (checkConvention:CheckConventionType) =
 let printJamesonOption show indent (jamesonOption:JamesonOption) =
     let innerPrint () =
         printType show indent "JamseonOption"
-        printRunnerType show (ColorableIndent(MidChild,ConsoleColor.White)::indent) jamesonOption.runnerType
+        printWithOptionName show (ColorableIndent(MidChild,ConsoleColor.White)::indent) ConsoleColor.White "runnerType" printRunnerType jamesonOption.runnerType
         printWithOptionName show (ColorableIndent(MidChild,ConsoleColor.White)::indent) ConsoleColor.White "write to file" printOption jamesonOption.writeToFile
         printWithOptionName show (ColorableIndent(MidChild,ConsoleColor.White)::indent) ConsoleColor.White "strict" printBool jamesonOption.strict
         printWithOptionName show (ColorableIndent(MidChild,ConsoleColor.White)::indent) ConsoleColor.White "verbose" printBool jamesonOption.verbose
         printWithOptionName show (ColorableIndent(MidChild,ConsoleColor.White)::indent) ConsoleColor.White "help" printBool jamesonOption.help
         printWithOptionName show (ColorableIndent(MidChild,ConsoleColor.White)::indent) ConsoleColor.White "autoFill" printBool jamesonOption.autoFill
-        printCheckConvention show (ColorableIndent(LastChild,ConsoleColor.White)::indent) jamesonOption.checkConvention
+        printWithOptionName show (ColorableIndent(LastChild,ConsoleColor.White)::indent) ConsoleColor.White "checkConvention" printCheckConvention jamesonOption.checkConvention
     innerPrint
     |> showPrint show
 

@@ -3,12 +3,23 @@
 type FailedReason = string
 
 type UnitTestState = 
-    | Success 
-    | Fail of FailedReason
+    | UnitSuccess 
+    | UnitFail of FailedReason
+
+
 
 type UnitName = string
 
 type UnitTestResult = (UnitName*UnitTestState)
+
+let successUnitTests (unitList:list<UnitTestResult>) =
+    unitList
+    |>List.filter(
+        fun x ->
+            match x with
+            | (name,UnitSuccess) -> true
+            | (name,UnitFail y) -> false
+        )
 
 type ModuleName = string
 
@@ -24,8 +35,8 @@ and ModuleTest = (ModuleName*ModuleTestState*list<UnitTestResult>)
 
 let UnitResultToModuleResult (x:UnitTestState) :ModuleTestState = 
     match x with 
-    | Success -> ModuleSuccess
-    | Fail(reason) -> ModuleFail
+    | UnitSuccess -> ModuleSuccess
+    | UnitFail(reason) -> ModuleFail
 
 let UnitTestResultToModuleResult (x:UnitTestResult) : ModuleTestState = 
     let (unitName,state) = x

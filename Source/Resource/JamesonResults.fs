@@ -16,12 +16,7 @@ let ARGUMENT_LENGTH_ERROR:JamesonResult = {
     errorCode = 1
 }
 
-let INSUFFICIENT_PATH_ARGUMENT_GENERALRUNNER:JamesonResult={
-    message = "insufficient path argument given";
-    errorCode = 1
-}
-
-let INSUFFICIENT_PATH_ARGUMENT_TARGETRUNNER:JamesonResult ={
+let INSUFFICIENT_PATH_ARGUMENT:JamesonResult={
     message = "insufficient path argument given";
     errorCode = 1
 }

@@ -23,6 +23,10 @@
     "naming convention": {
       "commandName": "Project",
       "commandLineArgs": "-t C:\\Users\\HOME\\source\\repos\\Jameson\\example\\GoodNested\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\GoodNested\\en.json -c camel"
+    },
+    "ArgumentTest": {
+      "commandName": "Project",
+      "commandLineArgs": "test argumentParser"
     }
   }
 }

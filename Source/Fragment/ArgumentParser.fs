@@ -77,13 +77,13 @@ and massagePath (massageTarget:MassageTarget) (path:string):Result<MassageResult
 and parseCheckConvention (state:JamesonOption) (argument:list<string>):Result<JamesonOption*list<string>,list<JamesonResult>> = 
     match argument with
     | g::t -> 
-        match g with
+        match g.ToLower() with
         | "camel"  -> Success (JamesonOptionSetCheckConventionLens state CamelCase,t)
         | "pascal" -> Success (JamesonOptionSetCheckConventionLens state PascalCase,t)
         | "upper"  -> Success (JamesonOptionSetCheckConventionLens state UpperCase,t)
         | "lower"  -> Success (JamesonOptionSetCheckConventionLens state LowerCase,t)
-        | __ -> Fail [INSUFFICIENT_PATH_ARGUMENT_GENERALRUNNER]
-    | __ -> Fail [INSUFFICIENT_PATH_ARGUMENT_GENERALRUNNER]
+        | __ -> Fail [INVALID_ARGUMENT g]
+    | __ -> Fail [INSUFFICIENT_PATH_ARGUMENT]
 
 and parseShowRunnerOption (state:JamesonOption) (argument:list<string>):Result<JamesonOption*list<string>,list<JamesonResult>> =
     match argument with
@@ -100,7 +100,7 @@ and parseShowRunnerOption (state:JamesonOption) (argument:list<string>):Result<J
             Success(newOption,t)
         | Success _ -> Fail [INVALID_PATH_TYPE g]
         | Fail e    -> Fail [e]
-    | __-> Fail [INSUFFICIENT_PATH_ARGUMENT_GENERALRUNNER]
+    | __-> Fail [INSUFFICIENT_PATH_ARGUMENT]
 
 and parseGeneralRunnerOption (state:JamesonOption) (argument:list<string>):Result<JamesonOption*list<string>,list<JamesonResult>> =
     match argument with
@@ -121,7 +121,7 @@ and parseGeneralRunnerOption (state:JamesonOption) (argument:list<string>):Resul
         | Success _, Fail e1 -> Fail [e1]
         | Fail e1, Success _ -> Fail [e1]
         | Fail e1, Fail e2 -> Fail [e1;e2]
-    | __-> Fail([INSUFFICIENT_PATH_ARGUMENT_GENERALRUNNER])
+    | __-> Fail([INSUFFICIENT_PATH_ARGUMENT])
 
 and parseTargetRunnerOption (state:JamesonOption) (argument:list<string>):Result<JamesonOption*list<string>,list<JamesonResult>> =
     match argument with
@@ -142,8 +142,8 @@ and parseTargetRunnerOption (state:JamesonOption) (argument:list<string>):Result
             | Success(_),Fail(e1) -> Fail [e1]
             | Fail(e1),Success(_) -> Fail [e1]
             | Fail(e1),Fail(e2) -> Fail [e1;e2]
-        | __-> Fail [INSUFFICIENT_PATH_ARGUMENT_TARGETRUNNER]
-    | __-> Fail [INSUFFICIENT_PATH_ARGUMENT_TARGETRUNNER]
+        | __-> Fail [INSUFFICIENT_PATH_ARGUMENT]
+    | __-> Fail [INSUFFICIENT_PATH_ARGUMENT]
 
 and parseBooleanOption state argument key =
     Success(JamesonOptionSetBoolFlag state key,argument)
