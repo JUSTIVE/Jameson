@@ -7,12 +7,12 @@ type ChangedLine =
 
 type DiffLine =
     | Changed of ChangedLine
-    | NotChanged
+    | NotChanged of PseudoJson
 
 let isChangedLine (x:DiffLine):bool = 
     match x with
     | Changed x -> true
-    | NotChanged -> false
+    | NotChanged y -> false
 
 type DiffFile =
     | Same of FileArgument

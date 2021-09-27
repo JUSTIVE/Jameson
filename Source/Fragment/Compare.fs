@@ -10,9 +10,9 @@ let private compare_ (origin:FileKeySet) (comparee:FileKeySet) (changedLine:Pseu
         comparee
         |>Set.map(fun x -> x.path)
         
-    let diffy  (targetLine:PseudoJson) :DiffLine= 
+    let diffy (targetLine:PseudoJson) :DiffLine= 
         match Set.contains targetLine.path compareePathSetOnly with
-        | true -> NotChanged
+        | true -> NotChanged targetLine
         | false -> changedLine targetLine|>Changed
 
     let diffLines = 
