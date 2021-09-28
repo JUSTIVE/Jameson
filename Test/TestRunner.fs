@@ -7,11 +7,9 @@ let runTest argv:int =
     | h::t->
         match h with 
         | "all"
-        | "argumentParser" -> 
-            ArgumentParserTest.Test
-        | __ -> 
-            ModuleTest("INVALID_TEST",ModuleFail,List.empty<UnitTestResult>)
-    | [] -> 
-        ModuleTest("INVALID_TEST",ModuleFail,List.empty<UnitTestResult>)
+        | "argumentParser" ->   ArgumentParserTest.Test
+        | "nameChanger" ->      NameChangerTest.Test
+        | __ ->                 ModuleTest("INVALID_TEST",ModuleFail,List.empty<UnitTestResult>)
+    | [] ->     ModuleTest("INVALID_TEST",ModuleFail,List.empty<UnitTestResult>)
     |> PrintModuleResult
     

@@ -27,6 +27,10 @@
     "ArgumentTest": {
       "commandName": "Project",
       "commandLineArgs": "test argumentParser"
+    },
+    "NameChangerTest": {
+      "commandName": "Project",
+      "commandLineArgs": "test nameChanger"
     }
   }
 }

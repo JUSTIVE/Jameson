@@ -1,4 +1,5 @@
 ﻿module NameChanger
+open System
 open JamesonOption
 open FileType
 
@@ -7,11 +8,15 @@ let setNameConvention namingConventionType (value:string):string =
     | UpperCase -> value.ToUpper()
     | LowerCase -> value.ToLower()
     | __ ->
-        let listChar = Seq.toList value
-        match listChar with
-        | h::t ->
-            match 
-        | x -> x
-        |> List.toSeq
+        let head = value.[0]
+        let touchedChar = 
+            match namingConventionType with
+            | CamelCase -> (string(head)).ToLower()
+            | PascalCase -> (string(head)).ToUpper()
+            | x -> string(head)
+        touchedChar.[0]::(Seq.toList value.[1..])
+        |>List.toSeq
+        |>String.Concat
+        
 let run (targetNamingConvention:CheckConventionType) (key:FileData):FileData= 
     key

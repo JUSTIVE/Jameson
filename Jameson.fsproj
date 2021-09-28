@@ -43,6 +43,7 @@
     <Compile Include="Test\Utilities\TestResult.fs" />
     <Compile Include="Test\Utilities\Expect.fs" />
     <Compile Include="Test\Utilities\TestPrinter.fs" />
+    <Compile Include="Test\Fragment\NameChangerTest.fs" />
     <Compile Include="Test\Fragment\ArgumentParserTest.fs" />
     <Compile Include="Test\TestRunner.fs" />
     <Compile Include="Program.fs" />
