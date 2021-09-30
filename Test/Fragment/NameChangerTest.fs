@@ -4,26 +4,26 @@ open TestResult
 open Expect
 open NameChanger
 
+let testRunner action input expectations = action input |> expect expectations
+let testGen convention  = testRunner (setNameConvention convention)
 
-let camelTest = setNameConvention CamelCase
-let Test_CamelCase_Upper:UnitTestState =
-    camelTest "CAMELIZETHIS" |> expect "cAMELIZETHIS"
-let Test_CamelCase_Lower:UnitTestState = 
-    camelTest "camelizethis" |> expect "camelizethis"
-let Test_CamelCase_Camel:UnitTestState = 
-    camelTest "camelizeThis" |> expect "camelizeThis"
-let Test_CamelCase_Pascal:UnitTestState = 
-    camelTest "CamelizeThis" |> expect "camelizeThis"
+let camelTest = testGen CamelCase
+let Test_CamelCase_Upper = camelTest "CAMELIZETHIS" "cAMELIZETHIS"
+let Test_CamelCase_Lower = camelTest "camelizethis" "camelizethis"
+let Test_CamelCase_Camel = camelTest "camelizeThis" "camelizeThis"
+let Test_CamelCase_Pascal= camelTest "CamelizeThis" "camelizeThis"
 
-let pascalTest = setNameConvention PascalCase
-let Test_PascalCase_Upper:UnitTestState =
-    pascalTest "PASCALIZETHIS" |> expect "PASCALIZETHIS"
-let Test_PascalCase_Lower:UnitTestState = 
-    pascalTest "pascalizethis" |> expect "Pascalizethis"
-let Test_PascalCase_Camel:UnitTestState = 
-    pascalTest "pascalizeThis" |> expect "PascalizeThis"
-let Test_PascalCase_Pascal:UnitTestState = 
-    pascalTest "PascalizeThis"|> expect "PascalizeThis"
+let pascalTest = testGen PascalCase
+let Test_PascalCase_Upper = pascalTest "PASCALIZETHIS" "PASCALIZETHIS"
+let Test_PascalCase_Lower = pascalTest "pascalizethis" "Pascalizethis"
+let Test_PascalCase_Camel = pascalTest "pascalizeThis" "PascalizeThis"
+let Test_PascalCase_Pascal= pascalTest "PascalizeThis" "PascalizeThis"
+
+let upperTest = testGen UpperCase
+let Test_UpperCase_Upper = upperTest "UPPERTHIS" "UPPERTHIS"
+let Test_UpperCase_Lower = upperTest "upperthis" "UPPERTHIS"
+let Test_UpperCase_Camel = upperTest "upperThis" "UPPERTHIS"
+let Test_UpperCase_Pascal= upperTest "UpperThis" "UPPERTHIS"
 
 
 let Test:ModuleTest = 
@@ -38,6 +38,11 @@ let Test:ModuleTest =
             ("Test_PascalCase_Lower",Test_PascalCase_Lower);
             ("Test_PascalCase_Camel",Test_PascalCase_Pascal);
             ("Test_PascalCase_Pascal",Test_PascalCase_Pascal);
+
+            ("Test_UpperCase_Upper",Test_UpperCase_Upper);
+            ("Test_UpperCase_Lower",Test_UpperCase_Lower);
+            ("Test_UpperCase_Camel",Test_UpperCase_Upper);
+            ("Test_UpperCase_Pascal",Test_UpperCase_Pascal);
         ]
         |>List.rev
         |>List.fold JoinResult (ModuleResultState.Init("NameChangerTest"))
