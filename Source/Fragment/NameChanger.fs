@@ -17,6 +17,13 @@ let setNameConvention namingConventionType (value:string):string =
         touchedChar.[0]::(Seq.toList value.[1..])
         |>List.toSeq
         |>String.Concat
+
+let pathConvention targetNamingConvention (path:string):string =
+    (":",
+        path.Split(":")
+        |>Seq.map (setNameConvention targetNamingConvention))
+    |>String.Join
+    
         
 let run (targetNamingConvention:CheckConventionType) (key:FileData):FileData= 
     key

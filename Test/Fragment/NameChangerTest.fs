@@ -4,45 +4,69 @@ open TestResult
 open Expect
 open NameChanger
 
-let testRunner action input expectations = action input |> expect expectations
-let testGen convention  = testRunner (setNameConvention convention)
+let stringTestRunner action input expectations = action input |> expect expectations
 
-let camelTest = testGen CamelCase
-let Test_CamelCase_Upper = camelTest "CAMELIZETHIS" "cAMELIZETHIS"
-let Test_CamelCase_Lower = camelTest "camelizethis" "camelizethis"
-let Test_CamelCase_Camel = camelTest "camelizeThis" "camelizeThis"
-let Test_CamelCase_Pascal= camelTest "CamelizeThis" "camelizeThis"
+let singleStringTestGen convention  = stringTestRunner (setNameConvention convention)
 
-let pascalTest = testGen PascalCase
-let Test_PascalCase_Upper = pascalTest "PASCALIZETHIS" "PASCALIZETHIS"
-let Test_PascalCase_Lower = pascalTest "pascalizethis" "Pascalizethis"
-let Test_PascalCase_Camel = pascalTest "pascalizeThis" "PascalizeThis"
-let Test_PascalCase_Pascal= pascalTest "PascalizeThis" "PascalizeThis"
+let camelSingleStringTest = singleStringTestGen CamelCase
+let Test_SingleStringCamelCase_Upper = camelSingleStringTest "CAMELIZETHIS" "cAMELIZETHIS"
+let Test_SingleStringCamelCase_Lower = camelSingleStringTest "camelizethis" "camelizethis"
+let Test_SingleStringCamelCase_Camel = camelSingleStringTest "camelizeThis" "camelizeThis"
+let Test_SingleStringCamelCase_Pascal= camelSingleStringTest "CamelizeThis" "camelizeThis"
 
-let upperTest = testGen UpperCase
-let Test_UpperCase_Upper = upperTest "UPPERTHIS" "UPPERTHIS"
-let Test_UpperCase_Lower = upperTest "upperthis" "UPPERTHIS"
-let Test_UpperCase_Camel = upperTest "upperThis" "UPPERTHIS"
-let Test_UpperCase_Pascal= upperTest "UpperThis" "UPPERTHIS"
+let pascalSingleStringTest = singleStringTestGen PascalCase
+let Test_SingleStringPascalCase_Upper = pascalSingleStringTest "PASCALIZETHIS" "PASCALIZETHIS"
+let Test_SingleStringPascalCase_Lower = pascalSingleStringTest "pascalizethis" "Pascalizethis"
+let Test_SingleStringPascalCase_Camel = pascalSingleStringTest "pascalizeThis" "PascalizeThis"
+let Test_SingleStringPascalCase_Pascal= pascalSingleStringTest "PascalizeThis" "PascalizeThis"
 
+let upperSingleStringTest = singleStringTestGen UpperCase
+let Test_SingleStringUpperCase_Upper = upperSingleStringTest "UPPERTHIS" "UPPERTHIS"
+let Test_SingleStringUpperCase_Lower = upperSingleStringTest "upperthis" "UPPERTHIS"
+let Test_SingleStringUpperCase_Camel = upperSingleStringTest "upperThis" "UPPERTHIS"
+let Test_SingleStringUpperCase_Pascal= upperSingleStringTest "UpperThis" "UPPERTHIS"
+
+let lowerSingleStringTest = singleStringTestGen LowerCase
+let Test_SingleStringLowerCase_Upper = lowerSingleStringTest "LOWERTHIS" "lowerthis"
+let Test_SingleStringLowerCase_Lower = lowerSingleStringTest "lowerthis" "lowerthis"
+let Test_SingleStringLowerCase_Camel = lowerSingleStringTest "lowerThis" "lowerthis"
+let Test_SingleStringLowerCase_Pascal= lowerSingleStringTest "LowerThis" "lowerthis"
+
+let pathTestGen convention = stringTestRunner (pathConvention convention)
+
+let camelPathTest = pathTestGen CamelCase
+let Test_PathCamelCase_Upper = camelPathTest "MATCHTHIS:A:SOMETHINGTHIS:B" "mATCHTHIS:a:sOMETHINGTHIS:b"
+let Test_PathCamelCase_Lower = camelPathTest "matchthis:a:somethingthis:b" "matchthis:a:somethingthis:b"
+let Test_PathCamelCase_Camel = camelPathTest "matchThis:a:somethingThis:b" "matchThis:a:somethingThis:b"
+let Test_PathCamelCase_Pascal= camelPathTest "MatchThis:A:SomethingThis:B" "matchThis:a:somethingThis:b"
 
 let Test:ModuleTest = 
     let result =
         [
-            ("Test_CamelCase_Upper",Test_CamelCase_Upper);
-            ("Test_CamelCase_Lower",Test_CamelCase_Lower);
-            ("Test_CamelCase_Camel",Test_CamelCase_Camel);
-            ("Test_CamelCase_Pascal",Test_CamelCase_Pascal);
+            ("Test_SingleStringCamelCase_Upper ",Test_SingleStringCamelCase_Upper );
+            ("Test_SingleStringCamelCase_Lower ",Test_SingleStringCamelCase_Lower );
+            ("Test_SingleStringCamelCase_Camel ",Test_SingleStringCamelCase_Camel );
+            ("Test_SingleStringCamelCase_Pascal",Test_SingleStringCamelCase_Pascal);
 
-            ("Test_PascalCase_Upper",Test_PascalCase_Upper);
-            ("Test_PascalCase_Lower",Test_PascalCase_Lower);
-            ("Test_PascalCase_Camel",Test_PascalCase_Pascal);
-            ("Test_PascalCase_Pascal",Test_PascalCase_Pascal);
+            ("Test_SingleStringPascalCase_Upper ",Test_SingleStringPascalCase_Upper );
+            ("Test_SingleStringPascalCase_Lower ",Test_SingleStringPascalCase_Lower );
+            ("Test_SingleStringPascalCase_Camel ",Test_SingleStringPascalCase_Camel );
+            ("Test_SingleStringPascalCase_Pascal",Test_SingleStringPascalCase_Pascal);
 
-            ("Test_UpperCase_Upper",Test_UpperCase_Upper);
-            ("Test_UpperCase_Lower",Test_UpperCase_Lower);
-            ("Test_UpperCase_Camel",Test_UpperCase_Upper);
-            ("Test_UpperCase_Pascal",Test_UpperCase_Pascal);
+            ("Test_SingleStringUpperCase_Upper ",Test_SingleStringUpperCase_Upper );
+            ("Test_SingleStringUpperCase_Lower ",Test_SingleStringUpperCase_Lower );
+            ("Test_SingleStringUpperCase_Camel ",Test_SingleStringUpperCase_Camel );
+            ("Test_SingleStringUpperCase_Pascal",Test_SingleStringUpperCase_Pascal);
+
+            ("Test_SingleStringLowerCase_Upper ",Test_SingleStringLowerCase_Upper );
+            ("Test_SingleStringLowerCase_Lower ",Test_SingleStringLowerCase_Lower );
+            ("Test_SingleStringLowerCase_Camel ",Test_SingleStringLowerCase_Camel );
+            ("Test_SingleStringLowerCase_Pascal",Test_SingleStringLowerCase_Pascal);
+
+            ("Test_PathCamelCase_Upper" ,Test_PathCamelCase_Upper);
+            ("Test_PathCamelCase_Lower" ,Test_PathCamelCase_Lower);
+            ("Test_PathCamelCase_Camel" ,Test_PathCamelCase_Camel);
+            ("Test_PathCamelCase_Pascal",Test_PathCamelCase_Pascal);
         ]
         |>List.rev
         |>List.fold JoinResult (ModuleResultState.Init("NameChangerTest"))
