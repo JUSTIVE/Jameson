@@ -8,25 +8,25 @@ let stringTestRunner action input expectations = action input |> expect expectat
 
 let singleStringTestGen convention  = stringTestRunner (setNameConvention convention)
 
-let camelSingleStringTest = singleStringTestGen CamelCase
+let camelSingleStringTest = singleStringTestGen (HeadCharConventionType CamelCase)
 let Test_SingleStringCamelCase_Upper = camelSingleStringTest "CAMELIZETHIS" "cAMELIZETHIS"
 let Test_SingleStringCamelCase_Lower = camelSingleStringTest "camelizethis" "camelizethis"
 let Test_SingleStringCamelCase_Camel = camelSingleStringTest "camelizeThis" "camelizeThis"
 let Test_SingleStringCamelCase_Pascal= camelSingleStringTest "CamelizeThis" "camelizeThis"
 
-let pascalSingleStringTest = singleStringTestGen PascalCase
+let pascalSingleStringTest = singleStringTestGen (HeadCharConventionType PascalCase)
 let Test_SingleStringPascalCase_Upper = pascalSingleStringTest "PASCALIZETHIS" "PASCALIZETHIS"
 let Test_SingleStringPascalCase_Lower = pascalSingleStringTest "pascalizethis" "Pascalizethis"
 let Test_SingleStringPascalCase_Camel = pascalSingleStringTest "pascalizeThis" "PascalizeThis"
 let Test_SingleStringPascalCase_Pascal= pascalSingleStringTest "PascalizeThis" "PascalizeThis"
 
-let upperSingleStringTest = singleStringTestGen UpperCase
+let upperSingleStringTest = singleStringTestGen (SimpleConventionType UpperCase)
 let Test_SingleStringUpperCase_Upper = upperSingleStringTest "UPPERTHIS" "UPPERTHIS"
 let Test_SingleStringUpperCase_Lower = upperSingleStringTest "upperthis" "UPPERTHIS"
 let Test_SingleStringUpperCase_Camel = upperSingleStringTest "upperThis" "UPPERTHIS"
 let Test_SingleStringUpperCase_Pascal= upperSingleStringTest "UpperThis" "UPPERTHIS"
 
-let lowerSingleStringTest = singleStringTestGen LowerCase
+let lowerSingleStringTest = singleStringTestGen (SimpleConventionType LowerCase)
 let Test_SingleStringLowerCase_Upper = lowerSingleStringTest "LOWERTHIS" "lowerthis"
 let Test_SingleStringLowerCase_Lower = lowerSingleStringTest "lowerthis" "lowerthis"
 let Test_SingleStringLowerCase_Camel = lowerSingleStringTest "lowerThis" "lowerthis"
@@ -34,7 +34,7 @@ let Test_SingleStringLowerCase_Pascal= lowerSingleStringTest "LowerThis" "lowert
 
 let pathTestGen convention = stringTestRunner (pathConvention convention)
 
-let camelPathTest = pathTestGen CamelCase
+let camelPathTest = pathTestGen (HeadCharConventionType CamelCase)
 let Test_PathCamelCase_Upper = camelPathTest "MATCHTHIS:A:SOMETHINGTHIS:B" "mATCHTHIS:a:sOMETHINGTHIS:b"
 let Test_PathCamelCase_Lower = camelPathTest "matchthis:a:somethingthis:b" "matchthis:a:somethingthis:b"
 let Test_PathCamelCase_Camel = camelPathTest "matchThis:a:somethingThis:b" "matchThis:a:somethingThis:b"

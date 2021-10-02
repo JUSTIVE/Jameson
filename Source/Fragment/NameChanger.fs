@@ -4,19 +4,33 @@ open JamesonOption
 open FileType
 
 let setNameConvention namingConventionType (value:string):string =
-    match namingConventionType with
-    | UpperCase -> value.ToUpper()
-    | LowerCase -> value.ToLower()
-    | __ ->
+    let simpleConvention (simpleConvention:SimpleConventionType) (value:string) =
+        match simpleConvention with
+        | SimpleConventionType.UpperCase -> value.ToUpper()
+        | SimpleConventionType.LowerCase -> value.ToLower()    
+
+    let headCharConvention headChartConvention (value:string) = 
         let head = value.[0]
         let touchedChar = 
-            match namingConventionType with
-            | CamelCase -> (string(head)).ToLower()
-            | PascalCase -> (string(head)).ToUpper()
-            | x -> string(head)
+            match headChartConvention with
+            | HeadCharConventionType.PascalCase -> (string(head)).ToUpper()
+            | HeadCharConventionType.CamelCase  -> (string(head)).ToLower()
         touchedChar.[0]::(Seq.toList value.[1..])
         |>List.toSeq
         |>String.Concat
+
+    let complexConvention complexConvention value=
+        match complexConvention with
+        | ComplexConventionType.SnakeCase ->
+            value
+
+
+    match namingConventionType with
+    | NoConvention -> (fun x -> x) 
+    | SimpleConventionType convention -> simpleConvention convention
+    | HeadCharConventionType convention -> headCharConvention convention
+    | ComplexConventionType convention -> complexConvention convention
+    <| value
 
 let pathConvention targetNamingConvention (path:string):string =
     (":",

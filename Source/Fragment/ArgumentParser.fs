@@ -78,10 +78,11 @@ and parseCheckConvention (state:JamesonOption) (argument:list<string>):Result<Ja
     match argument with
     | g::t -> 
         match g.ToLower() with
-        | "camel"  -> Success (JamesonOptionSetCheckConventionLens state CamelCase,t)
-        | "pascal" -> Success (JamesonOptionSetCheckConventionLens state PascalCase,t)
-        | "upper"  -> Success (JamesonOptionSetCheckConventionLens state UpperCase,t)
-        | "lower"  -> Success (JamesonOptionSetCheckConventionLens state LowerCase,t)
+        | "camel"  -> Success (JamesonOptionSetCheckConventionLens state (HeadCharConventionType CamelCase),t)
+        | "pascal" -> Success (JamesonOptionSetCheckConventionLens state (HeadCharConventionType PascalCase),t)
+        | "upper"  -> Success (JamesonOptionSetCheckConventionLens state (SimpleConventionType UpperCase),t)
+        | "lower"  -> Success (JamesonOptionSetCheckConventionLens state (SimpleConventionType LowerCase),t)
+        | "snake"  -> Success (JamesonOptionSetCheckConventionLens state (ComplexConventionType SnakeCase),t)
         | __ -> Fail [INVALID_ARGUMENT g]
     | __ -> Fail [INSUFFICIENT_PATH_ARGUMENT]
 

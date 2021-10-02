@@ -30,7 +30,7 @@
     },
     "NameChangerTest": {
       "commandName": "Project",
-      "commandLineArgs": "test nameChanger"
+      "commandLineArgs": "test all"
     }
   }
 }

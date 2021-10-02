@@ -76,7 +76,7 @@ let Test_Parse_CheckConvention_Camel:UnitTestState =
         verbose = false
         help = false
         autoFill = false
-        checkConvention = CheckConventionType.CamelCase
+        checkConvention = (HeadCharConventionType CamelCase)
     })
 
 let Test_Parse_CheckConvention_Pascal:UnitTestState = 
@@ -88,7 +88,7 @@ let Test_Parse_CheckConvention_Pascal:UnitTestState =
         verbose = false
         help = false
         autoFill = false
-        checkConvention = CheckConventionType.PascalCase
+        checkConvention = (HeadCharConventionType PascalCase)
     })
 
 let Test_Parse_CheckConvention_Upper:UnitTestState = 
@@ -100,7 +100,7 @@ let Test_Parse_CheckConvention_Upper:UnitTestState =
         verbose = false
         help = false
         autoFill = false
-        checkConvention = CheckConventionType.UpperCase
+        checkConvention = (SimpleConventionType UpperCase)
     })
 
 let Test_Parse_CheckConvention_Lower:UnitTestState = 
@@ -112,7 +112,19 @@ let Test_Parse_CheckConvention_Lower:UnitTestState =
         verbose = false
         help = false
         autoFill = false
-        checkConvention = CheckConventionType.LowerCase
+        checkConvention = (SimpleConventionType LowerCase)
+    })
+
+let Test_Parse_CheckConvention_Snake:UnitTestState = 
+    parse [|"-c";"snake"|]
+    |>expect (Success {
+        runnerType = RunnerTypeOption.None
+        writeToFile = Option.None
+        strict = false
+        verbose = false
+        help = false
+        autoFill = false
+        checkConvention = (ComplexConventionType SnakeCase)
     })
 
 let Test_Parse_CheckConvention_insufficient_arguemnt:UnitTestState = 

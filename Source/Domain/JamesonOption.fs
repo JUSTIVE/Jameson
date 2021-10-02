@@ -24,13 +24,22 @@ type RunnerTypeOption =
     | ShowRunnerOption of ShowRunnerOption
     | None
 
-type CheckConventionType =
-    | NoConvention
-    | CamelCase
-    | PascalCase
-    | LowerCase
+type SimpleConventionType =
+    | LowerCase 
     | UpperCase
+
+type HeadCharConventionType =
+    | PascalCase
+    | CamelCase
+
+type ComplexConventionType =
     | SnakeCase
+
+type CheckConventionType =
+    | NoConvention 
+    | SimpleConventionType of SimpleConventionType
+    | HeadCharConventionType of HeadCharConventionType
+    | ComplexConventionType of ComplexConventionType
 
 type JamesonOption = {
     runnerType:RunnerTypeOption

@@ -70,10 +70,17 @@ let printOption show indent consoleColor newline option =
 let printCheckConvention show indent consoleColor newline (checkConvention:CheckConventionType) =
     match checkConvention with
     | NoConvention -> "No Convention"
-    | CamelCase -> "Camel Case"
-    | PascalCase -> "Pascal Case"
-    | LowerCase -> "Lower Case"
-    | UpperCase -> "Upper Case"
+    | SimpleConventionType convention ->
+        match convention with
+        | LowerCase -> "Lower Case"
+        | UpperCase -> "Upper Case"
+    | HeadCharConventionType convention ->
+        match convention with
+        | CamelCase -> "Camel Case"
+        | PascalCase -> "Pascal Case"
+    | ComplexConventionType convention ->
+        match convention with
+        | SnakeCase -> "Snake Case"
     |>sprintf "checkConventionType : %s" 
     |>printType show indent
 
