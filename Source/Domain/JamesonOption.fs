@@ -30,6 +30,7 @@ type CheckConventionType =
     | PascalCase
     | LowerCase
     | UpperCase
+    | SnakeCase
 
 type JamesonOption = {
     runnerType:RunnerTypeOption
