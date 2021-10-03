@@ -39,4 +39,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: argumentParser
-      run: dotnet ./bin/Debug/net5.0/Jameson.dll test argumentParser
+      run: dotnet ./bin/Debug/net5.0/Jameson.dll test all
