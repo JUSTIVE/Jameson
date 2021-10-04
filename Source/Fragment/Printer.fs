@@ -105,9 +105,9 @@ let printDiffFile show indent (diffFile:DiffFile) =
             | Changed changed->
                 match changed with
                 | Added line ->
-                    print show indent ConsoleColor.Green true $"Added :\t\t{line}"
+                    print show indent ConsoleColor.Green true $"Added :\t\t{line.path}"
                 | Removed line -> 
-                    print show indent ConsoleColor.Red true $"Removed :\t{line}"
+                    print show indent ConsoleColor.Red true $"Removed :\t{line.path}"
             | __-> ()
             
         let innerPrint() =

@@ -12,14 +12,19 @@ let PrintUnitResult (prefix:string) (x:UnitTestResult):Unit =
         initializeColor()
         printfn $"\t{name}"
         initializeColor()
-    | (name, UnitFail(reason:string)) -> 
+    | (name, UnitFail(reason:FailedReason)) -> 
         Console.BackgroundColor <- ConsoleColor.DarkRed
         printf "Fail"
         initializeColor()
         printf $"\t{name}\t"
         Console.ResetColor()
+        printf $"expected : "
+        Console.ForegroundColor<- ConsoleColor.DarkYellow
+        printf $"{reason.expected}"
+        Console.ResetColor()
+        printf $" \tgiven : "
         Console.ForegroundColor<- ConsoleColor.DarkRed
-        printfn $"{reason}"
+        printfn $"{reason.given}"
         initializeColor()
     
 

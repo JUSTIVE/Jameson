@@ -4,4 +4,4 @@ open TestResult
 let expect<'T when 'T:equality> (x:'T) (y:'T) :UnitTestState = 
     match x = y with
     | true -> UnitSuccess
-    | false -> UnitFail($"unmatch: Expected {x}, given {y}")
+    | false -> UnitFail <|{expected=($"{x}");given=($"{y}")}

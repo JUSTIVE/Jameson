@@ -5,25 +5,42 @@ open FileType
 
 let setNameConvention namingConventionType (value:string):string =
     let simpleConvention (simpleConvention:SimpleConventionType) (value:string) =
-        match simpleConvention with
-        | SimpleConventionType.UpperCase -> value.ToUpper()
-        | SimpleConventionType.LowerCase -> value.ToLower()    
+        let handleChunk (value:string)=
+            match simpleConvention with
+            | SimpleConventionType.UpperCase -> value.ToUpper()
+            | SimpleConventionType.LowerCase -> value.ToLower()
+        String.Join(
+            "",
+            value.Split("_")
+            |>Array.map handleChunk
+        )
 
-    let headCharConvention headChartConvention (value:string) = 
-        let head = value.[0]
-        let touchedChar = 
-            match headChartConvention with
-            | HeadCharConventionType.PascalCase -> (string(head)).ToUpper()
-            | HeadCharConventionType.CamelCase  -> (string(head)).ToLower()
-        touchedChar.[0]::(Seq.toList value.[1..])
-        |>List.toSeq
-        |>String.Concat
+    let headCharConvention headCharConvention (value:string) = 
+        let handleChunk index (value:string) =
+            let head = value.[0]
+            let touchedChar = 
+                match headCharConvention with
+                | HeadCharConventionType.PascalCase -> (string(head)).ToUpper()
+                | HeadCharConventionType.CamelCase  when index=0-> (string(head)).ToLower()
+                | HeadCharConventionType.CamelCase  -> (string(head)).ToUpper()
+            touchedChar.[0]::(Seq.toList value.[1..])
+            |>List.toSeq
+            |>String.Concat
+        String.Join(
+            "",
+            value.Split("_")
+            |>Array.mapi handleChunk
+        )
 
     let complexConvention complexConvention value=
+        let capitalToSnake index (value:char):string=
+            match value with
+            | x when Char.IsUpper x && index <> 0 -> $"_{Char.ToLower x}"
+            | y when Char.IsLetter y -> $"{Char.ToLower y}"
+            | z -> $"{z}"
         match complexConvention with
         | ComplexConventionType.SnakeCase ->
-            value
-
+            String.Join("", Seq.mapi capitalToSnake value)
 
     match namingConventionType with
     | NoConvention -> (fun x -> x) 

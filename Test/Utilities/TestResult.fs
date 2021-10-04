@@ -1,12 +1,13 @@
 ﻿module TestResult
 
-type FailedReason = string
+type FailedReason = {
+    expected:string;
+    given:string;
+}
 
 type UnitTestState = 
     | UnitSuccess 
     | UnitFail of FailedReason
-
-
 
 type UnitName = string
 
