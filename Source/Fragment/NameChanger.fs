@@ -54,7 +54,12 @@ let pathConvention targetNamingConvention (path:string):string =
         path.Split(":")
         |>Seq.map (setNameConvention targetNamingConvention))
     |>String.Join
-    
+
+let pseudoJsonConvention targetNamingConvention (pseudoJson:PseudoJson) =
+    PseudoJson_ (pathConvention targetNamingConvention pseudoJson.path) pseudoJson.value
+
+let FileKeySetConvention targetnamingConvention (fileKeySet:FileKeySet) =
+    Set.map (pseudoJsonConvention targetnamingConvention) fileKeySet
         
-let run (targetNamingConvention:CheckConventionType) (key:FileData):FileData= 
-    key
+let run (targetNamingConvention:CheckConventionType) ((fileArgument,fileType,fileKeySet):FileData):FileData= 
+        (fileArgument,fileType,FileKeySetConvention targetNamingConvention fileKeySet)
