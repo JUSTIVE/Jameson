@@ -7,6 +7,8 @@ open State
 
 //type treeDepthElement = int*string
 
+//let addToLeaf (state:JsonValue) 
+
 //let rec reconstruct_ (state:JsonValue) (itemList:list<string>):JsonValue = 
 //    match itemList with
 //    | [] -> state
@@ -14,11 +16,9 @@ open State
 
 
 //let rec reconstruct (fileKeySet:FileKeySet):JsonValue =
-//    FileKeySet
-
     
 //    test fileKeySet
-//    result
+//    //reconstruct_ fileKeySet
 
 //and private test (fileKeySet:FileKeySet):Unit =
 //    let original = fileKeySet
@@ -29,8 +29,8 @@ open State
 
 //    let compareResult =
 //        Compare.compare
-//            ("origin",OriginFile,original)
-//            ("reconstruct",CompareeFile,regenerated)
+//            ({filename="origin";path=""},OriginFile,original)
+//            ({filename="reconstruct";path=""},CompareeFile,regenerated)
 
 //    match compareResult with
 //    | Success compareResult -> 
