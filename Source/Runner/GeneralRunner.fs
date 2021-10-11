@@ -4,6 +4,7 @@ open JamesonResults
 open State
 open JamesonOption
 open FileType
+open Compare
 open Diff
 
 let run jamesonOption (generalRunnerOption:GeneralRunnerOption):Result<DiffResults,list<JamesonResult>> =
@@ -14,6 +15,7 @@ let run jamesonOption (generalRunnerOption:GeneralRunnerOption):Result<DiffResul
         match readJSONFile path with
         | Fail(jamesonResult)-> Fail(jamesonResult)
         | Success(jsonValue) -> Success <|parse jsonValue
+
     let originFileKeySetResult = readKeyFileSetResult source.path
 
     let compareStep originFileKeySet comparingFileKeySet =
@@ -29,6 +31,21 @@ let run jamesonOption (generalRunnerOption:GeneralRunnerOption):Result<DiffResul
                 if strict 
                 then Fail [NOT_SAME] 
                 else diffResults
-    let rec generalFileRunner (runResults:list<JamesonResult>) (targetFile:FileArgument) = 
-        let targetFileKeySetResult = readKeyFileSetResult targetFile.path
+        let targetFileKeySetResult = readKeyFileSetResult comparingFileKeySet
+        let compareeResult = 
+            compare
+                (target,CompareeFile,targetFileKeySetResult)
+                (source,OriginFile,originFileKeySetResult)
+        match compareeResult with
+
+       
+
+    let rec generalFileRunner (runResults:list<JamesonResult>) (targetFileList:list<FileArgument>) = 
+        match targetFile with
+        | [] -> runResults
+        | h::t ->
+            
+            generalFileRunner (runResults::compareeResult) (t)
+    generalFileRunner [] generalRunnerOption.targetCandidate
+
 
