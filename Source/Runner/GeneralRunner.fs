@@ -37,6 +37,8 @@ let run jamesonOption (generalRunnerOption:GeneralRunnerOption):Result<DiffResul
                 (target,CompareeFile,targetFileKeySetResult)
                 (source,OriginFile,originFileKeySetResult)
         match compareeResult with
+        | Success x ->strictStep
+        | Fail -> 
 
        
 
