@@ -2,6 +2,8 @@
 open JamesonResult
 open JamesonResults
 open State
+open Result
+open ResultsSummary
 open JamesonOption
 open FileType
 open Compare
@@ -42,12 +44,14 @@ let run jamesonOption (generalRunnerOption:GeneralRunnerOption):Result<DiffResul
 
        
 
-    let rec generalFileRunner (runResults:list<JamesonResult>) (targetFileList:list<FileArgument>) = 
+    let rec generalFileRunner (runResults:list<JamesonResult>) (targetFileList:list<FileArgument>):Result<DiffResults,list<JamesonResult>> = 
         match targetFile with
         | [] -> runResults
         | h::t ->
-            
             generalFileRunner (runResults::compareeResult) (t)
-    generalFileRunner [] generalRunnerOption.targetCandidate
+
+    let compareResults = Summ<|generalFileRunner [] generalRunnerOption.targetCandidate
+
+
 
 
