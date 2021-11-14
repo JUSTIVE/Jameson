@@ -1,5 +1,6 @@
 ﻿module JamesonResult
 open State
+open Result
 
 type JamesonResult = {
     message:string;

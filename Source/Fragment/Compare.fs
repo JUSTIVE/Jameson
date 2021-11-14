@@ -1,5 +1,6 @@
 ﻿module Compare
 open State
+open Result
 open Diff
 open FileType
 open JamesonResult

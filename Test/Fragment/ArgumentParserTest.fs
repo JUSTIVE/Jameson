@@ -1,5 +1,6 @@
 ﻿module ArgumentParserTest
 open State
+open Result
 open TestResult
 open Expect
 open ArgumentParser

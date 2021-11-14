@@ -5,6 +5,7 @@ open JamesonResult
 open JamesonResults
 open FileType
 open State
+open Result
 open System.IO
 
 type ArgumentType =

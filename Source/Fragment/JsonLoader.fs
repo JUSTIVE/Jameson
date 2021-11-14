@@ -1,5 +1,6 @@
 ﻿module JsonLoader
 open State
+open Result
 open JamesonResult
 open JamesonResults
 open FSharp.Data

@@ -2,6 +2,7 @@
 open Help
 open Printer
 open State
+open Result
 open ArgumentParser
 open PrinterType
 open PipeLine

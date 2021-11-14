@@ -6,6 +6,7 @@ open Printer
 open PrinterType
 open Diff
 open State
+open Result
 
 let run (option:JamesonOption):Result<DiffResults,list<JamesonResult>> =
    printJamesonOption true [NoneChild] option

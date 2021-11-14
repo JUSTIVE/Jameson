@@ -3,6 +3,7 @@ open JamesonOption
 open JamesonResult
 open JamesonResults
 open State
+open Result
 open Printer
 open Runner
 
