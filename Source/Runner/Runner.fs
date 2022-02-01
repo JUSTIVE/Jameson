@@ -9,7 +9,7 @@ open State
 open Result
 
 let run (option:JamesonOption):Result<DiffResults,list<JamesonResult>> =
-   printJamesonOption true [NoneChild] option
+   //printJamesonOption true [NoneChild] option
    match option.runnerType with
    | TargetRunnerOption targetRunnerOption ->
         TargetRunner.run option targetRunnerOption

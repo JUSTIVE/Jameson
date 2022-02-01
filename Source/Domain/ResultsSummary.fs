@@ -1,20 +1,25 @@
 ﻿module ResultsSummary
 open Result
 
-type PartialSuccessType<'a,'b> = {successes: list<Result<'a,'b>>; fails:list<Result<'a,'b>>}
+type PartialSuccessType<'success,'failed,'reason> = {
+    successes: list<Result<'success,'failed,'reason>>;
+    fails:list<Result<'success,'failed,'reason>>
+}
 
-type ResultSummary<'a,'b> = 
-    | AllSuccess of list<Result<'a,'b>>
-    | AllFail of list<Result<'a,'b>>
-    | PartialSuccess of PartialSuccessType<'a,'b>
+type ResultSummary<'success,'failed,'reason> = 
+    | AllSuccess of list<Result<'success,'failed,'reason>>
+    | AllFail of list<Result<'success,'failed,'reason>>
+    | PartialSuccess of PartialSuccessType<'success,'failed,'reason>
 
-let Summarize (resultList:list<Result<'a,'b>>) :ResultSummary<'a,'b> = 
+let Summarize (resultList:list<Result<'success,'failed,'reason>>)
+    :ResultSummary<'success,'failed,'reason> = 
     match resultList|>List.forall(isSuccess) with
     | true -> AllSuccess resultList
-    | false -> match resultList|>List.forall(isFail) with
+    | false ->
+        match resultList|>List.forall(isFail) with
         | true -> AllFail resultList
-        | false -> PartialSuccess({
-                    successes=resultList|>List.filter(isSuccess);
-                    fails = resultList|>List.filter(isFail);
-                })
-    
+        | false ->
+            PartialSuccess({
+                successes=resultList|>List.filter(isSuccess);
+                fails = resultList|>List.filter(isFail);
+            })

@@ -65,3 +65,8 @@ let INVALID_CHECK_CONVENTION_TYPE :JamesonResult ={
     message = "invalid check convention type option";
     errorCode = 1
 }
+
+let YET_IMPLEMENTED : JamesonResult = {
+    message = "this feature isn't implemented yet.\nHow about considering contribute to this project's repository?\nhttps://github.com/JUSTIVE/Jameson";
+    errorCode = 1
+}

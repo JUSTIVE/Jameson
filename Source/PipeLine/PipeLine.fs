@@ -5,6 +5,7 @@ open JamesonResults
 open State
 open Result
 open Printer
+open PrinterType
 open Runner
 
 let private construct previousResult action =
@@ -15,6 +16,7 @@ let private construct previousResult action =
 let Flow jamesonOptionR: Result<JamesonResult,list<JamesonResult>> =
     match jamesonOptionR with
     | Success jamesonOption ->
+        printJamesonOption jamesonOption.verbose [NoneChild] jamesonOption
         if jamesonOption.help then 
             Success <|Help.help()
         else
@@ -25,6 +27,9 @@ let Flow jamesonOptionR: Result<JamesonResult,list<JamesonResult>> =
                 |> List.map (printDiffFile true [])
                 |> ignore
                 Success GOOD
-            | Fail jamesonResult -> Fail jamesonResult
+            | Fail jamesonResult ->
+                printJamesonResults true [NoneChild] jamesonResult
+                |>ignore
+                Fail jamesonResult
     | Fail jamesonResults ->
         Fail jamesonResults

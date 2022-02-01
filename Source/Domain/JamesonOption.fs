@@ -6,7 +6,7 @@ open JamesonResult
 
 type GeneralRunnerOption = {
     source:FileArgument
-    targetCandidate:list<FileArgument>
+    targetList:list<FileArgument>
 }
 
 type TargetRunnerOption = {
@@ -76,15 +76,15 @@ let JamesonOptionSetCheckConventionLens state checkConvention : JamesonOption=
 let JamesonOptionSetBoolFlag state key:JamesonOption=
     match key with
     | "verbose" ->
-        {
-               runnerType = state.runnerType;
-               writeToFile = state.writeToFile;
-               strict = state.strict;
-               verbose = true
-               help = state.help
-               autoFill = state.autoFill
-               checkConvention = state.checkConvention
-           }
+        { 
+            runnerType = state.runnerType;
+            writeToFile = state.writeToFile;
+            strict = state.strict;
+            verbose = true
+            help = state.help
+            autoFill = state.autoFill
+            checkConvention = state.checkConvention
+        }
     | "help" -> 
         {
             runnerType = state.runnerType;

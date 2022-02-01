@@ -1,33 +1,37 @@
-﻿<Properties StartupConfiguration="{3B0447B5-BED5-41BD-9EAA-DD21E3479A12}|Substation">
-  <MonoDevelop.Ide.ItemProperties.Jameson PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Source/PipeLine/PipeLine.fs">
+﻿<Properties StartupConfiguration="{3B0447B5-BED5-41BD-9EAA-DD21E3479A12}|Default">
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Substation" Name="Substation">
+      <Items>
+        <StartupItem ItemId="{3B0447B5-BED5-41BD-9EAA-DD21E3479A12}" ItemName="Jameson" ConfigurationId="Default" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Source/Domain/Result.fs">
     <Files>
-      <File FileName="Test/Fragment/ArgumentParserTest.fs" Line="1" Column="1" IsPinned="True" />
-      <File FileName="Program.fs" />
-      <File FileName="Test/TestRunner.fs" />
-      <File FileName="Source/Domain/State.fs" />
-      <File FileName="Source/Domain/JamesonResultType.fs" />
-      <File FileName="Source/Resource/JamesonOptions.fs" />
-      <File FileName="Source/Runner/Runner.fs" />
-      <File FileName="Source/Runner/TargetRunner.fs" />
-      <File FileName="Source/Runner/GeneralRunner.fs" />
-      <File FileName="Source/Domain/JamesonOption.fs" Line="5" Column="1" />
-      <File FileName="Source/Fragment/PrinterUtil.fs" />
-      <File FileName="Source/Runner/ShowRunner.fs" />
-      <File FileName="Source/Fragment/Reconstructor.fs" />
-      <File FileName="Source/Domain/FileType/FileType.fs" Line="26" Column="1" />
-      <File FileName="Source/Fragment/JsonLoader.fs" />
-      <File FileName="Source/PipeLine/PipeLine.fs" Line="1" Column="1" />
-      <File FileName="Source/Resource/JamesonResults.fs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Source/Fragment/Printer.fs" Line="85" Column="33" NotebookId="1" />
-      <File FileName="Source/Fragment/ArgumentParser.fs" NotebookId="1" />
-      <File FileName="Source/Fragment/JsonParser.fs" NotebookId="1" />
-      <File FileName="Source/Fragment/Compare.fs" Line="22" Column="1" NotebookId="1" />
-      <File FileName="Source/Fragment/Exporter.fs" NotebookId="1" />
-      <File FileName="Source/Fragment/Help.fs" NotebookId="1" />
-      <File FileName="Source/Fragment/LanguageSupport.fs" NotebookId="1" />
-      <File FileName="Source/Domain/FileType/Diff.fs" NotebookId="1" />
-      <File FileName="Source/Domain/Utility/PrinterType.fs" NotebookId="1" />
+      <File FileName="Test/Fragment/ArgumentParserTest.fs" Line="55" Column="25" IsPinned="True" />
+      <File FileName="Source/Runner/TargetRunner.fs" Line="44" Column="1" IsPinned="True" />
+      <File FileName="Source/Domain/JamesonOption.fs" Line="86" Column="50" />
+      <File FileName="README.md" Line="26" Column="15" />
+      <File FileName="Source/PipeLine/PipeLine.fs" Line="31" Column="25" />
+      <File FileName="Source/Runner/Runner.fs" Line="14" Column="34" />
+      <File FileName="Source/Resource/JamesonResults.fs" Line="69" Column="20" NotebookId="1" />
+      <File FileName="Source/Fragment/Printer.fs" Line="24" Column="5" NotebookId="1" />
+      <File FileName="Source/Fragment/ArgumentParser.fs" Line="157" Column="40" NotebookId="1" />
+      <File FileName="Source/Fragment/JsonParser.fs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Source/Fragment/Compare.fs" Line="30" Column="20" NotebookId="1" />
+      <File FileName="Source/Fragment/Exporter.fs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Source/Fragment/Help.fs" Line="18" Column="27" NotebookId="1" />
+      <File FileName="Source/Fragment/LanguageSupport.fs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Source/Domain/FileType/Diff.fs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Source/Domain/Utility/PrinterType.fs" Line="14" Column="31" NotebookId="1" />
+      <File FileName="Source/Runner/GeneralRunner.fs" Line="11" Column="1" NotebookId="1" />
+      <File FileName="Source/Resource/JamesonOptions.fs" Line="25" Column="2" NotebookId="1" />
+      <File FileName="Program.fs" Line="27" Column="1" NotebookId="1" />
+      <File FileName="Source/Domain/Result.fs" Line="28" Column="22" NotebookId="1" />
+      <File FileName="Source/Domain/ResultsSummary.fs" Line="16" Column="37" NotebookId="1" />
+      <File FileName="Source/Domain/State.fs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Source/Domain/JamesonResultType.fs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Source/Domain/FileType/FileType.fs" Line="19" Column="21" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -43,9 +47,7 @@
                 <Node name="Resource" expanded="True" />
                 <Node name="Fragment" expanded="True" />
                 <Node name="Runner" expanded="True" />
-                <Node name="PipeLine" expanded="True">
-                  <Node name="PipeLine.fs" selected="True" />
-                </Node>
+                <Node name="PipeLine" expanded="True" />
               </Node>
               <Node name="Test" expanded="True">
                 <Node name="Utilities" expanded="True" />
@@ -55,19 +57,16 @@
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <Debugger.DebugSourceFolders />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Jameson PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations>
-    <MultiItemSolutionRunConfiguration Id="Substation" Name="Substation">
-      <Items>
-        <StartupItem ItemId="{3B0447B5-BED5-41BD-9EAA-DD21E3479A12}" ItemName="Jameson" ConfigurationId="Default" />
-      </Items>
-    </MultiItemSolutionRunConfiguration>
-  </MultiItemStartupConfigurations>
 </Properties>

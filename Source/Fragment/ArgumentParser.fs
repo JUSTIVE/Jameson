@@ -114,7 +114,7 @@ and parseGeneralRunnerOption (state:JamesonOption) (argument:list<string>):Resul
             let newOption = 
                 {
                     source=sourceFileArgument;
-                    targetCandidate=neighbourFiles
+                    targetList=neighbourFiles
                 }
                 |>GeneralRunnerOption
                 |>JamesonOptionSetRunnerTypeLens state 

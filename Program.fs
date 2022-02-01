@@ -9,7 +9,6 @@ open PipeLine
 
 [<EntryPoint>]
 let main (argv:string[]):int =
-    
     match Array.toList argv with
     | [] -> 
         help()|>ignore

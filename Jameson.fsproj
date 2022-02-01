@@ -7,8 +7,8 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <StartAction>Project</StartAction>
-    <StartArguments>-t ./ko/index.json ./en/index.json --v --s</StartArguments>
-    <StartWorkingDirectory>~\git\substation-frontend\src\i18n</StartWorkingDirectory>
+    <StartArguments>-t ../src/i18n/ko/index.json ../src/i18n/en/index.json --v --s</StartArguments>
+    <StartWorkingDirectory>~\git\motor-frontend\jameson</StartWorkingDirectory>
     <ExternalConsole>true</ExternalConsole>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
@@ -51,6 +51,9 @@
     <Compile Include="Program.fs" />
     <None Include="README.md" />
     <None Include=".gitignore" />
-    <PackageReference Include="FSharp.Data" Version="4.2.2" />
+    <PackageReference Include="FSharp.Data" Version="4.2.7" />
+    <PackageReference Include="FSharp.Core" Version="6.0.1">
+      <GeneratePathProperty></GeneratePathProperty>
+    </PackageReference>
   </ItemGroup>
 </Project>
