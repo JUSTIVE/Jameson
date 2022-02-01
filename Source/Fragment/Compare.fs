@@ -26,8 +26,9 @@ let private compare_ (origin:FileKeySet) (comparee:FileKeySet) (changedLine:Pseu
         then Different (fileArgument,diffLines)
         else Same fileArgument
 
-let compare ((filename,filetype,filevalue):FileData) ((filename2,filetype2,filevalue2):FileData) :Result<DiffFile,JamesonResult> =
+let compare ((filename,filetype,filevalue):FileData) ((filename2,filetype2,filevalue2):FileData) :Result<DiffFile,JamesonFail> =
     match (filetype,filetype2) with
     | (OriginFile, CompareeFile) -> Success <| compare_ filevalue filevalue2 Removed filename
     | (CompareeFile, OriginFile) -> Success <| compare_ filevalue filevalue2 Added filename2
-    | __ -> Fail(INVALID_KEYSET)
+    
+        

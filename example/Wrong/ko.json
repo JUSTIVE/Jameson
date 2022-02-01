@@ -6,5 +6,7 @@
   "array": ["밸류", "밸류2"],
   "nestedArray": {
     "nestedKey": ["밸류s"]
-  }
+  },
+  "newKey": "something",
+  "newKey2": "something"
 }

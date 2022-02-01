@@ -7,6 +7,39 @@ open PrinterUtil
 open Diff
 open System
 
+let printDiffLines show indent difflines =
+    let printDiffLine indent diffline =
+        match diffline with 
+        | Changed changed->
+            match changed with
+            | Added line ->
+                print show indent ConsoleColor.Green true $"Added :\t\t{line.path}"
+            | Removed line -> 
+                print show indent ConsoleColor.Red true $"Removed :\t{line.path}"
+        | __-> ()
+        
+    let innerPrint() =
+        difflines
+        |>List.map (printDiffLine indent)
+        |>ignore
+    innerPrint
+    |> showPrint show
+
+let printDiffFile show indent (diffFile:DiffFile) = 
+    let innerPrint() =
+        match diffFile with 
+        | Same filename-> 
+            printType show indent $"DiffFile : Same"
+            print show indent ConsoleColor.White true $"Filename  : {filename.filename}"
+            print show (ColorableIndent(LastChild,ConsoleColor.White)::indent) ConsoleColor.DarkGray true $"Path  : {filename.path}"
+        | Different (filename,difflines)-> 
+            printType show indent $"DiffFile : Different"
+            print show indent ConsoleColor.White true $"Filename  : {filename.filename}"
+            print show (ColorableIndent(LastChild,ConsoleColor.White)::indent) ConsoleColor.DarkGray true $"Path  : {filename.path}"
+            printDiffLines show (EmptyChild::indent) difflines
+    innerPrint
+    |>showPrint show
+
 let printJamesonResult show indent (jamesonResult:JamesonResult) :int = 
     let innerPrint () =
         printEmptyLine()
@@ -21,9 +54,28 @@ let printJamesonResult show indent (jamesonResult:JamesonResult) :int =
     |> showPrint show
     jamesonResult.errorCode
 
-let printJamesonResults show indent (jamesonResults:list<JamesonResult>) :int =
+let printJamesonFail show indent (jamesonFail:JamesonFail) :int = 
+     let innerPrint () =
+         printEmptyLine()
+         printType show indent "JamseonFail"
+         let messageColor = 
+             match jamesonFail.result.errorCode = 0 with
+             | true -> ConsoleColor.DarkGreen
+             | false -> ConsoleColor.Red
+         printWithOptionName show (ColorableIndent(MidChild,ConsoleColor.White)::indent) messageColor "message" print jamesonFail.result.message 
+         printWithOptionName show (ColorableIndent(LastChild,ConsoleColor.White)::indent) ConsoleColor.Gray "errorCode" print jamesonFail.result.errorCode
+         match jamesonFail.reason with
+         | Some diffFile->
+            printDiffFile show (EmptyChild::indent) diffFile
+         | Option.None -> ignore()
+          
+     innerPrint
+     |> showPrint show
+     jamesonFail.result.errorCode
+
+let printJamesonFails show indent (jamesonResults:list<JamesonFail>) :int =
     jamesonResults
-    |>List.map(printJamesonResult show indent)
+    |>List.map(printJamesonFail show indent)
     |>List.fold (fun x y->if x > y then x else y) 0
 
 let printFileArgument indent (fileArgument:FileArgument) = 
@@ -98,35 +150,3 @@ let printJamesonOption show indent (jamesonOption:JamesonOption) =
     |> showPrint show
 
 
-let printDiffFile show indent (diffFile:DiffFile) = 
-    let printDiffLines show indent difflines =
-        let printDiffLine indent diffline =
-            match diffline with 
-            | Changed changed->
-                match changed with
-                | Added line ->
-                    print show indent ConsoleColor.Green true $"Added :\t\t{line.path}"
-                | Removed line -> 
-                    print show indent ConsoleColor.Red true $"Removed :\t{line.path}"
-            | __-> ()
-            
-        let innerPrint() =
-            difflines
-            |>List.map (printDiffLine indent)
-            |>ignore
-        innerPrint
-        |> showPrint show
-    let innerPrint() =
-        printEmptyLine()
-        match diffFile with 
-        | Same filename-> 
-            printType show indent $"DiffFile : Same"
-            print show indent ConsoleColor.White true $"Filename  : {filename.filename}"
-            print show (ColorableIndent(LastChild,ConsoleColor.White)::indent) ConsoleColor.DarkGray true $"Path  : {filename.path}"
-        | Different (filename,difflines)-> 
-            printType show indent $"DiffFile : Different"
-            print show indent ConsoleColor.White true $"Filename  : {filename.filename}"
-            print show (ColorableIndent(LastChild,ConsoleColor.White)::indent) ConsoleColor.DarkGray true $"Path  : {filename.path}"
-            printDiffLines show indent difflines
-    innerPrint
-    |>showPrint show

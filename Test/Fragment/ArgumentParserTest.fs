@@ -6,6 +6,7 @@ open Expect
 open ArgumentParser
 open JamesonOption
 open JamesonResults
+open JamesonResult
 
 
 let Test_Parse_None:UnitTestState = 
@@ -130,11 +131,11 @@ let Test_Parse_CheckConvention_Snake:UnitTestState =
 
 let Test_Parse_CheckConvention_insufficient_arguemnt:UnitTestState = 
     parse [|"-c"|]
-    |>expect (Fail [INSUFFICIENT_PATH_ARGUMENT])
+    |>expect (Fail [JamesonFail_Default INSUFFICIENT_PATH_ARGUMENT])
 
 let Test_Parse_CheckConvention_invalid_argument:UnitTestState = 
     parse [|"-c";""|]
-    |>expect (Fail [INVALID_ARGUMENT ""])
+    |>expect (Fail [JamesonFail_Default (INVALID_ARGUMENT "")])
 
 let Test:ModuleTest =
     let result = 

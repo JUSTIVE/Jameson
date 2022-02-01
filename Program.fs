@@ -21,6 +21,6 @@ let main (argv:string[]):int =
         | Success goodResult ->
             printJamesonResult true [NoneChild] goodResult
         | Fail failedResults -> 
-            printJamesonResults true [NoneChild] failedResults
+            printJamesonFails true [NoneChild] failedResults
     
 

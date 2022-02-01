@@ -2,7 +2,7 @@
   "profiles": {
     "Jameson": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Good\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Good\\en.json"
+      "commandLineArgs": "-t C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Good\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Good\\en.json"
     },
     "Good": {
       "commandName": "Project",
@@ -10,7 +10,7 @@
     },
     "Wrong": {
       "commandName": "Project",
-      "commandLineArgs": "-t C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Wrong\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Wrong\\en.json"
+      "commandLineArgs": "-t C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Wrong\\ko.json C:\\Users\\HOME\\source\\repos\\Jameson\\example\\Wrong\\en.json --s"
     },
     "GoodNested": {
       "commandName": "Project",

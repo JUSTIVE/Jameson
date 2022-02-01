@@ -9,8 +9,10 @@ open FileType
 open Compare
 open Diff
 
-let run jamesonOption (generalRunnerOption:GeneralRunnerOption):Result<DiffResults,list<JamesonResult>> =
-    Fail [YET_IMPLEMENTED]
+let run jamesonOption 
+    (generalRunnerOption:GeneralRunnerOption)
+    :Result<DiffResults,list<JamesonFail>> =
+    Fail [JamesonFail_ YET_IMPLEMENTED Option.None]
     //let source = generalRunnerOption.source
     //let targetFiles = generalRunnerOption.targetList
 
@@ -21,27 +23,27 @@ let run jamesonOption (generalRunnerOption:GeneralRunnerOption):Result<DiffResul
 
     //let originFileKeySetResult = readKeyFileSetResult source.path
 
-    let compareStep originFileKeySet comparingFileKeySet =
-        let compareeResult = 
-            compare
-                (target,CompareeFile,comparingFileKeySet)
-                (source,OriginFile,originFileKeySet)
-        let strictStep strict originFile compareeFile :Result<DiffResults,list<JamesonResult>> =
-            let diffResults =  Success <|DiffFile_ originFile [compareeFile]
-            match originFile,compareeFile with
-            | Same _,Same _ ->  diffResults 
-            |  _ ->  
-                if strict 
-                then Fail [NOT_SAME] 
-                else diffResults
-        let targetFileKeySetResult = readKeyFileSetResult comparingFileKeySet
-        let compareeResult = 
-            compare
-                (target,CompareeFile,targetFileKeySetResult)
-                (source,OriginFile,originFileKeySetResult)
-        match compareeResult with
-        | Success x -> strictStep
-        | Fail -> strictStep
+    //let compareStep originFileKeySet comparingFileKeySet =
+    //    let compareeResult = 
+    //        compare
+    //            (target,CompareeFile,comparingFileKeySet)
+    //            (source,OriginFile,originFileKeySet)
+    //    let strictStep strict originFile compareeFile :Result<DiffResults,list<JamesonResult>> =
+    //        let diffResults =  Success <|DiffFile_ originFile [compareeFile]
+    //        match originFile,compareeFile with
+    //        | Same _,Same _ ->  diffResults 
+    //        |  _ ->  
+    //            if strict 
+    //            then Fail [NOT_SAME] 
+    //            else diffResults
+    //    let targetFileKeySetResult = readKeyFileSetResult comparingFileKeySet
+    //    let compareeResult = 
+    //        compare
+    //            (target,CompareeFile,targetFileKeySetResult)
+    //            (source,OriginFile,originFileKeySetResult)
+    //    match compareeResult with
+    //    | Success x -> strictStep
+    //    | Fail -> strictStep
 
        
 
@@ -51,9 +53,9 @@ let run jamesonOption (generalRunnerOption:GeneralRunnerOption):Result<DiffResul
     //    | h::t ->
     //        generalFileRunner (runResults::compareeResult) (t)
 
-    let compareResults = generalFileRunner [] generalRunnerOption.targetCandidate
-    match Summarize compareResults with
-    | AllSuccess x->Success()
+    //let compareResults = generalFileRunner [] generalRunnerOption.targetCandidate
+    //match Summarize compareResults with
+    //| AllSuccess x->Success()
 
       
 

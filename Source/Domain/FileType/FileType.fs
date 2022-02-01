@@ -7,6 +7,11 @@ type FileArgument = {
     path:string
 }
 
+let FileArgument_ filename path :FileArgument = {
+    filename= filename;
+    path=path;
+}
+
 type PseudoJson =
     {
         path:string;

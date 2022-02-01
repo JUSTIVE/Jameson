@@ -1,13 +1,8 @@
 ﻿module Result
 
-type FailedReason<'failed,'reason> = {
-    message:'failed;
-    reason:'reason
-}
-
-type Result<'success,'failed,'reason> = 
+type Result<'success,'failed> = 
     | Success of 'success
-    | Fail of FailedReason<'failed,'reason>
+    | Fail of 'failed
 
 let isSuccess result =
     match result with
@@ -19,18 +14,19 @@ let isFail result =
     | Success _ -> false
     | Fail _ -> true
 
-let flatMapResult (result:Result<'success,'failed,'reason>) (mapfun:'success->'newType) :Result<'newType,'failed,'reason> = 
+let flatMapResult (result:Result<'success,'failed>) (mapfun:'success->'newType)
+    :Result<'newType,'failed> = 
     match result with
     | Success(x) ->
         Success <| mapfun x
     | Fail(x)-> Fail(x)
 
 let HandleResultTuple
-    (tuple:Result<'success,'failed,'reason> * Result<'newType,'failed,'reason>)
-    (action:'success->'newType->Result<'newSuccess,list<'failed>,'reason>)
-    :Result<'newSuccess,list<'failed>,'reason> = 
+    (tuple:Result<'success,'failed> * Result<'newType,'failed>)
+    (action:'success->'newType->Result<'newSuccess,list<'failed>>)
+    :Result<'newSuccess,list<'failed>> = 
     match tuple with
     | Success x,Success y   -> action x y
-    | Fail b,   Success _   -> Fail ({message=[b.message];reason=b.reason})
-    | Success _,Fail c      -> Fail ({message=[c.message];reason=c.reason})
+    | Fail b,   Success _   -> Fail [b]
+    | Success _,Fail c      -> Fail [c]
     | Fail d,   Fail e      -> Fail [d;e]

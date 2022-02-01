@@ -13,7 +13,7 @@ let private construct previousResult action =
     | Success someValue -> action someValue
     | Fail x -> x
 
-let Flow jamesonOptionR: Result<JamesonResult,list<JamesonResult>> =
+let Flow jamesonOptionR: Result<JamesonResult,list<JamesonFail>> =
     match jamesonOptionR with
     | Success jamesonOption ->
         printJamesonOption jamesonOption.verbose [NoneChild] jamesonOption
@@ -27,9 +27,7 @@ let Flow jamesonOptionR: Result<JamesonResult,list<JamesonResult>> =
                 |> List.map (printDiffFile true [])
                 |> ignore
                 Success GOOD
-            | Fail jamesonResult ->
-                printJamesonResults true [NoneChild] jamesonResult
-                |>ignore
-                Fail jamesonResult
+            | Fail jamesonResults ->
+                Fail jamesonResults
     | Fail jamesonResults ->
         Fail jamesonResults

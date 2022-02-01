@@ -1,18 +1,18 @@
 ﻿module ResultsSummary
 open Result
 
-type PartialSuccessType<'success,'failed,'reason> = {
-    successes: list<Result<'success,'failed,'reason>>;
-    fails:list<Result<'success,'failed,'reason>>
+type PartialSuccessType<'success,'failed> = {
+    successes: list<Result<'success,'failed>>;
+    fails:list<Result<'success,'failed>>
 }
 
-type ResultSummary<'success,'failed,'reason> = 
-    | AllSuccess of list<Result<'success,'failed,'reason>>
-    | AllFail of list<Result<'success,'failed,'reason>>
-    | PartialSuccess of PartialSuccessType<'success,'failed,'reason>
+type ResultSummary<'success,'failed> = 
+    | AllSuccess of list<Result<'success,'failed>>
+    | AllFail of list<Result<'success,'failed>>
+    | PartialSuccess of PartialSuccessType<'success,'failed>
 
-let Summarize (resultList:list<Result<'success,'failed,'reason>>)
-    :ResultSummary<'success,'failed,'reason> = 
+let Summarize (resultList:list<Result<'success,'failed>>)
+    :ResultSummary<'success,'failed> = 
     match resultList|>List.forall(isSuccess) with
     | true -> AllSuccess resultList
     | false ->
