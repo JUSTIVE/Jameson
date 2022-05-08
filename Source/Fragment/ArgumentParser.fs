@@ -78,12 +78,13 @@ and massagePath (massageTarget:MassageTarget) (path:string):Result<MassageResult
 and parseCheckConvention (state:JamesonOption) (argument:list<string>):Result<JamesonOption*list<string>,list<JamesonFail>> = 
     match argument with
     | g::t -> 
+        let SuccessValue x = Success (JamesonOptionSetCheckConventionLens state x,t)
         match g.ToLower() with
-        | "camel"  -> Success (JamesonOptionSetCheckConventionLens state (HeadCharConventionType CamelCase),t)
-        | "pascal" -> Success (JamesonOptionSetCheckConventionLens state (HeadCharConventionType PascalCase),t)
-        | "upper"  -> Success (JamesonOptionSetCheckConventionLens state (SimpleConventionType UpperCase),t)
-        | "lower"  -> Success (JamesonOptionSetCheckConventionLens state (SimpleConventionType LowerCase),t)
-        | "snake"  -> Success (JamesonOptionSetCheckConventionLens state (ComplexConventionType SnakeCase),t)
+        | "camel"  -> SuccessValue (HeadCharConventionType CamelCase)
+        | "pascal" -> SuccessValue (HeadCharConventionType PascalCase)
+        | "upper"  -> SuccessValue (SimpleConventionType UpperCase)
+        | "lower"  -> SuccessValue (SimpleConventionType LowerCase)
+        | "snake"  -> SuccessValue (ComplexConventionType SnakeCase)
         | __ -> Fail [JamesonFail_Default (INVALID_ARGUMENT g)]
     | __ -> Fail [JamesonFail_Default INSUFFICIENT_PATH_ARGUMENT]
 
