@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <WarnOn>3390;$(WarnOn)</WarnOn>
     <Version>0.0.0.1</Version>
   </PropertyGroup>
@@ -16,7 +16,6 @@
     <PackageReference Update="FSharp.Core" Version="5.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source\Domain\Result.fs" />
     <Compile Include="Source\Domain\ResultsSummary.fs" />
     <Compile Include="Source\Domain\State.fs" />
     <Compile Include="Source\Domain\FileType\FileType.fs" />

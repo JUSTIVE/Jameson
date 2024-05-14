@@ -1,6 +1,4 @@
 ﻿module ArgumentParserTest
-open State
-open Result
 open TestResult
 open Expect
 open ArgumentParser
@@ -11,7 +9,7 @@ open JamesonResult
 
 let Test_Parse_None:UnitTestState = 
     parse [||]
-    |>expect (Success {
+    |>expect (Ok {
         runnerType = RunnerTypeOption.None
         writeToFile = Option.None
         strict = false
@@ -23,7 +21,7 @@ let Test_Parse_None:UnitTestState =
 
 let Test_Parse_Strict:UnitTestState = 
     parse [|"--s"|]
-    |>expect (Success {
+    |>expect (Ok {
         runnerType = RunnerTypeOption.None
         writeToFile = Option.None
         strict = true
@@ -35,7 +33,7 @@ let Test_Parse_Strict:UnitTestState =
 
 let Test_Parse_Verbose:UnitTestState = 
     parse [|"--v"|]
-    |>expect (Success {
+    |>expect (Ok {
         runnerType = RunnerTypeOption.None
         writeToFile = Option.None
         strict = false
@@ -47,7 +45,7 @@ let Test_Parse_Verbose:UnitTestState =
 
 let Test_Parse_Help:UnitTestState = 
     parse [|"--h"|]
-    |>expect (Success {
+    |>expect (Ok {
         runnerType = RunnerTypeOption.None
         writeToFile = Option.None
         strict = false
@@ -59,7 +57,7 @@ let Test_Parse_Help:UnitTestState =
 
 let Test_Parse_AutoFill:UnitTestState = 
     parse [|"--f"|]
-    |>expect (Success {
+    |>expect (Ok {
         runnerType = RunnerTypeOption.None
         writeToFile = Option.None
         strict = false
@@ -71,7 +69,7 @@ let Test_Parse_AutoFill:UnitTestState =
 
 let Test_Parse_CheckConvention_Camel:UnitTestState = 
     parse [|"-c";"camel"|]
-    |>expect (Success {
+    |>expect (Ok {
         runnerType = RunnerTypeOption.None
         writeToFile = Option.None
         strict = false
@@ -83,7 +81,7 @@ let Test_Parse_CheckConvention_Camel:UnitTestState =
 
 let Test_Parse_CheckConvention_Pascal:UnitTestState = 
     parse [|"-c";"pascal"|]
-    |>expect (Success {
+    |>expect (Ok {
         runnerType = RunnerTypeOption.None
         writeToFile = Option.None
         strict = false
@@ -95,7 +93,7 @@ let Test_Parse_CheckConvention_Pascal:UnitTestState =
 
 let Test_Parse_CheckConvention_Upper:UnitTestState = 
     parse [|"-c";"upper"|]
-    |>expect (Success {
+    |>expect (Ok {
         runnerType = RunnerTypeOption.None
         writeToFile = Option.None
         strict = false
@@ -107,7 +105,7 @@ let Test_Parse_CheckConvention_Upper:UnitTestState =
 
 let Test_Parse_CheckConvention_Lower:UnitTestState = 
     parse [|"-c";"lower"|]
-    |>expect (Success {
+    |>expect (Ok {
         runnerType = RunnerTypeOption.None
         writeToFile = Option.None
         strict = false
@@ -119,7 +117,7 @@ let Test_Parse_CheckConvention_Lower:UnitTestState =
 
 let Test_Parse_CheckConvention_Snake:UnitTestState = 
     parse [|"-c";"snake"|]
-    |>expect (Success {
+    |>expect (Ok {
         runnerType = RunnerTypeOption.None
         writeToFile = Option.None
         strict = false
@@ -131,11 +129,11 @@ let Test_Parse_CheckConvention_Snake:UnitTestState =
 
 let Test_Parse_CheckConvention_insufficient_arguemnt:UnitTestState = 
     parse [|"-c"|]
-    |>expect (Fail [JamesonFail_Default INSUFFICIENT_PATH_ARGUMENT])
+    |>expect (Error [JamesonFail_Default INSUFFICIENT_PATH_ARGUMENT])
 
 let Test_Parse_CheckConvention_invalid_argument:UnitTestState = 
     parse [|"-c";""|]
-    |>expect (Fail [JamesonFail_Default (INVALID_ARGUMENT "")])
+    |>expect (Error [JamesonFail_Default (INVALID_ARGUMENT "")])
 
 let Test:ModuleTest =
     let result = 

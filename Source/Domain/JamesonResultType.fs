@@ -1,7 +1,6 @@
 ﻿module JamesonResult
 open State
 open Diff
-open Result
 
 type JamesonResult = {
     message:string;
@@ -28,5 +27,5 @@ let joinResultJamesonResult
     (action:'a->Result<'b,JamesonFail>)
     :Result<'b,JamesonFail> =
     match result with
-    | Success x -> action x 
-    | Fail a -> Fail a
+    | Ok x -> action x 
+    | Error a -> Error a

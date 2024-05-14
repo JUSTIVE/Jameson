@@ -1,5 +1,5 @@
 ﻿module ResultsSummary
-open Result
+open FSharp.Core
 
 type PartialSuccessType<'success,'failed> = {
     successes: list<Result<'success,'failed>>;
@@ -13,10 +13,10 @@ type ResultSummary<'success,'failed> =
 
 let Summarize (resultList:list<Result<'success,'failed>>)
     :ResultSummary<'success,'failed> = 
-    match resultList|>List.forall(isSuccess) with
+    match resultList|>List.forall(Result.isOk) with
     | true -> AllSuccess resultList
     | false ->
-        match resultList|>List.forall(isFail) with
+        match resultList|>List.forall(Result.isError) with
         | true -> AllFail resultList
         | false ->
             PartialSuccess({

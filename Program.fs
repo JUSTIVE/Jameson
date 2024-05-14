@@ -1,8 +1,6 @@
 ﻿open System
 open Help
 open Printer
-open State
-open Result
 open ArgumentParser
 open PrinterType
 open PipeLine
@@ -18,9 +16,9 @@ let main (argv:string[]):int =
 
     | __ ->
         match Flow <| parse argv with
-        | Success goodResult ->
+        | Ok goodResult ->
             printJamesonResult true [NoneChild] goodResult
-        | Fail failedResults -> 
+        | Error failedResults -> 
             printJamesonFails true [NoneChild] failedResults
     
 

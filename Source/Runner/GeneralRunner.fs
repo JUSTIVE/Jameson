@@ -1,18 +1,13 @@
 ﻿module GeneralRunner
 open JamesonResult
 open JamesonResults
-open State
-open Result
-open ResultsSummary
 open JamesonOption
-open FileType
-open Compare
 open Diff
 
 let run jamesonOption 
     (generalRunnerOption:GeneralRunnerOption)
     :Result<DiffResults,list<JamesonFail>> =
-    Fail [JamesonFail_ YET_IMPLEMENTED Option.None]
+    Error [JamesonFail_ YET_IMPLEMENTED Option.None]
     //let source = generalRunnerOption.source
     //let targetFiles = generalRunnerOption.targetList
 

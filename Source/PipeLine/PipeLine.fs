@@ -2,32 +2,24 @@
 open JamesonOption
 open JamesonResult
 open JamesonResults
-open State
-open Result
 open Printer
 open PrinterType
-open Runner
-
-let private construct previousResult action =
-    match previousResult with
-    | Success someValue -> action someValue
-    | Fail x -> x
 
 let Flow jamesonOptionR: Result<JamesonResult,list<JamesonFail>> =
     match jamesonOptionR with
-    | Success jamesonOption ->
+    | Ok jamesonOption ->
         printJamesonOption jamesonOption.verbose [NoneChild] jamesonOption
         if jamesonOption.help then 
-            Success <|Help.help()
+            Ok <|Help.help()
         else
             match Runner.run jamesonOption with
-            | Success diffFile -> 
+            | Ok diffFile -> 
                 printDiffFile true [] diffFile.originFile
                 diffFile.compareeFiles
                 |> List.map (printDiffFile true [])
                 |> ignore
-                Success GOOD
-            | Fail jamesonResults ->
-                Fail jamesonResults
-    | Fail jamesonResults ->
-        Fail jamesonResults
+                Ok GOOD
+            | Error jamesonResults ->
+                Error jamesonResults
+    | Error jamesonResults ->
+        Error jamesonResults

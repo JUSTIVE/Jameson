@@ -2,11 +2,7 @@
 open JamesonResult
 open JamesonResults
 open JamesonOption
-open Printer
-open PrinterType
 open Diff
-open State
-open Result
 
 let run (option:JamesonOption):Result<DiffResults,list<JamesonFail>> =
    //printJamesonOption true [NoneChild] option
@@ -18,4 +14,4 @@ let run (option:JamesonOption):Result<DiffResults,list<JamesonFail>> =
    | ShowRunnerOption showRunnerOption ->
         ShowRunner.run option showRunnerOption
    | None ->
-        Fail [JamesonFail_ INVALID_RUNNER_TYPE Option.None]
+        Error [JamesonFail_ INVALID_RUNNER_TYPE Option.None]
