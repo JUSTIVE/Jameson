@@ -57,8 +57,7 @@ let printIndent (indent:Indent) =
         h::(List.map midToOngoing t)
     | __ -> []
     |>List.rev
-    |>List.map printIndentItem 
-    |>ignore
+    |>List.iter printIndentItem 
 
 let print show (indent:Indent) color newline content =
     if show 

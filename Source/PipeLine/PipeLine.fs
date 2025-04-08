@@ -16,8 +16,7 @@ let Flow jamesonOptionR: Result<JamesonResult,list<JamesonFail.t>> =
             | Ok diffFile -> 
                 printDiffFile true [] diffFile.originFile
                 diffFile.compareeFiles
-                |> List.map (printDiffFile true [])
-                |> ignore
+                |> List.iter (printDiffFile true [])
                 Ok GOOD
             | Error jamesonResults ->
                 Error jamesonResults

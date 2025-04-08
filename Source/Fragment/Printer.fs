@@ -20,8 +20,7 @@ let printDiffLines show indent difflines =
         
     let innerPrint() =
         difflines
-        |>List.map (printDiffLine indent)
-        |>ignore
+        |>List.iter (printDiffLine indent)
     innerPrint
     |> showPrint show
 
@@ -65,7 +64,7 @@ let printJamesonFail show indent (jamesonFail:JamesonFail.t) :int =
          printWithOptionName show (ColorableIndent(MidChild,ConsoleColor.White)::indent) messageColor "message" print jamesonFail.result.message 
          printWithOptionName show (ColorableIndent(LastChild,ConsoleColor.White)::indent) ConsoleColor.Gray "errorCode" print jamesonFail.result.errorCode
          match jamesonFail.reason with
-         | Some diffFile->
+         | Some diffFile ->
             printDiffFile show (EmptyChild::indent) diffFile
          | Option.None -> ignore()
           
