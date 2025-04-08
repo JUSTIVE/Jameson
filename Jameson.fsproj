@@ -13,9 +13,6 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Update="FSharp.Core" Version="5.0.2" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Source\Domain\ResultsSummary.fs" />
     <Compile Include="Source\Domain\State.fs" />
     <Compile Include="Source\Domain\FileType\FileType.fs" />
@@ -51,8 +48,5 @@
     <None Include="README.md" />
     <None Include=".gitignore" />
     <PackageReference Include="FSharp.Data" Version="4.2.7" />
-    <PackageReference Include="FSharp.Core" Version="6.0.1">
-      <GeneratePathProperty></GeneratePathProperty>
-    </PackageReference>
   </ItemGroup>
 </Project>

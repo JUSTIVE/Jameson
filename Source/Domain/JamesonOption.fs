@@ -41,81 +41,82 @@ type CheckConventionType =
     | HeadCharConventionType of HeadCharConventionType
     | ComplexConventionType of ComplexConventionType
 
-type JamesonOption = {
-    runnerType:RunnerTypeOption
-    writeToFile:option<string>
-    strict:bool
-    verbose:bool
-    help:bool
-    autoFill:bool
-    checkConvention:CheckConventionType
-}
+module JamesonOption = 
+    type t = {
+        runnerType:RunnerTypeOption
+        writeToFile:option<string>
+        strict:bool
+        verbose:bool
+        help:bool
+        autoFill:bool
+        checkConvention:CheckConventionType
+    }
 
-let JamesonOptionSetRunnerTypeLens state runnerTypeOption :JamesonOption=
-    {
-        runnerType = runnerTypeOption;
-        writeToFile = state.writeToFile;
-        strict = state.strict;
-        verbose = state.verbose
-        help = state.help
-        autoFill = state.autoFill
-        checkConvention = state.checkConvention
-    } 
+    let setRunnerTypeLens runnerTypeOption state :t=
+        {
+            runnerType = runnerTypeOption;
+            writeToFile = state.writeToFile;
+            strict = state.strict;
+            verbose = state.verbose
+            help = state.help
+            autoFill = state.autoFill
+            checkConvention = state.checkConvention
+        } 
 
-let JamesonOptionSetCheckConventionLens state checkConvention : JamesonOption=
-    {
-        runnerType = state.runnerType;
-        writeToFile = state.writeToFile;
-        strict = state.strict;
-        verbose = state.verbose
-        help = state.help
-        autoFill = state.autoFill
-        checkConvention = checkConvention
-    } 
-
-let JamesonOptionSetBoolFlag state key:JamesonOption=
-    match key with
-    | "verbose" ->
-        { 
+    let setCheckConventionLens  checkConvention state : t=
+        {
             runnerType = state.runnerType;
             writeToFile = state.writeToFile;
             strict = state.strict;
-            verbose = true
+            verbose = state.verbose
             help = state.help
             autoFill = state.autoFill
-            checkConvention = state.checkConvention
-        }
-    | "help" -> 
-        {
-            runnerType = state.runnerType;
-            writeToFile = state.writeToFile;
-            verbose = state.verbose
-            strict = state.strict
-            help = true
-            autoFill = state.autoFill
-            checkConvention = state.checkConvention
-        }
-    | "strict" ->
-        {
-            runnerType = state.runnerType;
-            writeToFile = state.writeToFile;
-            verbose = state.verbose
-            strict = true;
-            help = state.help
-            autoFill = state.autoFill
-            checkConvention = state.checkConvention
-        }
-    | "autoFill" ->
-        {
-            runnerType = state.runnerType;
-            writeToFile = state.writeToFile;
-            verbose = state.verbose
-            strict = state.strict;
-            help = state.help
-            autoFill = true
-            checkConvention = state.checkConvention
-        }
-    | __ -> state
+            checkConvention = checkConvention
+        } 
+
+    let setBoolFlag  key state:t=
+        match key with
+        | "verbose" ->
+            { 
+                runnerType = state.runnerType;
+                writeToFile = state.writeToFile;
+                strict = state.strict;
+                verbose = true
+                help = state.help
+                autoFill = state.autoFill
+                checkConvention = state.checkConvention
+            }
+        | "help" -> 
+            {
+                runnerType = state.runnerType;
+                writeToFile = state.writeToFile;
+                verbose = state.verbose
+                strict = state.strict
+                help = true
+                autoFill = state.autoFill
+                checkConvention = state.checkConvention
+            }
+        | "strict" ->
+            {
+                runnerType = state.runnerType;
+                writeToFile = state.writeToFile;
+                verbose = state.verbose
+                strict = true;
+                help = state.help
+                autoFill = state.autoFill
+                checkConvention = state.checkConvention
+            }
+        | "autoFill" ->
+            {
+                runnerType = state.runnerType;
+                writeToFile = state.writeToFile;
+                verbose = state.verbose
+                strict = state.strict;
+                help = state.help
+                autoFill = true
+                checkConvention = state.checkConvention
+            }
+        | __ -> state
 
 type ArgumentOption = {
     name:string;

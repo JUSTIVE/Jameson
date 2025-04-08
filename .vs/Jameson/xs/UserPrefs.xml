@@ -1,21 +1,27 @@
 ﻿<Properties StartupConfiguration="{3B0447B5-BED5-41BD-9EAA-DD21E3479A12}|Default">
-  <MonoDevelop.Ide.ItemProperties.Jameson PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Substation" Name="Substation">
+      <Items>
+        <StartupItem ItemId="{3B0447B5-BED5-41BD-9EAA-DD21E3479A12}" ItemName="Jameson" ConfigurationId="Default" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Source/Domain/ResultsSummary.fs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Source/Fragment/NameChanger.fs">
     <Files>
       <File FileName="Test/Fragment/ArgumentParserTest.fs" Line="1" Column="26" IsPinned="True" />
       <File FileName="Source/Runner/TargetRunner.fs" Line="8" Column="13" IsPinned="True" />
-      <File FileName="Source/Domain/JamesonOption.fs" />
+      <File FileName="Source/Domain/JamesonOption.fs" Line="29" Column="16" />
       <File FileName="README.md" />
       <File FileName="Source/PipeLine/PipeLine.fs" />
-      <File FileName="Source/Runner/Runner.fs" />
+      <File FileName="Source/Runner/Runner.fs" Line="1" Column="1" />
       <File FileName="Test/Utilities/TestResult.fs" />
       <File FileName="Test/Utilities/TestPrinter.fs" />
       <File FileName="Test/Utilities/Expect.fs" />
-      <File FileName="Test/Fragment/NameChangerTest.fs" Line="1" Column="1" />
+      <File FileName="Test/Fragment/NameChangerTest.fs" Line="19" Column="82" />
       <File FileName="Source/Resource/JamesonResults.fs" NotebookId="1" />
       <File FileName="Source/Fragment/Printer.fs" NotebookId="1" />
       <File FileName="Source/Fragment/ArgumentParser.fs" NotebookId="1" />
@@ -26,29 +32,32 @@
       <File FileName="Source/Fragment/LanguageSupport.fs" NotebookId="1" />
       <File FileName="Source/Domain/FileType/Diff.fs" NotebookId="1" />
       <File FileName="Source/Domain/Utility/PrinterType.fs" NotebookId="1" />
-      <File FileName="Source/Runner/GeneralRunner.fs" NotebookId="1" />
+      <File FileName="Source/Runner/GeneralRunner.fs" Line="1" Column="1" NotebookId="1" />
       <File FileName="Source/Resource/JamesonOptions.fs" NotebookId="1" />
       <File FileName="Program.fs" NotebookId="1" />
-      <File FileName="Source/Domain/ResultsSummary.fs" Line="23" Column="26" NotebookId="1" />
+      <File FileName="Source/Domain/ResultsSummary.fs" Line="16" Column="46" NotebookId="1" />
       <File FileName="Source/Domain/State.fs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Source/Domain/JamesonResultType.fs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Source/Domain/JamesonResultType.fs" Line="14" Column="1" NotebookId="1" />
       <File FileName="Source/Domain/FileType/FileType.fs" NotebookId="1" />
-      <File FileName="Source/Fragment/NameChanger.fs" NotebookId="1" />
+      <File FileName="Source/Fragment/NameChanger.fs" Line="10" Column="54" NotebookId="1" />
       <File FileName="Source/Fragment/PrinterUtil.fs" NotebookId="1" />
       <File FileName="Source/Fragment/JsonLoader.fs" NotebookId="1" />
       <File FileName="Source/Fragment/Reconstructor.fs" NotebookId="1" />
-      <File FileName="Source/Runner/ShowRunner.fs" NotebookId="1" />
-      <File FileName="Test/TestRunner.fs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Source/Runner/ShowRunner.fs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Test/TestRunner.fs" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Jameson">
-            <Node name="Jameson" selected="True">
-              <Node name="Source" expanded="True">
-                <Node name="Domain" expanded="True">
-                  <Node name="Utility" expanded="True" />
+            <Node name="Jameson">
+              <Node name="Source">
+                <Node name="Domain" expanded="True" />
+                <Node name="Resource" expanded="True" />
+                <Node name="Fragment">
+                  <Node name="NameChanger.fs" selected="True" />
                 </Node>
+                <Node name="Runner" expanded="True" />
               </Node>
               <Node name="Test" expanded="True">
                 <Node name="Fragment" expanded="True" />
@@ -59,13 +68,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <Debugger.DebugSourceFolders />
+  <MonoDevelop.Ide.ItemProperties.Jameson PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations>
-    <MultiItemSolutionRunConfiguration Id="Substation" Name="Substation">
-      <Items>
-        <StartupItem ItemId="{3B0447B5-BED5-41BD-9EAA-DD21E3479A12}" ItemName="Jameson" ConfigurationId="Default" />
-      </Items>
-    </MultiItemSolutionRunConfiguration>
-  </MultiItemStartupConfigurations>
+  <Debugger.DebugSourceFolders />
 </Properties>

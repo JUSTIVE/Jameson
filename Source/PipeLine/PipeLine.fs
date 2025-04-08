@@ -1,11 +1,11 @@
 ﻿module PipeLine
-open JamesonOption
+open JamesonOption.JamesonOption
 open JamesonResult
 open JamesonResults
 open Printer
 open PrinterType
 
-let Flow jamesonOptionR: Result<JamesonResult,list<JamesonFail>> =
+let Flow jamesonOptionR: Result<JamesonResult,list<JamesonFail.t>> =
     match jamesonOptionR with
     | Ok jamesonOption ->
         printJamesonOption jamesonOption.verbose [NoneChild] jamesonOption

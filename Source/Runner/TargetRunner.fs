@@ -7,11 +7,10 @@ open JamesonResult
 open JamesonResults
 open Compare
 open Diff
+open State
 
-let run jamesonOption (targetRunnerOption:TargetRunnerOption)=
-    let readKeyFileSetResult path =
-        readJSONFile path
-        |> Result.map parse
+let run jamesonOption (targetRunnerOption:TargetRunnerOption): Result<DiffResults.t,JamesonFail.t list> =
+    let readKeyFileSetResult = readJSONFile >> Result.map parse
         //match readJSONFile path with
         //| Fail(jamesonResult) -> Fail    <| JamesonFail_ jamesonResult Option.None
         //| Success(jsonValue)  -> Success <| parse jsonValue
@@ -31,15 +30,15 @@ let run jamesonOption (targetRunnerOption:TargetRunnerOption)=
                 (source,OriginFile,  originFileKeySet)
 
         let strictStep originFile compareeFile=
-            let diffResults = DiffResults_ originFile [compareeFile]
+            let diffResults = DiffResults.make originFile [compareeFile]
             match originFile,compareeFile with
             | Same _,Same _                                 ->  Ok diffResults
             | Same _, Different(fileArgument,difflineList)
-            | Different(fileArgument,difflineList), Same _  -> Error [JamesonFail_ NOT_SAME (Option.Some (Different(fileArgument,difflineList)))]
+            | Different(fileArgument,difflineList), Same _  -> Error [JamesonFail.make NOT_SAME (Option.Some (Different(fileArgument,difflineList)))]
             | Different(fileArgumentA,difflineListA), Different(fileArgumentB,difflineListB) -> 
                 Error[
-                    JamesonFail_ NOT_SAME (Option.Some (Different(fileArgumentA,difflineListA)));
-                    JamesonFail_ NOT_SAME (Option.Some (Different(fileArgumentB,difflineListB)))
+                    JamesonFail.make NOT_SAME (Option.Some (Different(fileArgumentA,difflineListA)));
+                    JamesonFail.make NOT_SAME (Option.Some (Different(fileArgumentB,difflineListB)))
                 ]
         HandleResultTuple (originResult,compareeResult) (strictStep)
-    HandleResultTuple (originFileKeySetResult,targetFileKeySetResult) compareStep
+    HandleResultTuple (originFileKeySetResult,targetFileKeySetResult) (compareStep)

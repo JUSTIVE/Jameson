@@ -20,6 +20,6 @@ let Summarize (resultList:list<Result<'success,'failed>>)
         | true -> AllFail resultList
         | false ->
             PartialSuccess({
-                successes=resultList|>List.filter(isSuccess);
-                fails = resultList|>List.filter(isFail);
+                successes=resultList|>List.filter(Result.isOk);
+                fails = resultList|>List.filter(Result.isError);
             })

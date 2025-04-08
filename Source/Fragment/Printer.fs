@@ -54,7 +54,7 @@ let printJamesonResult show indent (jamesonResult:JamesonResult) :int =
     |> showPrint show
     jamesonResult.errorCode
 
-let printJamesonFail show indent (jamesonFail:JamesonFail) :int = 
+let printJamesonFail show indent (jamesonFail:JamesonFail.t) :int = 
      let innerPrint () =
          printEmptyLine()
          printType show indent "JamseonFail"
@@ -73,7 +73,7 @@ let printJamesonFail show indent (jamesonFail:JamesonFail) :int =
      |> showPrint show
      jamesonFail.result.errorCode
 
-let printJamesonFails show indent (jamesonResults:list<JamesonFail>) :int =
+let printJamesonFails show indent (jamesonResults:list<JamesonFail.t>) :int =
     jamesonResults
     |>List.map(printJamesonFail show indent)
     |>List.fold (fun x y->if x > y then x else y) 0
@@ -136,7 +136,7 @@ let printCheckConvention show indent consoleColor newline (checkConvention:Check
     |>sprintf "checkConventionType : %s" 
     |>printType show indent
 
-let printJamesonOption show indent (jamesonOption:JamesonOption) =
+let printJamesonOption show indent (jamesonOption:JamesonOption.t) =
     let innerPrint () =
         printType show indent "JamseonOption"
         printWithOptionName show (ColorableIndent(MidChild,ConsoleColor.White)::indent) ConsoleColor.White "runnerType" printRunnerType jamesonOption.runnerType

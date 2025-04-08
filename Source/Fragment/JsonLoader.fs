@@ -7,7 +7,7 @@ open FSharp.Data
 
 let readJSONFile (path:string):Result<JsonValue,JamesonResult> = 
     try
-        Success(JsonValue.Load(path))
+        Ok(JsonValue.Load(path))
     with
         :? System.IO.FileNotFoundException->
-            Fail(FILE_NOT_FOUND path)
+            Error(FILE_NOT_FOUND path)

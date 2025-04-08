@@ -3,8 +3,8 @@ open System
 open JamesonOption
 open FileType
 
-let setNameConvention namingConventionType (value:string):string =
-    let simpleConvention (simpleConvention:SimpleConventionType) (value:string) =
+let setNameConvention namingConventionType value=
+    let simpleConvention simpleConvention (value:string) =
         let handleChunk (value:string)=
             match simpleConvention with
             | SimpleConventionType.UpperCase -> value.ToUpper()
@@ -55,8 +55,8 @@ let pathConvention targetNamingConvention (path:string):string =
         |>Seq.map (setNameConvention targetNamingConvention))
     |>String.Join
 
-let pseudoJsonConvention targetNamingConvention (pseudoJson:PseudoJson) =
-    PseudoJson_ (pathConvention targetNamingConvention pseudoJson.path) pseudoJson.value
+let pseudoJsonConvention targetNamingConvention (pseudoJson:PseudoJson.t) =
+    PseudoJson.make (pathConvention targetNamingConvention pseudoJson.path) pseudoJson.value
 
 let FileKeySetConvention targetnamingConvention (fileKeySet:FileKeySet) =
     Set.map (pseudoJsonConvention targetnamingConvention) fileKeySet

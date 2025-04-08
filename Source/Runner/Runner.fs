@@ -4,7 +4,7 @@ open JamesonResults
 open JamesonOption
 open Diff
 
-let run (option:JamesonOption):Result<DiffResults,list<JamesonFail>> =
+let run (option:JamesonOption.t):Result<DiffResults.t,list<JamesonFail.t>> =
    //printJamesonOption true [NoneChild] option
    match option.runnerType with
    | TargetRunnerOption targetRunnerOption ->
@@ -14,4 +14,4 @@ let run (option:JamesonOption):Result<DiffResults,list<JamesonFail>> =
    | ShowRunnerOption showRunnerOption ->
         ShowRunner.run option showRunnerOption
    | None ->
-        Error [JamesonFail_ INVALID_RUNNER_TYPE Option.None]
+        Error [JamesonFail.make INVALID_RUNNER_TYPE Option.None]

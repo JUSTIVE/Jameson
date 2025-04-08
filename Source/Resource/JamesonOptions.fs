@@ -1,7 +1,7 @@
 ﻿module JamesonOptions
 open JamesonOption
 
-let OptionDefault :JamesonOption= {
+let OptionDefault :JamesonOption.t= {
     runnerType=None
     writeToFile=Option.None
     strict = false

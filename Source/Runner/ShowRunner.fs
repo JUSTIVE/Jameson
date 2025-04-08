@@ -4,5 +4,5 @@ open JamesonResult
 open Diff
 
 
-let run jamesonOption showRunnerOption:Result<DiffResults,list<JamesonFail>> = 
-    Error [JamesonFail_ INVALID_RUNNER_TYPE Option.None]
+let run jamesonOption showRunnerOption:Result<DiffResults.t,list<JamesonFail.t>> = 
+    Error [JamesonFail.make INVALID_RUNNER_TYPE Option.None]

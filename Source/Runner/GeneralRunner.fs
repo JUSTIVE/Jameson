@@ -6,8 +6,8 @@ open Diff
 
 let run jamesonOption 
     (generalRunnerOption:GeneralRunnerOption)
-    :Result<DiffResults,list<JamesonFail>> =
-    Error [JamesonFail_ YET_IMPLEMENTED Option.None]
+    :Result<DiffResults.t,list<JamesonFail.t>> =
+    Error [JamesonFail.make YET_IMPLEMENTED Option.None]
     //let source = generalRunnerOption.source
     //let targetFiles = generalRunnerOption.targetList
 

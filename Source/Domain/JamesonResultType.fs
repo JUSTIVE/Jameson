@@ -7,25 +7,26 @@ type JamesonResult = {
     errorCode:int;
 }
 
-type JamesonFail = {
-    result:JamesonResult;
-    reason:Option<DiffFile>
-}
+module JamesonFail =
+    type t = {
+        result:JamesonResult;
+        reason:Option<DiffFile>
+    }
 
-let JamesonFail_ (result:JamesonResult) (reason:Option<DiffFile>):JamesonFail = {
-    result=result;
-    reason=reason
-}
+    let make (result:JamesonResult) (reason:Option<DiffFile>):t = {
+        result=result;
+        reason=reason
+    }
 
-let JamesonFail_Default (result:JamesonResult):JamesonFail = {
-    result=result;
-    reason=Option.None
-}
+    let Default (result:JamesonResult):t = {
+        result=result;
+        reason=Option.None
+    }
 
 let joinResultJamesonResult 
-    (result:Result<'a,JamesonFail>)
-    (action:'a->Result<'b,JamesonFail>)
-    :Result<'b,JamesonFail> =
+    (result:Result<'a,JamesonFail.t>)
+    (action:'a->Result<'b,JamesonFail.t>)
+    :Result<'b,JamesonFail.t> =
     match result with
     | Ok x -> action x 
     | Error a -> Error a

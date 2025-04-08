@@ -2,36 +2,21 @@
 
 open FSharp.Data
 
-type FileArgument = {
-    filename:string;
-    path:string
-}
+type FileArgument = { filename: string; path: string }
 
-let FileArgument_ filename path :FileArgument = {
-    filename= filename;
-    path=path;
-}
+let FileArgument_ filename path : FileArgument = { filename = filename; path = path }
 
-type PseudoJson =
-    {
-        path:string;
-        value:JsonValue
-    }
+module PseudoJson =
+    type t = { path: string; value: JsonValue }
 
-let PseudoJson_ path value =
-    {
-        path=path;
-        value=value;
-    }
+    let make path value = { path = path; value = value }
 
-let compareJsonLeaf (originPath,originValue) (targetPath,targetValue) =
-    originPath=targetPath
+let compareJsonLeaf (originPath, originValue) (targetPath, targetValue) = originPath = targetPath
 
-type FileKeySet = Set<PseudoJson>
+type FileKeySet = Set<PseudoJson.t>
 
-type FileType = 
-    | OriginFile 
+type FileType =
+    | OriginFile
     | CompareeFile
 
-type FileData = FileArgument*FileType*FileKeySet
-
+type FileData = FileArgument * FileType * FileKeySet
